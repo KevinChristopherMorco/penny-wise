@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-color: #fff;
+  --secondary-color: #3a1078;
+  --accent-color: #3544cf;
+  --neutral-color: #edeffa;
+  --text-color: #000;
+  --text-accent: #fff;
+
+  --dark-primary-color: #22092c;
+  --dark-secondary-color: #ff204e;
+  --dark-accent-color: #ffcd4b;
+  --dark-text-color: #fff;
+  --dark-text-accent: #000;
+  --dark-neutral-color: #391047;
+  /* f9d276 */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins";
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/src/assets/fonts/Poppins-Regular.ttf");
+}
+
+html,
+body {
+  @apply h-full;
+}
+
+#root {
+  @apply min-h-full text-black transition duration-100 delay-0 bg-[var(--primary-color)] dark:bg-[var(--dark-primary-color)] dark:text-white;
+}

@@ -1,0 +1,122 @@
+import React from "react";
+import { IconCircleX, IconAlertCircle } from "@tabler/icons-react";
+import savings from "../../../assets/flaticons/savings.png";
+import salary from "../../../assets/flaticons/salary.png";
+import { useNavigateContext } from "../../../hooks/general/navigation/useActiveNavigation";
+import { useAccountContext } from "../../../hooks/user-actions/account/useManageAccount";
+
+const AddAccount = () => {
+  const {
+    currentActive: {
+      modal: { type },
+    },
+    setCurrentActive,
+  } = useNavigateContext();
+  const {
+    defaultInput,
+    currentInput: { accountName, accountBalance, icon },
+    setPopulate,
+    handleAddAccount,
+    handleInputChange,
+  } = useAccountContext();
+
+  return (
+    <div className="w-full h-full fixed flex justify-center items-center bg-[#000] bg-opacity-80 animate-fadeIn z-[999]">
+      <div className="w-[85%] h-fit px-4 pt-2 pb-6 mb-[3rem] flex flex-col gap-8 bg-[var(--primary-color)] rounded-xl dark:bg-[var(--dark-primary-color)]">
+        <div className="py-2 flex justify-between items-center font-bold border-b border-[var(--accent-color)] dark:border-[var(--dark-accent-color)]">
+          <p>{type === "add" ? "Add an Account" : "Edit an Account"}</p>
+          <IconCircleX
+            className="w-6 h-6"
+            onClick={() => {
+              setPopulate(defaultInput);
+              setCurrentActive("modal", {
+                modalName: null,
+                type: null,
+              });
+            }}
+          />
+        </div>
+        <div>
+          <form
+            onSubmit={type === "add" ? handleAddAccount : handleAddAccount}
+            className="flex flex-col gap-8"
+            method="POST"
+          >
+            <div className="w-full flex flex-col gap-1">
+              <div className="flex flex-col gap-2 text-sm font-bold">
+                <label htmlFor="accountName" className="basis-[60%]">
+                  Account Name
+                </label>
+                <input
+                  type="text"
+                  id="accountName"
+                  name="accountName"
+                  className="w-full p-2 text-black rounded-lg dark:bg-[var(--dark-neutral-color)] dark:text-[#fff]"
+                  placeholder="My savings"
+                  onChange={handleInputChange}
+                  value={type === "add" ? "" : accountName}
+                />
+              </div>
+              <p className="flex items-center gap-1 text-[.8rem] font-medium text-red-500">
+                <IconAlertCircle className="w-4 h-4" />
+                Please include an account name.
+              </p>
+            </div>
+            <div className="w-full flex flex-col gap-1">
+              <div className="flex flex-col gap-2 text-sm font-bold">
+                <label htmlFor="accountBalance" className="basis-[55%]">
+                  Initial Amount
+                </label>
+                <input
+                  type="number"
+                  id="accountBalance"
+                  name="accountBalance"
+                  className="w-full p-2 text-black rounded-lg dark:bg-[var(--dark-neutral-color)] dark:text-[#fff]"
+                  placeholder="1.00"
+                  min={1}
+                  onChange={handleInputChange}
+                  value={type === "add" ? "" : accountBalance}
+                />
+              </div>
+              <p className="flex items-center gap-1 text-[.8rem] font-medium text-red-500">
+                <IconAlertCircle className="w-4 h-4" />
+                Please include a valid amount.
+              </p>
+            </div>
+            <div className="flex flex-col gap-2">
+              <p className="text-sm font-bold">Icons</p>
+              <div className="p-2 flex gap-2 bg-[var(--neutral-color)] dark:bg-[var(--dark-neutral-color)] rounded-xl">
+                <div className="w-12 h-12 flex justify-center items-center bg-[var(--secondary-color)] dark:bg-[var(--dark-secondary-color)] rounded-xl cursor-pointer">
+                  <img
+                    src={savings}
+                    name="icon"
+                    className="w-10 h-10 rounded-xl"
+                    data-accounttype="savings"
+                    onClick={handleInputChange}
+                  />
+                </div>
+                <div className="w-12 h-12 flex justify-center items-center bg-[var(--secondary-color)] dark:bg-[var(--dark-secondary-color)] rounded-xl cursor-pointer">
+                  <img
+                    src={salary}
+                    name="icon"
+                    alt=""
+                    className="w-10 h-10 rounded-xl"
+                    data-accounttype="salary"
+                    onClick={handleInputChange}
+                  />
+                </div>
+              </div>
+            </div>
+            <input
+              type="submit"
+              className="w-full p-2 text-base text-[var(--text-accent)] font-bold rounded-xl bg-[var(--accent-color)] cursor-pointer dark:bg-[var(--dark-accent-color)] dark:text-[var(--dark-text-accent)]"
+              value="Add"
+            />
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default AddAccount;
