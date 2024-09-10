@@ -7,10 +7,16 @@ const AccountContext = createContext();
 
 const AccountProvider = ({ children }) => {
   const {
+    defaultInput,
+    defaultError,
     currentInput,
+    error,
+    setInput,
+    setError,
     setPopulate,
     handleInputChange,
     handleAddAccount,
+    handleEditAccount,
     handleDeleteAccount,
   } = useForm();
   const { accounts } = useFetchStorage();
@@ -18,10 +24,16 @@ const AccountProvider = ({ children }) => {
   return (
     <AccountContext.Provider
       value={{
+        defaultInput,
+        defaultError,
         currentInput,
+        error,
+        setError,
         accounts,
+        setInput,
         setPopulate,
         handleAddAccount,
+        handleEditAccount,
         handleDeleteAccount,
         handleInputChange,
       }}

@@ -12,11 +12,17 @@ const AddAccount = () => {
     },
     setCurrentActive,
   } = useNavigateContext();
+
   const {
     defaultInput,
     currentInput: { accountName, accountBalance, icon },
+    error: { errorAccountName, errorAccountBalance },
+    defaultError,
+    setInput,
+    setError,
     setPopulate,
     handleAddAccount,
+    handleEditAccount,
     handleInputChange,
   } = useAccountContext();
 
@@ -28,6 +34,8 @@ const AddAccount = () => {
           <IconCircleX
             className="w-6 h-6"
             onClick={() => {
+              setInput(defaultInput);
+              setError(defaultError);
               setPopulate(defaultInput);
               setCurrentActive("modal", {
                 modalName: null,
@@ -38,7 +46,7 @@ const AddAccount = () => {
         </div>
         <div>
           <form
-            onSubmit={type === "add" ? handleAddAccount : handleAddAccount}
+            onSubmit={type === "add" ? handleAddAccount : handleEditAccount}
             className="flex flex-col gap-8"
             method="POST"
           >
@@ -51,16 +59,20 @@ const AddAccount = () => {
                   type="text"
                   id="accountName"
                   name="accountName"
-                  className="w-full p-2 text-black rounded-lg dark:bg-[var(--dark-neutral-color)] dark:text-[#fff]"
+                  className={`${
+                    errorAccountName ? "border border-red-500" : ""
+                  } w-full p-2 text-black bg-[var(--neutral-color)] rounded-lg dark:bg-[var(--dark-neutral-color)] dark:text-[#fff]`}
                   placeholder="My savings"
                   onChange={handleInputChange}
-                  value={type === "add" ? "" : accountName}
+                  value={accountName}
                 />
               </div>
-              <p className="flex items-center gap-1 text-[.8rem] font-medium text-red-500">
-                <IconAlertCircle className="w-4 h-4" />
-                Please include an account name.
-              </p>
+              {errorAccountName && (
+                <p className="flex items-center gap-1 text-[.8rem] font-medium text-red-500">
+                  <IconAlertCircle className="w-4 h-4" />
+                  Please include an account name.
+                </p>
+              )}
             </div>
             <div className="w-full flex flex-col gap-1">
               <div className="flex flex-col gap-2 text-sm font-bold">
@@ -71,22 +83,31 @@ const AddAccount = () => {
                   type="number"
                   id="accountBalance"
                   name="accountBalance"
-                  className="w-full p-2 text-black rounded-lg dark:bg-[var(--dark-neutral-color)] dark:text-[#fff]"
+                  className={`${
+                    errorAccountBalance ? "border border-red-500" : ""
+                  } w-full p-2 text-black bg-[var(--neutral-color)] rounded-lg dark:bg-[var(--dark-neutral-color)] dark:text-[#fff]`}
                   placeholder="1.00"
-                  min={1}
                   onChange={handleInputChange}
-                  value={type === "add" ? "" : accountBalance}
+                  value={accountBalance}
                 />
               </div>
-              <p className="flex items-center gap-1 text-[.8rem] font-medium text-red-500">
-                <IconAlertCircle className="w-4 h-4" />
-                Please include a valid amount.
-              </p>
+              {errorAccountBalance && (
+                <p className="flex items-center gap-1 text-[.8rem] font-medium text-red-500">
+                  <IconAlertCircle className="w-4 h-4" />
+                  Please include a valid amount.
+                </p>
+              )}
             </div>
             <div className="flex flex-col gap-2">
               <p className="text-sm font-bold">Icons</p>
               <div className="p-2 flex gap-2 bg-[var(--neutral-color)] dark:bg-[var(--dark-neutral-color)] rounded-xl">
-                <div className="w-12 h-12 flex justify-center items-center bg-[var(--secondary-color)] dark:bg-[var(--dark-secondary-color)] rounded-xl cursor-pointer">
+                <div
+                  className={`${
+                    icon === "savings"
+                      ? "border-4 border-[var(--accent-color)] dark:border-[var(--dark-accent-color)] "
+                      : ""
+                  } w-12 h-12 flex justify-center items-center bg-[var(--secondary-color)] dark:bg-[var(--dark-secondary-color)] rounded-xl cursor-pointer`}
+                >
                   <img
                     src={savings}
                     name="icon"
@@ -95,7 +116,13 @@ const AddAccount = () => {
                     onClick={handleInputChange}
                   />
                 </div>
-                <div className="w-12 h-12 flex justify-center items-center bg-[var(--secondary-color)] dark:bg-[var(--dark-secondary-color)] rounded-xl cursor-pointer">
+                <div
+                  className={`${
+                    icon === "salary"
+                      ? "border-4 border-[var(--accent-color)] dark:border-[var(--dark-accent-color)] "
+                      : ""
+                  } w-12 h-12 flex justify-center items-center bg-[var(--secondary-color)] dark:bg-[var(--dark-secondary-color)] rounded-xl cursor-pointer`}
+                >
                   <img
                     src={salary}
                     name="icon"
@@ -110,7 +137,7 @@ const AddAccount = () => {
             <input
               type="submit"
               className="w-full p-2 text-base text-[var(--text-accent)] font-bold rounded-xl bg-[var(--accent-color)] cursor-pointer dark:bg-[var(--dark-accent-color)] dark:text-[var(--dark-text-accent)]"
-              value="Add"
+              value={type === "add" ? "Add" : "Save"}
             />
           </form>
         </div>

@@ -4,9 +4,7 @@ import useFetchStorage from "../../fetch/useFetchStorage";
 const usePopulate = (defaultInput) => {
   const { accounts } = useFetchStorage();
   const getField = JSON.parse(localStorage.getItem("populateField"));
-  const populateField = useRef({ ...getField } || defaultInput);
-
-  //   JSON.parse(localStorage.getItem("populateField")) ||
+  const populateField = useRef(getField.current || defaultInput);
 
   const setPopulate = (id) => {
     populateField.current =

@@ -9,7 +9,6 @@ const NavigationProvider = ({ children }) => {
       modal: { modalName: null, type: null },
     }
   );
-  console.log(currentActive);
 
   const setCurrentActive = (type, value) => {
     if (type === "modal") {

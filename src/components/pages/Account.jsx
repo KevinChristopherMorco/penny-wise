@@ -13,7 +13,7 @@ const Income = () => {
   } = useNavigateContext();
   return (
     <AccountProvider>
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-5 animate-fadeIn">
         <AccountHeader />
         <div className="px-4 py-2">
           <Account />

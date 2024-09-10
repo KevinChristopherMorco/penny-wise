@@ -33,7 +33,10 @@ const IncomeCard = ({
           <p>Balance :</p>
           <p className="flex items-center text-green-600 font-bold dark:text-green-400">
             <IconCurrencyPeso className="w-5 h-5" />
-            {accountBalance}
+            {parseFloat(accountBalance).toLocaleString("en", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}
           </p>
         </div>
       </div>

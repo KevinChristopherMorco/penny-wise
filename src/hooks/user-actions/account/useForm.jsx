@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { useStorageContext } from "../../storage/useStorage";
 import { v4 as uuidv4 } from "uuid";
 import usePopulate from "./usePopulate";
+import useValidation from "./useValidation";
 
 const useForm = () => {
   const defaultInput = {
     accountName: "",
-    accountBalance: 0,
+    accountBalance: "",
     icon: "savings",
   };
 
@@ -18,13 +19,20 @@ const useForm = () => {
 
   const {
     populateField: {
-      current: { accountName, accountBalance, icon },
+      current: { id, accountName, accountBalance, icon },
     },
     setPopulate,
   } = usePopulate(defaultInput);
 
+  const { defaultError, error, setError, checkErrors } = useValidation();
+
   const handleAddAccount = (event) => {
     event.preventDefault();
+
+    const hasError = checkErrors(currentInput);
+
+    if (hasError) return;
+
     const dateNow = new Date().toUTCString();
 
     setStorage((prev) => {
@@ -44,13 +52,37 @@ const useForm = () => {
   };
 
   useEffect(() => {
-    console.log(accountName);
     setInput({
       accountName: accountName,
       accountBalance: accountBalance,
       icon: icon,
     });
-  }, [accountName]);
+  }, [id]);
+
+  const handleEditAccount = (event) => {
+    event.preventDefault();
+
+    const hasError = checkErrors(currentInput);
+
+    if (hasError) return;
+    setStorage((prev) => {
+      return {
+        ...prev,
+        accounts: [
+          ...prev.accounts.map((account) => {
+            return account.id === id
+              ? {
+                  id: account.id,
+                  accountName: currentInput.accountName,
+                  accountBalance: currentInput.accountBalance,
+                  icon: currentInput.icon,
+                }
+              : account;
+          }),
+        ],
+      };
+    });
+  };
 
   const handleDeleteAccount = (accountId) => {
     setStorage((prev) => {
@@ -77,8 +109,13 @@ const useForm = () => {
   return {
     currentInput,
     defaultInput,
+    defaultError,
+    error,
+    setInput,
+    setError,
     handleInputChange,
     handleAddAccount,
+    handleEditAccount,
     handleDeleteAccount,
     setPopulate,
   };

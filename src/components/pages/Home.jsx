@@ -6,7 +6,7 @@ import Transaction from "../home/Transaction";
 
 const Home = () => {
   return (
-    <div className="p-4 flex flex-col gap-8">
+    <div className="p-4 flex flex-col gap-8 animate-fadeIn">
       <Header />
       <BudgetCard />
       <Plan />
