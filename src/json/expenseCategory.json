@@ -1,0 +1,62 @@
+[
+  {
+    "imagePath": "src/assets/flaticons/beauty.png",
+    "altText": "Beauty",
+    "colorCode": "#F72D93",
+    "label": "beauty"
+  },
+  {
+    "imagePath": "src/assets/flaticons/bills.png",
+    "altText": "Bills",
+    "colorCode": "#3F7D89",
+    "label": "bills"
+  },
+  {
+    "imagePath": "src/assets/flaticons/clothing.png",
+    "altText": "Clothing",
+    "colorCode": "#6A9E3C",
+    "label": "clothing"
+  },
+  {
+    "imagePath": "src/assets/flaticons/education.png",
+    "altText": "Education",
+    "colorCode": "#F28522",
+    "label": "education"
+  },
+  {
+    "imagePath": "src/assets/flaticons/entertainment.png",
+    "altText": "Entertainment",
+    "colorCode": "#16A085",
+    "label": "entertainment"
+  },
+  {
+    "imagePath": "src/assets/flaticons/food.png",
+    "altText": "Foods",
+    "colorCode": "#FF5733",
+    "label": "food"
+  },
+  {
+    "imagePath": "src/assets/flaticons/healthcare.png",
+    "altText": "Healthcare",
+    "colorCode": "#8BC34A",
+    "label": "healthcare"
+  },
+  {
+    "imagePath": "src/assets/flaticons/housing.png",
+    "altText": "Housing",
+    "colorCode": "#D32F2F",
+    "label": "housing"
+  },
+  {
+    "imagePath": "src/assets/flaticons/transportation.png",
+    "altText": "Transportation",
+    "colorCode": "#673AB7",
+    "label": "transportation"
+  },
+  {
+    "imagePath": "src/assets/flaticons/travel.png",
+    "altText": "Travel",
+    "colorCode": "#FDD835",
+    "label": "travel"
+  }
+]
