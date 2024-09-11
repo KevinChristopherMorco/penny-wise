@@ -21,11 +21,11 @@ const BudgetCard = () => {
 
           <div className="flex justify-center gap-6">
             <Link
-              to="/manage-income"
+              to="/manage-account"
               className="p-2 flex items-center gap-2 text-sm text-[var(--text-accent)] font-medium bg-[var(--accent-color)] rounded-xl dark:bg-[var(--dark-accent-color)] dark:text-[var(--dark-text-accent)]"
             >
               <IconPigMoney />
-              Add Income
+              Add Account
             </Link>
             <Link
               to="/manage-expense"

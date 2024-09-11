@@ -6,6 +6,7 @@ import Expense from "./components/pages/Expense";
 import MobileNavigation from "./components/partials/MobileNavigation";
 import NavigationProvider from "./hooks/general/navigation/useActiveNavigation";
 import StorageProvider from "./hooks/storage/useStorage";
+import ExpenseSummary from "./components/expense/ExpenseSummary";
 
 function App() {
   return (
@@ -14,8 +15,13 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />}></Route>
-            <Route path="/manage-income" element={<Account />}></Route>
+            <Route path="/manage-account" element={<Account />}></Route>
+            <Route
+              path="/manage-account/:accountId"
+              element={<ExpenseSummary />}
+            ></Route>
             <Route path="/manage-expense" element={<Expense />}></Route>
+            <Route path="*" element={<Home />} />
           </Routes>
           <MobileNavigation />
         </BrowserRouter>

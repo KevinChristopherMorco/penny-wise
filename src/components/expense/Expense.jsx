@@ -7,6 +7,7 @@ import {
 import category from "../../json/expenseCategory.json";
 import useFetchStorage from "../../hooks/fetch/useFetchStorage";
 import { useExpenseContext } from "../../hooks/user-actions/expense/useManageExpense";
+import { Link } from "react-router-dom";
 
 const Expense = () => {
   const [viewAccount, setViewAccount] = useState(false);
@@ -193,7 +194,11 @@ const Expense = () => {
               {accounts.map((account) => (
                 <div
                   key={account.id}
-                  className="h-[4.5rem] px-4 flex justify-between items-center bg-[var(--neutral-color)] rounded-lg dark:bg-[var(--dark-neutral-color)] relative cursor-pointer"
+                  className={`${
+                    currentInput.expenseAccount === account.id
+                      ? "border-2 border-[var(--accent-color)] dark:border-[var(--dark-accent-color)]"
+                      : ""
+                  } h-[4.5rem] px-4 flex justify-between items-center bg-[var(--neutral-color)] rounded-lg dark:bg-[var(--dark-neutral-color)] relative cursor-pointer`}
                   data-name="expenseAccount"
                   data-account={account.id}
                   onClick={handleInputChange}
@@ -222,12 +227,15 @@ const Expense = () => {
                   </div>
                 </div>
               ))}
-              <div className="mx-auto p-2 flex justify-center items-center text-sm text-[var(--accent-color)] font-bold border border-[var(--accent-color)] rounded transition-colors hover:bg-[var(--accent-color)] hover:text-white dark:text-[var(--dark-accent-color)] dark:border-[var(--dark-accent-color)] hover:dark:bg-[var(--dark-accent-color)]">
+              <Link
+                to="/manage-account"
+                className="mx-auto p-2 flex justify-center items-center text-sm text-[var(--accent-color)] font-bold border border-[var(--accent-color)] rounded transition-colors hover:bg-[var(--accent-color)] hover:text-white dark:text-[var(--dark-accent-color)] dark:border-[var(--dark-accent-color)] hover:dark:bg-[var(--dark-accent-color)]"
+              >
                 <p className="flex items-center gap-1 font-bold">
                   <span className="w-4 h-4">+</span>
                   Add an Account
                 </p>
-              </div>
+              </Link>
             </div>
           </div>
         </div>

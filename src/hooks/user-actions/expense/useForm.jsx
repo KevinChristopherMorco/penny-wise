@@ -17,7 +17,7 @@ const useForm = () => {
 
   const { setStorage } = useStorageContext();
 
-  const { defaultError, error, setError, checkErrors } = useValidation();
+  const { error, checkErrors } = useValidation();
 
   const handleAddExpense = (event) => {
     event.preventDefault();

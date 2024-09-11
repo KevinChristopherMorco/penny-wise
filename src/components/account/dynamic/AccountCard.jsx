@@ -19,8 +19,8 @@ const IncomeCard = ({
   const { setPopulate, handleDeleteAccount } = useAccountContext();
 
   return (
-    <div className="h-[4.5rem] px-4 flex justify-between items-center bg-[var(--neutral-color)] rounded-lg dark:bg-[var(--dark-neutral-color)] relative">
-      <div className="basis-[20%] w-14 h-14 p-2 flex justify-center items-center border border-[var(--accent-color)] rounded-xl dark:border-[var(--dark-accent-color)]">
+    <div className="h-[4.5rem] px-4 flex justify-between items-center shadow-md bg-[var(--neutral-color)] rounded-lg dark:bg-[var(--dark-neutral-color)] relative">
+      <div className="basis-[20%] w-14 h-14 p-2 flex justify-center items-center bg-[var(--accent-color)] rounded-xl">
         <img
           src={`/src/assets/flaticons/${icon}.png`}
           alt=""
@@ -50,7 +50,7 @@ const IncomeCard = ({
         <div className="w-fit px-4 py-2 absolute right-0 -bottom-20 bg-[var(--primary-color)] shadow-lg z-[99] animate-fadeIn rounded-lg dark:bg-[var(--dark-primary-color)]">
           <ul className="flex flex-col gap-2 font-medium">
             <li className="flex gap-1 text-blue-500 font-bold">
-              <Link className="flex gap-1" to={`/manage-income/${id}`}>
+              <Link className="flex gap-1" to={`/manage-account/${id}`}>
                 <IconEye className="w-5 h-5" />
                 View
               </Link>
