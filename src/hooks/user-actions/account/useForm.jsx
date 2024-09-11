@@ -47,6 +47,7 @@ const useForm = () => {
           {
             ...currentInput,
             id: `acc${uuidv4().split("-").join("")}${Date.now()}`,
+            accountDeposit: currentInput.accountBalance,
             dateCreated: dateNow,
             dateUpdated: dateNow,
           },

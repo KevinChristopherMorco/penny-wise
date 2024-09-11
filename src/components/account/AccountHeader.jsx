@@ -7,15 +7,15 @@ const AccountHeader = () => {
   const {
     storage: { accounts, expenses },
   } = useStorageContext();
-  const totalIncome = accounts
-    .map(({ accountBalance }) => parseFloat(accountBalance))
+  const totalDeposit = accounts
+    .map(({ accountDeposit }) => parseFloat(accountDeposit))
     .reduce((total, balance) => total + balance, 0);
 
   const totalExpenses = expenses
     .map(({ expenseAmount }) => parseFloat(expenseAmount))
     .reduce((total, expense) => total + expense, 0);
 
-  const totalBalance = totalIncome - totalExpenses;
+  const totalBalance = totalDeposit - totalExpenses;
   return (
     <div className="p-4 flex flex-col gap-4 shadow shadow-[var(--accent-color)] dark:shadow-[var(--dark-accent-color)]">
       <div className="w-full flex items-center">
@@ -32,10 +32,10 @@ const AccountHeader = () => {
       </div>
       <div className="flex justify-around items-center">
         <div className="flex flex-col">
-          <p className="text-sm font-medium">Total Income</p>
+          <p className="text-sm font-medium">Total Deposit</p>
           <p className="w-full flex items-center justify-center text-lg text-green-600 font-bold dark:text-green-400">
             <IconCurrencyPeso className="w-5 h-5" />
-            {totalIncome.toLocaleString("en", {
+            {totalDeposit.toLocaleString("en", {
               minimumFractionDigits: 2,
               maximumFractionDigits: 2,
             })}

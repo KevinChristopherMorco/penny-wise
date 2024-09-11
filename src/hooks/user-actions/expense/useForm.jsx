@@ -38,10 +38,7 @@ const useForm = () => {
                 ...account,
                 accountBalance: (
                   account.accountBalance - currentInput.expenseAmount
-                ).toLocaleString("en-US", {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                }),
+                ).toString(),
               }
             : account;
         }),
