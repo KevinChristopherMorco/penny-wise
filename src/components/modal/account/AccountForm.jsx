@@ -1,5 +1,5 @@
 import React from "react";
-import { IconCircleX, IconAlertCircle } from "@tabler/icons-react";
+import { IconCircleX, IconAlertCircleFilled } from "@tabler/icons-react";
 import savings from "../../../assets/flaticons/savings.png";
 import salary from "../../../assets/flaticons/salary.png";
 import { useNavigateContext } from "../../../hooks/general/navigation/useActiveNavigation";
@@ -68,8 +68,8 @@ const AddAccount = () => {
                 />
               </div>
               {errorAccountName && (
-                <p className="flex items-center gap-1 text-[.8rem] font-medium text-red-500">
-                  <IconAlertCircle className="w-4 h-4" />
+                <p className="flex items-center gap-1 text-[.8rem] font-bold text-red-500">
+                  <IconAlertCircleFilled className="w-4 h-4" />
                   Please include an account name.
                 </p>
               )}
@@ -92,8 +92,8 @@ const AddAccount = () => {
                 />
               </div>
               {errorAccountBalance && (
-                <p className="flex items-center gap-1 text-[.8rem] font-medium text-red-500">
-                  <IconAlertCircle className="w-4 h-4" />
+                <p className="flex items-center gap-1 text-[.8rem] font-bold text-red-500">
+                  <IconAlertCircleFilled className="w-4 h-4" />
                   Please include a valid amount.
                 </p>
               )}

@@ -5,11 +5,17 @@ import { useStorageContext } from "../../hooks/storage/useStorage";
 
 const AccountHeader = () => {
   const {
-    storage: { accounts },
+    storage: { accounts, expenses },
   } = useStorageContext();
   const totalIncome = accounts
     .map(({ accountBalance }) => parseFloat(accountBalance))
     .reduce((total, balance) => total + balance, 0);
+
+  const totalExpenses = expenses
+    .map(({ expenseAmount }) => parseFloat(expenseAmount))
+    .reduce((total, expense) => total + expense, 0);
+
+  const totalBalance = totalIncome - totalExpenses;
   return (
     <div className="p-4 flex flex-col gap-4 shadow shadow-[var(--accent-color)] dark:shadow-[var(--dark-accent-color)]">
       <div className="w-full flex items-center">
@@ -18,7 +24,10 @@ const AccountHeader = () => {
         </Link>
         <p className="w-full flex justify-center font-bold">
           Total Balance : <IconCurrencyPeso className="w-5 h-5" />
-          {totalIncome}
+          {totalBalance.toLocaleString("en", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          })}
         </p>
       </div>
       <div className="flex justify-around items-center">
@@ -36,6 +45,10 @@ const AccountHeader = () => {
           <p className="text-sm font-medium">Total Expenses</p>
           <p className="w-full flex items-center justify-center text-lg text-red-600 font-bold dark:text-red-400">
             <IconCurrencyPeso className="w-5 h-5" />
+            {totalExpenses.toLocaleString("en", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}
           </p>
         </div>
       </div>

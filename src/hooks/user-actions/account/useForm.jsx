@@ -13,7 +13,7 @@ const useForm = () => {
 
   const [currentInput, setInput] = useState(defaultInput);
   const {
-    storage: { accounts },
+    storage: { accounts, expenses },
     setStorage,
   } = useStorageContext();
 
@@ -65,6 +65,8 @@ const useForm = () => {
     const hasError = checkErrors(currentInput);
 
     if (hasError) return;
+    const dateNow = new Date().toUTCString();
+
     setStorage((prev) => {
       return {
         ...prev,
@@ -76,6 +78,8 @@ const useForm = () => {
                   accountName: currentInput.accountName,
                   accountBalance: currentInput.accountBalance,
                   icon: currentInput.icon,
+                  dateCreated: account.dateCreated,
+                  dateUpdated: dateNow,
                 }
               : account;
           }),
@@ -89,6 +93,9 @@ const useForm = () => {
       return {
         ...prev,
         accounts: accounts.filter(({ id }) => id !== accountId),
+        expenses: expenses.filter(
+          ({ expenseAccount }) => expenseAccount !== accountId
+        ),
       };
     });
   };

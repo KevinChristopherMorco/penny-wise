@@ -2,6 +2,7 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import { useStorageContext } from "../../storage/useStorage";
+import useValidation from "./useValidation";
 
 const useForm = () => {
   const defaultInput = {
@@ -10,14 +11,21 @@ const useForm = () => {
     expenseAmount: "",
     expenseAccount: "",
   };
+
   const [currentInput, setInput] = useState(defaultInput);
-  const {
-    storage: { accounts, expenses },
-    setStorage,
-  } = useStorageContext();
+
+  const { setStorage } = useStorageContext();
+
+  const { defaultError, error, setError, checkErrors } = useValidation();
 
   const handleAddExpense = (event) => {
     event.preventDefault();
+
+    const hasError = checkErrors(currentInput);
+    console.log(error);
+
+    if (hasError) return;
+
     const dateNow = new Date().toUTCString();
     setStorage((prev) => {
       return {
@@ -33,6 +41,8 @@ const useForm = () => {
         ],
       };
     });
+
+    setInput(defaultInput);
   };
 
   const handleInputChange = (event) => {
@@ -66,7 +76,7 @@ const useForm = () => {
     }
   };
 
-  return { currentInput, handleAddExpense, handleInputChange };
+  return { currentInput, error, handleAddExpense, handleInputChange };
 };
 
 export default useForm;

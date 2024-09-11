@@ -1,16 +1,28 @@
 import React, { useState } from "react";
-import { IconCurrencyPeso, IconX, IconAlertCircle } from "@tabler/icons-react";
+import {
+  IconCurrencyPeso,
+  IconX,
+  IconAlertCircleFilled,
+} from "@tabler/icons-react";
 import category from "../../json/expenseCategory.json";
 import useFetchStorage from "../../hooks/fetch/useFetchStorage";
 import { useExpenseContext } from "../../hooks/user-actions/expense/useManageExpense";
 
 const Expense = () => {
   const [viewAccount, setViewAccount] = useState(false);
-  const { currentInput, handleAddExpense, handleInputChange } =
-    useExpenseContext();
+  const {
+    currentInput,
+    error: {
+      errorExpenseName,
+      errorExpenseAmount,
+      errorExpenseCategory,
+      errorExpenseAccount,
+    },
+    handleAddExpense,
+    handleInputChange,
+  } = useExpenseContext();
   const { accounts } = useFetchStorage();
 
-  console.log(currentInput);
   return (
     <div className="relative mb-[3rem] flex flex-col gap-10">
       <div className="px-4 flex justify-center items-center">
@@ -35,22 +47,31 @@ const Expense = () => {
               id="expenseName"
               name="expenseName"
               data-name="expenseName"
-              className="py-2 px-4 text-sm rounded-lg bg-[var(--neutral-color)] dark:bg-[var(--dark-neutral-color)]"
+              className={`${
+                errorExpenseName ? "border border-red-500 bg-[#F2E0E4]" : ""
+              } py-2 px-4 text-sm rounded-lg bg-[var(--neutral-color)] dark:bg-[var(--dark-neutral-color)]`}
               placeholder="Type expense name"
               onChange={handleInputChange}
+              value={currentInput.expenseName}
             />
-            <p className="flex items-center gap-1 text-[.8rem] font-medium text-red-500">
-              <span className="w-4 h-4">
-                <IconAlertCircle className="w-4 h-4" />
-              </span>
-              Please include an expense name.
-            </p>
+            {errorExpenseName && (
+              <p className="flex items-center gap-1 text-[.8rem] font-bold text-red-500">
+                <span className="w-4 h-4">
+                  <IconAlertCircleFilled className="w-4 h-4" />
+                </span>
+                Please include an expense name.
+              </p>
+            )}
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="expenseCategory" className="font-bold">
               Category
             </label>
-            <div className="w-full py-2 px-4 flex gap-8 overflow-y-scroll bg-[var(--neutral-color)] dark:bg-[var(--dark-neutral-color)] rounded-xl">
+            <div
+              className={`${
+                errorExpenseCategory ? "border border-red-500 bg-[#F2E0E4]" : ""
+              } w-full py-2 px-4 flex gap-8 overflow-y-scroll bg-[var(--neutral-color)] dark:bg-[var(--dark-neutral-color)] rounded-xl`}
+            >
               <ul className="flex gap-8">
                 {category.map((category, index) => (
                   <li
@@ -78,12 +99,14 @@ const Expense = () => {
                 ))}
               </ul>
             </div>
-            <p className="flex items-center gap-1 text-[.8rem] font-medium text-red-500">
-              <span className="w-4 h-4">
-                <IconAlertCircle className="w-4 h-4" />
-              </span>
-              Please include an expense category.
-            </p>
+            {errorExpenseCategory && (
+              <p className="flex items-center gap-1 text-[.8rem] font-bold text-red-500">
+                <span className="w-4 h-4">
+                  <IconAlertCircleFilled className="w-4 h-4" />
+                </span>
+                Please include an expense category.
+              </p>
+            )}
           </div>
 
           <div className="flex flex-col gap-2">
@@ -95,16 +118,21 @@ const Expense = () => {
               id="expenseAmount"
               name="expenseAmount"
               data-name="expenseAmount"
-              className="py-2 px-4 text-sm rounded-lg bg-[var(--neutral-color)] dark:bg-[var(--dark-neutral-color)]"
+              className={`${
+                errorExpenseAmount ? "border border-red-500 bg-[#F2E0E4]" : ""
+              } py-2 px-4 text-sm rounded-lg bg-[var(--neutral-color)] dark:bg-[var(--dark-neutral-color)]`}
               placeholder="Type expense amount"
               onChange={handleInputChange}
+              value={currentInput.expenseAmount}
             />
-            <p className="flex items-center gap-1 text-[.8rem] font-medium text-red-500">
-              <span className="w-4 h-4">
-                <IconAlertCircle className="w-4 h-4" />
-              </span>
-              Please include an amount for the expense.
-            </p>
+            {errorExpenseAmount && (
+              <p className="flex items-center gap-1 text-[.8rem] font-bold text-red-500">
+                <span className="w-4 h-4">
+                  <IconAlertCircleFilled className="w-4 h-4" />
+                </span>
+                Please include an amount for the expense.
+              </p>
+            )}
           </div>
 
           <div className="flex flex-col gap-2">
@@ -112,17 +140,22 @@ const Expense = () => {
               Select an account
             </label>
             <div
-              className="py-2 px-4 text-sm rounded-lg bg-[var(--neutral-color)] dark:bg-[var(--dark-neutral-color)] cursor-pointer"
+              className={`${
+                errorExpenseAccount ? "border border-red-500 bg-[#F2E0E4]" : ""
+              } py-2 px-4 text-sm rounded-lg bg-[var(--neutral-color)] dark:bg-[var(--dark-neutral-color)]`}
               onClick={() => setViewAccount(true)}
             >
               <p className="text-[#B2A3B3]">Browse from the saved accounts</p>
             </div>
-            <p className="flex items-center gap-1 text-[.8rem] font-medium text-red-500">
-              <span className="w-4 h-4">
-                <IconAlertCircle className="w-4 h-4" />
-              </span>
-              Please include the account on where the expense would be deducted.
-            </p>
+            {errorExpenseAccount && (
+              <p className="flex items-center gap-1 text-[.8rem] font-bold text-red-500">
+                <span className="w-4 h-4">
+                  <IconAlertCircleFilled className="w-4 h-4" />
+                </span>
+                Please include the account on where the expense would be
+                deducted.
+              </p>
+            )}
           </div>
           <input
             type="submit"
