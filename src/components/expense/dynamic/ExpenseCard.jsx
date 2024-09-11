@@ -33,8 +33,8 @@ const ExpenseCard = ({ expense }) => {
       <div className="basis-[60%] flex flex-col gap-1 text-sm">
         <p className="text-base font-bold">{expense.expenseName}</p>
         <div className="flex items-center gap-1">
-          <p>Balance :</p>
-          <p className="flex items-center text-green-600 font-bold dark:text-green-400">
+          <p>Amount :</p>
+          <p className="flex items-center text-red-600 font-bold dark:text-green-400">
             <IconCurrencyPeso className="w-5 h-5" />
             {parseFloat(expense.expenseAmount).toLocaleString("en-US", {
               minimumFractionDigits: 2,

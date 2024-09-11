@@ -33,7 +33,7 @@ const AccountHeader = () => {
       <div className="flex justify-around items-center">
         <div className="flex flex-col">
           <p className="text-sm font-medium">Total Deposit</p>
-          <p className="w-full flex items-center justify-center text-lg text-green-600 font-bold dark:text-green-400">
+          <p className="w-full flex items-center justify-center text-base text-green-600 font-bold dark:text-green-400">
             <IconCurrencyPeso className="w-5 h-5" />
             {totalDeposit.toLocaleString("en", {
               minimumFractionDigits: 2,
@@ -43,7 +43,7 @@ const AccountHeader = () => {
         </div>
         <div className="flex flex-col items-center text-sm">
           <p className="text-sm font-medium">Total Expenses</p>
-          <p className="w-full flex items-center justify-center text-lg text-red-600 font-bold dark:text-red-400">
+          <p className="w-full flex items-center justify-center text-base text-red-600 font-bold dark:text-red-400">
             <IconCurrencyPeso className="w-5 h-5" />
             {totalExpenses.toLocaleString("en", {
               minimumFractionDigits: 2,

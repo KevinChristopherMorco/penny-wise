@@ -7,7 +7,7 @@ import ExpenseCard from "./dynamic/ExpenseCard";
 
 const ExpenseSummary = () => {
   const { accountId } = useParams();
-  const { expenses } = useFetchStorage();
+  const { accounts, expenses } = useFetchStorage();
   const accountExpenses = expenses.filter(
     (expenses) => expenses.expenseAccount === accountId
   );
@@ -37,6 +37,8 @@ const ExpenseSummary = () => {
     return expenses;
   }, []);
 
+  console.log(accounts.find((account) => account.id === accountId));
+
   return (
     <div className="flex flex-col gap-4 animate-fadeIn">
       <ExpenseSummaryHeader />
@@ -45,25 +47,26 @@ const ExpenseSummary = () => {
           <p className="font-bold">Hey, Kevin!</p>
           <p>
             Here's a quick overview of{" "}
-            <span className="font-bold">saving account</span> expenses. Check it
-            out to see where the money's going!
+            <span className="font-bold">
+              {accounts.find((account) => account.id === accountId).accountName}{" "}
+              account
+            </span>{" "}
+            transactions. Check it out to see where the money's going!
           </p>
         </div>
         <div className="flex flex-col gap-8">
-          <div className="flex flex-col gap-4">
-            {groupExpenseByDate.map((date) => {
-              return (
-                <>
-                  <p className="w-[80%] py-2 font-bold border-b-2 border-[var(--accent-color)] dark:border-[var(--dark-accent-color)]">
-                    {date.date}
-                  </p>
-                  {date.expenses.map((expense, index) => {
-                    return <ExpenseCard key={index} expense={expense} />;
-                  })}
-                </>
-              );
-            })}
-          </div>
+          {groupExpenseByDate.map((date, index) => {
+            return (
+              <div key={index} className="flex flex-col gap-4">
+                <p className="w-[80%] py-2 font-bold border-b-2 border-[var(--accent-color)] dark:border-[var(--dark-accent-color)]">
+                  {date.date}
+                </p>
+                {date.expenses.map((expense, index) => {
+                  return <ExpenseCard key={index} expense={expense} />;
+                })}
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
