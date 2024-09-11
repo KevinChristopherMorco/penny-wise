@@ -81,9 +81,19 @@ const Expense = () => {
                     data-category={category.label}
                     onClick={handleInputChange}
                   >
-                    <p className="flex items-center gap-2 text-sm">
+                    <p
+                      className={`${
+                        currentInput.expenseCategory === category.label
+                          ? "font-bold"
+                          : ""
+                      } flex items-center gap-2 text-sm`}
+                    >
                       <span
-                        className="w-10 h-10 flex justify-center items-center rounded-lg"
+                        className={`${
+                          currentInput.expenseCategory === category.label
+                            ? "border-4 border-[var(--accent-color)] dark:border-[var(--dark-accent-color)]  transition-colors"
+                            : ""
+                        }  w-10 h-10 flex justify-center items-center rounded-lg`}
                         style={{ backgroundColor: category.colorCode }}
                       >
                         <img
@@ -145,7 +155,13 @@ const Expense = () => {
               } py-2 px-4 text-sm rounded-lg bg-[var(--neutral-color)] dark:bg-[var(--dark-neutral-color)]`}
               onClick={() => setViewAccount(true)}
             >
-              <p className="text-[#B2A3B3]">Browse from the saved accounts</p>
+              <p className="text-[#B2A3B3]">
+                {currentInput.expenseAccount
+                  ? accounts.find(
+                      (account) => account.id === currentInput.expenseAccount
+                    ).accountName
+                  : "Browse from the saved accounts"}
+              </p>
             </div>
             {errorExpenseAccount && (
               <p className="flex items-center gap-1 text-[.8rem] font-bold text-red-500">

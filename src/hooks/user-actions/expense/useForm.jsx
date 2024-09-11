@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import { useStorageContext } from "../../storage/useStorage";
@@ -13,6 +13,7 @@ const useForm = () => {
   };
 
   const [currentInput, setInput] = useState(defaultInput);
+  const [isSubmit, setSubmit] = useState(false);
 
   const { setStorage } = useStorageContext();
 
@@ -22,7 +23,8 @@ const useForm = () => {
     event.preventDefault();
 
     const hasError = checkErrors(currentInput);
-    console.log(error);
+
+    setSubmit(true);
 
     if (hasError) return;
 
@@ -41,8 +43,8 @@ const useForm = () => {
         ],
       };
     });
-
     setInput(defaultInput);
+    setSubmit(false);
   };
 
   const handleInputChange = (event) => {
@@ -75,6 +77,11 @@ const useForm = () => {
         break;
     }
   };
+
+  useEffect(() => {
+    if (!isSubmit) return;
+    checkErrors(currentInput);
+  }, [currentInput]);
 
   return { currentInput, error, handleAddExpense, handleInputChange };
 };

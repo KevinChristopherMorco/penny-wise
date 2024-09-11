@@ -12,6 +12,8 @@ const useForm = () => {
   };
 
   const [currentInput, setInput] = useState(defaultInput);
+  const [isSubmit, setSubmit] = useState(false);
+
   const {
     storage: { accounts, expenses },
     setStorage,
@@ -31,6 +33,8 @@ const useForm = () => {
 
     const hasError = checkErrors(currentInput);
 
+    setSubmit(true);
+
     if (hasError) return;
 
     const dateNow = new Date().toUTCString();
@@ -49,6 +53,8 @@ const useForm = () => {
         ],
       };
     });
+    setInput(defaultInput);
+    setSubmit(false);
   };
 
   useEffect(() => {
@@ -112,6 +118,11 @@ const useForm = () => {
       };
     });
   };
+
+  useEffect(() => {
+    if (!isSubmit) return;
+    checkErrors(currentInput);
+  }, [currentInput]);
 
   return {
     currentInput,
