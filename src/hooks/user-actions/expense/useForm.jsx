@@ -32,6 +32,20 @@ const useForm = () => {
     setStorage((prev) => {
       return {
         ...prev,
+        accounts: prev.accounts.map((account) => {
+          return account.id === currentInput.expenseAccount
+            ? {
+                ...account,
+                accountBalance: (
+                  account.accountBalance - currentInput.expenseAmount
+                ).toLocaleString("en-US", {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                }),
+              }
+            : account;
+        }),
+
         expenses: [
           ...prev.expenses,
           {
