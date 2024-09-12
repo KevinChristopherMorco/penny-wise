@@ -77,7 +77,7 @@ const AddAccount = () => {
             <div className="w-full flex flex-col gap-1">
               <div className="flex flex-col gap-2 text-sm font-bold">
                 <label htmlFor="accountBalance" className="basis-[55%]">
-                  Initial Amount
+                  {type === "add" ? " Initial Amount" : "Deposit Amount"}
                 </label>
                 <input
                   type="number"

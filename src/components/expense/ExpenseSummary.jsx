@@ -9,37 +9,14 @@ import { useNavigateContext } from "../../hooks/general/navigation/useActiveNavi
 import ExpenseForm from "../modal/account/ExpenseForm";
 import ClientError from "../../alerts/status/ClientError";
 
+import useSummaryFilter from "../../hooks/user-actions/expense/filter/useSummaryFilter";
+import usePageExist from "../../hooks/general/navigation/usePageExist";
+
 const ExpenseSummary = () => {
   const { accountId } = useParams();
-  const { accounts, expenses } = useFetchStorage();
-  const accountExpenses = expenses.filter(
-    (expenses) => expenses.expenseAccount === accountId
-  );
-
-  const groupExpenseByDate = accountExpenses.reduce((expenses, item) => {
-    const itemDate = new Date(item.dateCreated);
-    const formattedDate = itemDate.toLocaleDateString("en-US", {
-      weekday: "long",
-      month: "short",
-      day: "numeric",
-      year: "numeric",
-    });
-
-    const existingExpense = expenses.find(
-      (expense) => expense.date === formattedDate
-    );
-
-    if (existingExpense) {
-      existingExpense.expenses.push(item);
-    } else {
-      expenses.push({
-        date: formattedDate,
-        expenses: [item],
-      });
-    }
-
-    return expenses;
-  }, []);
+  const { groupExpenseByDate } = useSummaryFilter(accountId);
+  const { isValidAccountId } = usePageExist(accountId);
+  const { accounts } = useFetchStorage();
 
   const {
     currentActive: {
@@ -47,13 +24,11 @@ const ExpenseSummary = () => {
     },
   } = useNavigateContext();
 
-  const checkIfIdExist = accounts.find((account) => account.id === accountId);
-
-  if (!checkIfIdExist) {
+  if (!isValidAccountId) {
     return <ClientError />;
   }
   return (
-    <div className="mb-[4rem] flex flex-col gap-4 animate-fadeIn overflow-y-scroll">
+    <div className="min-h-full mb-[4rem] flex flex-col gap-4 animate-fadeIn overflow-y-scroll">
       <ExpenseSummaryHeader />
       <div className="px-4 py-2 flex flex-col gap-8">
         {groupExpenseByDate.length > 0 && (
