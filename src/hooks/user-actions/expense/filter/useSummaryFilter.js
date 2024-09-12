@@ -3,7 +3,7 @@ import useFetchStorage from "../../../fetch/useFetchStorage";
 const useSummaryFilter = (accountId) => {
   const { expenses } = useFetchStorage();
 
-  const groupExpenseByDate = expenses
+  const expensesByDate = expenses
     .filter((expense) => expense.expenseAccount === accountId)
     .reduce((expenses, item) => {
       const itemDate = new Date(item.dateCreated);
@@ -30,7 +30,7 @@ const useSummaryFilter = (accountId) => {
       return expenses;
     }, []);
 
-  return { groupExpenseByDate };
+  return { expensesByDate };
 };
 
 export default useSummaryFilter;

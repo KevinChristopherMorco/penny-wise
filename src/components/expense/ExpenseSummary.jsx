@@ -14,7 +14,7 @@ import usePageExist from "../../hooks/general/navigation/usePageExist";
 
 const ExpenseSummary = () => {
   const { accountId } = useParams();
-  const { groupExpenseByDate } = useSummaryFilter(accountId);
+  const { expensesByDate } = useSummaryFilter(accountId);
   const { isValidAccountId } = usePageExist(accountId);
   const { accounts } = useFetchStorage();
 
@@ -31,7 +31,7 @@ const ExpenseSummary = () => {
     <div className="min-h-full mb-[4rem] flex flex-col gap-4 animate-fadeIn overflow-y-scroll">
       <ExpenseSummaryHeader />
       <div className="px-4 py-2 flex flex-col gap-8">
-        {groupExpenseByDate.length > 0 && (
+        {expensesByDate.length > 0 && (
           <div className="flex flex-col gap-4">
             <p className="font-bold">Hey, Kevin!</p>
             <p>
@@ -48,8 +48,8 @@ const ExpenseSummary = () => {
           </div>
         )}
         <div className="flex flex-col gap-8">
-          {groupExpenseByDate.length > 0 ? (
-            groupExpenseByDate.map((date, index) => {
+          {expensesByDate.length > 0 ? (
+            expensesByDate.map((date, index) => {
               return (
                 <div key={index} className="flex flex-col gap-4">
                   <p className="w-[80%] py-2 font-bold border-b-2 border-[var(--accent-color)] dark:border-[var(--dark-accent-color)]">
