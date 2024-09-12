@@ -25,9 +25,9 @@ const ExpenseSummaryHeader = () => {
   return (
     <div className="p-4 flex flex-col gap-4 shadow shadow-[var(--accent-color)] dark:shadow-[var(--dark-accent-color)]">
       <div className="w-full flex items-center">
-        <Link to="/" className="cursor-pointer">
+        <div className="cursor-pointer" onClick={() => navigate(-1)}>
           <IconChevronLeft className="w-5 h-5 self-start" />
-        </Link>
+        </div>
         <p className="w-full flex justify-center font-bold">
           Total Balance : <IconCurrencyPeso className="w-5 h-5" />
           {totalBalance.toLocaleString("en", {

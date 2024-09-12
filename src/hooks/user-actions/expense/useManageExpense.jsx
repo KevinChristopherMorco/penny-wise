@@ -4,11 +4,30 @@ import useForm from "./useForm";
 const ExpenseContext = createContext();
 
 const ExpenseProvider = ({ children }) => {
-  const { currentInput, error, handleAddExpense, handleInputChange } =
-    useForm();
+  const {
+    defaultInput,
+    currentInput,
+    error,
+    setInput,
+    handleAddExpense,
+    handleEditExpense,
+    handleDeleteExpense,
+    handleInputChange,
+    setPopulateExpense,
+  } = useForm();
   return (
     <ExpenseContext.Provider
-      value={{ currentInput, error, handleAddExpense, handleInputChange }}
+      value={{
+        defaultInput,
+        currentInput,
+        error,
+        setInput,
+        handleAddExpense,
+        handleEditExpense,
+        handleDeleteExpense,
+        handleInputChange,
+        setPopulateExpense,
+      }}
     >
       {children}
     </ExpenseContext.Provider>

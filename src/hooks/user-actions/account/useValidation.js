@@ -1,20 +1,20 @@
 import { useState } from "react";
 
 const useValidation = () => {
-  const defaultError = { accountName: false, accountBalance: false };
+  const defaultError = { accountName: false, accountDeposit: false };
   const [error, setError] = useState(defaultError);
 
   const checkErrors = (inputs) => {
-    const { accountName, accountBalance } = inputs;
+    const { accountName, accountDeposit } = inputs;
 
     const error = {
       errorAccountName: !Boolean(accountName),
-      errorAccountBalance:
-        !Boolean(parseFloat(accountBalance)) || parseFloat(accountBalance) < 1,
+      erroraccountDeposit:
+        !Boolean(parseFloat(accountDeposit)) || parseFloat(accountDeposit) < 1,
     };
 
     setError(error);
-    return error.errorAccountName || error.errorAccountBalance;
+    return error.errorAccountName || error.erroraccountDeposit;
   };
 
   return { defaultError, error, setError, checkErrors };

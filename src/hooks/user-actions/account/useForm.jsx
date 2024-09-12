@@ -7,7 +7,7 @@ import useValidation from "./useValidation";
 const useForm = () => {
   const defaultInput = {
     accountName: "",
-    accountBalance: "",
+    accountDeposit: "",
     icon: "savings",
   };
 
@@ -20,10 +20,8 @@ const useForm = () => {
   } = useStorageContext();
 
   const {
-    populateField: {
-      current: { id, accountName, accountBalance, icon },
-    },
-    setPopulate,
+    populateAccount: { id, accountName, accountDeposit, icon },
+    setPopulateAccount,
   } = usePopulate(defaultInput);
 
   const { defaultError, error, setError, checkErrors } = useValidation();
@@ -47,7 +45,7 @@ const useForm = () => {
           {
             ...currentInput,
             id: `acc${uuidv4().split("-").join("")}${Date.now()}`,
-            accountDeposit: currentInput.accountBalance,
+            accountBalance: currentInput.accountDeposit,
             dateCreated: dateNow,
             dateUpdated: dateNow,
           },
@@ -61,7 +59,7 @@ const useForm = () => {
   useEffect(() => {
     setInput({
       accountName: accountName,
-      accountBalance: accountBalance,
+      accountDeposit: accountDeposit,
       icon: icon,
     });
   }, [id]);
@@ -77,20 +75,25 @@ const useForm = () => {
     setStorage((prev) => {
       return {
         ...prev,
-        accounts: [
-          ...prev.accounts.map((account) => {
-            return account.id === id
-              ? {
-                  id: account.id,
-                  accountName: currentInput.accountName,
-                  accountBalance: currentInput.accountBalance,
-                  icon: currentInput.icon,
-                  dateCreated: account.dateCreated,
-                  dateUpdated: dateNow,
-                }
-              : account;
-          }),
-        ],
+        accounts: prev.accounts.map((account) => {
+          return account.id === id
+            ? {
+                id: account.id,
+                accountDeposit: (
+                  parseFloat(account.accountDeposit) +
+                  parseFloat(currentInput.accountDeposit)
+                ).toString(),
+                accountName: currentInput.accountName,
+                accountBalance: (
+                  parseFloat(account.accountBalance) +
+                  parseFloat(currentInput.accountDeposit)
+                ).toString(),
+                icon: currentInput.icon,
+                dateCreated: account.dateCreated,
+                dateUpdated: dateNow,
+              }
+            : account;
+        }),
       };
     });
   };
@@ -136,7 +139,7 @@ const useForm = () => {
     handleAddAccount,
     handleEditAccount,
     handleDeleteAccount,
-    setPopulate,
+    setPopulateAccount,
   };
 };
 

@@ -25,8 +25,8 @@ const useValidation = () => {
     setError(error);
 
     return (
-      error.errorAccountName ||
-      error.errorAccountBalance ||
+      error.errorExpenseName ||
+      error.errorExpenseAmount ||
       error.errorExpenseCategory ||
       error.errorExpenseAccount
     );

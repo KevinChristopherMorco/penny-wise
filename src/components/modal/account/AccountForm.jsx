@@ -15,12 +15,12 @@ const AddAccount = () => {
 
   const {
     defaultInput,
-    currentInput: { accountName, accountBalance, icon },
-    error: { errorAccountName, errorAccountBalance },
+    currentInput: { accountName, accountDeposit, icon },
+    error: { errorAccountName, errorAccountDeposit },
     defaultError,
     setInput,
     setError,
-    setPopulate,
+    setPopulateAccount,
     handleAddAccount,
     handleEditAccount,
     handleInputChange,
@@ -36,7 +36,7 @@ const AddAccount = () => {
             onClick={() => {
               setInput(defaultInput);
               setError(defaultError);
-              setPopulate(defaultInput);
+              setPopulateAccount(defaultInput);
               setCurrentActive("modal", {
                 modalName: null,
                 type: null,
@@ -81,17 +81,17 @@ const AddAccount = () => {
                 </label>
                 <input
                   type="number"
-                  id="accountBalance"
-                  name="accountBalance"
+                  id="accountDeposit"
+                  name="accountDeposit"
                   className={`${
-                    errorAccountBalance ? "border border-red-500" : ""
+                    errorAccountDeposit ? "border border-red-500" : ""
                   } w-full p-2 text-black bg-[var(--neutral-color)] rounded-lg dark:bg-[var(--dark-neutral-color)] dark:text-[#fff]`}
                   placeholder="1.00"
                   onChange={handleInputChange}
-                  value={accountBalance}
+                  value={accountDeposit}
                 />
               </div>
-              {errorAccountBalance && (
+              {errorAccountDeposit && (
                 <p className="flex items-center gap-1 text-[.8rem] font-bold text-red-500">
                   <IconAlertCircleFilled className="w-4 h-4" />
                   Please include a valid amount.

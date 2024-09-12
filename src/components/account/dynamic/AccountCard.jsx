@@ -6,6 +6,8 @@ import {
   IconTrash,
   IconEdit,
   IconEye,
+  IconContract,
+  IconCategory,
 } from "@tabler/icons-react";
 
 import { useNavigateContext } from "../../../hooks/general/navigation/useActiveNavigation";
@@ -16,7 +18,7 @@ const IncomeCard = ({
 }) => {
   const [toggle, setToggle] = useState(false);
   const { setCurrentActive } = useNavigateContext();
-  const { setPopulate, handleDeleteAccount } = useAccountContext();
+  const { setPopulateAccount, handleDeleteAccount } = useAccountContext();
 
   return (
     <div className="h-[4.5rem] px-4 flex justify-between items-center shadow-md bg-[var(--neutral-color)] rounded-lg dark:bg-[var(--dark-neutral-color)] relative">
@@ -47,21 +49,12 @@ const IncomeCard = ({
         <IconDots />
       </div>
       {toggle && (
-        <div className="w-fit px-4 py-2 absolute right-0 -bottom-20 bg-[var(--primary-color)] shadow-lg z-[99] animate-fadeIn rounded-lg dark:bg-[var(--dark-primary-color)]">
+        <div className="w-fit px-4 py-2 absolute right-0 -bottom-[7rem] bg-[var(--primary-color)] shadow-lg z-[99] animate-fadeIn rounded-lg dark:bg-[var(--dark-primary-color)]">
           <ul className="flex flex-col gap-2 font-medium">
-            <li className="flex gap-1 text-blue-500 font-bold">
-              <Link
-                className="flex items-center gap-1"
-                to={`/manage-account/${id}`}
-              >
-                <IconEye className="w-5 h-5" />
-                Transactions
-              </Link>
-            </li>
             <li
               className="flex items-center gap-1 text-orange-400 font-bold"
               onClick={() => {
-                setPopulate(id);
+                setPopulateAccount(id);
                 setCurrentActive("modal", {
                   modalName: "editAccount",
                   type: "edit",
@@ -77,6 +70,19 @@ const IncomeCard = ({
             >
               <IconTrash className="w-5 h-5" />
               Delete
+            </li>
+            <li className="flex gap-1 text-blue-600 font-medium">
+              <Link
+                className="flex items-center gap-1"
+                to={`/manage-account/${id}`}
+              >
+                <IconCategory className="w-5 h-5" />
+                Expenses
+              </Link>
+            </li>
+            <li className="flex items-center gap-1 text-blue-600 font-medium">
+              <IconContract className="w-5 h-5" />
+              Audit Trail
             </li>
           </ul>
         </div>

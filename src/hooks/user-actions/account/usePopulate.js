@@ -1,18 +1,22 @@
-import React, { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import useFetchStorage from "../../fetch/useFetchStorage";
 
 const usePopulate = (defaultInput) => {
   const { accounts } = useFetchStorage();
-  const getField = JSON.parse(localStorage.getItem("populateField"));
-  const populateField = useRef(getField.current || defaultInput);
+  const getField = JSON.parse(localStorage.getItem("populateAccount"));
+  const [populateAccount, setPopulate] = useState(
+    (Boolean(getField) && getField) || defaultInput
+  );
 
-  const setPopulate = (id) => {
-    populateField.current =
-      accounts.find((account) => account.id === id) || defaultInput;
-    localStorage.setItem("populateField", JSON.stringify(populateField));
+  const setPopulateAccount = (id) => {
+    setPopulate(accounts.find((account) => account.id === id) || defaultInput);
   };
 
-  return { populateField, setPopulate };
+  useEffect(() =>
+    localStorage.setItem("populateAccount", JSON.stringify(populateAccount))
+  );
+
+  return { populateAccount, setPopulateAccount };
 };
 
 export default usePopulate;
