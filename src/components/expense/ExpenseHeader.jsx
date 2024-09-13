@@ -6,7 +6,7 @@ const ExpenseHeader = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="px-4 flex items-center">
+    <div className="p-4 flex items-center bg-[var(--accent-color)] text-[var(--text-accent)]">
       <div
         className="flex items-center cursor-pointer"
         onClick={() => navigate(-1)}

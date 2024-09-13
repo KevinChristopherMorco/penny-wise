@@ -15,9 +15,7 @@ const Income = () => {
     <AccountProvider>
       <div className="flex flex-col gap-5 animate-fadeIn">
         <AccountHeader />
-        <div className="px-4 py-2">
-          <Account />
-        </div>
+        <Account />
         {(modalName === "addAccount" || modalName === "editAccount") && (
           <AccountForm />
         )}

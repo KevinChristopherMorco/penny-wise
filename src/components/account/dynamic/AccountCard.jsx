@@ -71,7 +71,7 @@ const IncomeCard = ({
               <IconTrash className="w-5 h-5" />
               Delete
             </li>
-            <li className="flex gap-1 text-blue-600 font-medium">
+            <li className="flex gap-1 text-blue-600 font-bold">
               <Link
                 className="flex items-center gap-1"
                 to={`/manage-account/${id}`}
@@ -79,10 +79,6 @@ const IncomeCard = ({
                 <IconCategory className="w-5 h-5" />
                 Expenses
               </Link>
-            </li>
-            <li className="flex items-center gap-1 text-blue-600 font-medium">
-              <IconContract className="w-5 h-5" />
-              Audit Trail
             </li>
           </ul>
         </div>

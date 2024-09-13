@@ -10,7 +10,7 @@ const Account = () => {
   const { accounts } = useAccountContext();
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="px-4 py-2 flex flex-col gap-3 bg-[var(--primary-color)]">
       <p className="text-lg font-bold">Accounts</p>
       <div className="mb-[3rem] flex flex-col gap-4">
         {Boolean(accounts) && accounts.length > 0 ? (
@@ -27,7 +27,7 @@ const Account = () => {
         )}
 
         <button
-          className="basis-[55%] mx-auto p-2 flex justify-center items-center text-sm text-[var(--accent-color)] font-bold border border-[var(--accent-color)] rounded-lg transition-colors hover:bg-[var(--accent-color)] hover:text-white dark:text-[var(--dark-accent-color)] dark:border-[var(--dark-accent-color)] hover:dark:bg-[var(--dark-accent-color)]"
+          className="mx-auto p-2 flex justify-center items-center text-sm text-[var(--accent-color)] font-bold border border-[var(--accent-color)] rounded-lg transition-colors hover:bg-[var(--accent-color)] hover:text-white dark:text-[var(--dark-accent-color)] dark:border-[var(--dark-accent-color)] hover:dark:bg-[var(--dark-accent-color)]"
           onClick={() =>
             setCurrentActive("modal", {
               modalName: "addAccount",

@@ -3,7 +3,7 @@ import TransactionCard from "./dynamic/TransactionCard";
 
 const Transaction = () => {
   return (
-    <div className="mb-[3rem] flex flex-col gap-2">
+    <div className="p-4 mb-[3rem] flex flex-col gap-2 bg-[var(--primary-color)]">
       <div className="flex justify-between items-center">
         <p className="text-lg font-bold">Transactions</p>
         <p className="text-[0.8rem] cursor-pointer dark:text-[var(--dark-accent-color)]">

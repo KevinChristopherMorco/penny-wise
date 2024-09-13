@@ -8,8 +8,8 @@ import { Link } from "react-router-dom";
 
 const BudgetCard = () => {
   return (
-    <div>
-      <div className="p-4 flex flex-col items-center gap-10 bg-[var(--secondary-color)] rounded-xl dark:bg-[var(--dark-secondary-color)]">
+    <div className="px-4">
+      <div className="p-4 flex flex-col items-center gap-10 bg-[#3a1078] rounded-xl dark:bg-[var(--dark-secondary-color)]">
         <div className="flex flex-col gap-4 text-white">
           <div className="flex flex-col gap-2">
             <p className="text-sm text-center font-light">My Budget</p>

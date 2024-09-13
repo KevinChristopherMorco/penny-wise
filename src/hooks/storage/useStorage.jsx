@@ -3,7 +3,12 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 const StorageContext = createContext();
 
 const StorageProvider = ({ children }) => {
-  const defaultStorage = { accounts: [], expenses: [], budget: [] };
+  const defaultStorage = {
+    accounts: [],
+    expenses: [],
+    budget: [],
+    transactions: [],
+  };
   const [storage, setStorage] = useState(
     JSON.parse(localStorage.getItem("storage")) || defaultStorage
   );

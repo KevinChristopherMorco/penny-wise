@@ -9,6 +9,7 @@ import StorageProvider from "./hooks/storage/useStorage";
 import ExpenseSummary from "./components/expense/ExpenseSummary";
 import ExpenseProvider from "./hooks/user-actions/expense/useManageExpense";
 import ClientError from "./alerts/status/ClientError";
+import Transaction from "./components/pages/Transaction";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
                 element={<ExpenseSummary />}
               ></Route>
               <Route path="/manage-expense" element={<Expense />}></Route>
+              <Route path="/transactions" element={<Transaction />}></Route>
               <Route path="*" element={<ClientError />} />
             </Routes>
             <MobileNavigation />

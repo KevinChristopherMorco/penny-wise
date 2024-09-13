@@ -5,7 +5,7 @@ import useActiveNavigation, {
 import {
   IconWallet,
   IconBusinessplan,
-  IconChartBar,
+  IconContract,
   IconAdjustmentsHorizontal,
 } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
@@ -40,17 +40,18 @@ const MobileNavigation = () => {
           <IconBusinessplan />
           <p>{`${nav === "budgetPlan" ? "Budget Plan" : ""}`}</p>
         </Link>
-        <li
+        <Link
+          to="/transactions"
           className={`${
-            nav === "budgetChart"
+            nav === "transactions"
               ? "basis-[40%] text-[var(--accent-color)] font-extrabold dark:text-[var(--dark-accent-color)] animate-navFadeIn"
               : ""
           } flex items-center gap-2 text-sm`}
-          onClick={() => setCurrentActive("nav", "budgetChart")}
+          onClick={() => setCurrentActive("nav", "transactions")}
         >
-          <IconChartBar />
-          <p>{`${nav === "budgetChart" ? "Budget Chart" : ""}`}</p>
-        </li>
+          <IconContract />
+          <p>{`${nav === "transactions" ? "Transactions" : ""}`}</p>
+        </Link>
         <li
           className={`${
             nav === "settings"

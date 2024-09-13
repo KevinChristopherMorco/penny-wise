@@ -4,9 +4,9 @@
 
 :root {
   --primary-color: #fff;
-  --secondary-color: #3a1078;
+  --secondary-color: #f0f1f3;
   --accent-color: #3544cf;
-  --neutral-color: #eeeff0;
+  --neutral-color: #f2f3f3;
   --text-color: #000;
   --text-accent: #fff;
 
@@ -37,5 +37,5 @@ body {
 }
 
 #root {
-  @apply min-h-full h-full flex flex-col text-black transition duration-100 delay-0 bg-[var(--primary-color)] dark:bg-[var(--dark-primary-color)] dark:text-white;
+  @apply h-full min-h-full flex flex-col text-black transition duration-100 delay-0 bg-[var(--secondary-color)] dark:bg-[var(--dark-primary-color)] dark:text-white;
 }

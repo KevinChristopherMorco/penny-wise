@@ -3,13 +3,12 @@ import React from "react";
 import { IconMoonStars, IconBrightness2 } from "@tabler/icons-react";
 
 const Header = ({ currentTheme, setTheme }) => {
-  // const { currentTheme, setTheme } = useTheme();
   return (
-    <nav className="flex justify-between items-center">
+    <nav className="p-4 flex justify-between items-center text-[var(--text-accent)] bg-[var(--accent-color)]">
       <div>
-        <p className="text-xl font-bold">Hello, Kevin!</p>
+        <p className="text-lg font-bold">Hello, Kevin!</p>
         <p className="text-[.75rem] font-light">
-          Here you can view the overview of your budget.
+          Take control of your spending with penny wise!
         </p>
       </div>
       {currentTheme === "light" && (

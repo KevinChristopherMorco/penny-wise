@@ -5,7 +5,7 @@ import ExpenseHeader from "../expense/ExpenseHeader";
 
 const Expense = () => {
   return (
-    <div className="py-4 flex flex-col gap-8">
+    <div className="flex flex-col gap-8">
       <div className="flex flex-col gap-8">
         <ExpenseHeader />
         <Expenses />
