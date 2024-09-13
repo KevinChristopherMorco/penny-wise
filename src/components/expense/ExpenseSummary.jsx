@@ -14,9 +14,9 @@ import usePageExist from "../../hooks/general/navigation/usePageExist";
 
 const ExpenseSummary = () => {
   const { accountId } = useParams();
+  const { accounts } = useFetchStorage();
   const { expensesByDate } = useSummaryFilter(accountId);
   const { isValidAccountId } = usePageExist(accountId);
-  const { accounts } = useFetchStorage();
 
   const {
     currentActive: {

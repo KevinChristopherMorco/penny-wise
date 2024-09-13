@@ -10,6 +10,7 @@ import ExpenseSummary from "./components/expense/ExpenseSummary";
 import ExpenseProvider from "./hooks/user-actions/expense/useManageExpense";
 import ClientError from "./alerts/status/ClientError";
 import Transaction from "./components/pages/Transaction";
+import TransactionCardView from "./components/transaction/TransactionCardView";
 
 function App() {
   return (
@@ -26,6 +27,11 @@ function App() {
               ></Route>
               <Route path="/manage-expense" element={<Expense />}></Route>
               <Route path="/transactions" element={<Transaction />}></Route>
+              <Route
+                path="/transactions/:transactionId"
+                element={<TransactionCardView />}
+              ></Route>
+
               <Route path="*" element={<ClientError />} />
             </Routes>
             <MobileNavigation />

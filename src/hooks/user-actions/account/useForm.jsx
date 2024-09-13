@@ -3,6 +3,7 @@ import { useStorageContext } from "../../storage/useStorage";
 import { v4 as uuidv4 } from "uuid";
 import usePopulate from "./usePopulate";
 import useValidation from "./useValidation";
+import useTransaction from "../transaction/useTransaction";
 
 const useForm = () => {
   const defaultInput = {
@@ -25,6 +26,8 @@ const useForm = () => {
   } = usePopulate(defaultInput);
 
   const { defaultError, error, setError, checkErrors } = useValidation();
+
+  const { useAccountTransaction } = useTransaction();
 
   const handleAddAccount = (event) => {
     event.preventDefault();
@@ -52,6 +55,14 @@ const useForm = () => {
         ],
       };
     });
+
+    const transaction = {
+      accountName: currentInput.accountName,
+      accountBalance: currentInput.accountDeposit,
+      accountAction: "deposit",
+    };
+
+    useAccountTransaction(transaction);
     setInput(defaultInput);
     setSubmit(false);
   };
@@ -68,34 +79,46 @@ const useForm = () => {
     event.preventDefault();
 
     const hasError = checkErrors(currentInput);
-
     if (hasError) return;
+
     const dateNow = new Date().toUTCString();
 
-    setStorage((prev) => {
-      return {
-        ...prev,
-        accounts: prev.accounts.map((account) => {
-          return account.id === id
-            ? {
-                id: account.id,
-                accountDeposit: (
-                  parseFloat(account.accountDeposit) +
-                  parseFloat(currentInput.accountDeposit)
-                ).toString(),
-                accountName: currentInput.accountName,
-                accountBalance: (
-                  parseFloat(account.accountBalance) +
-                  parseFloat(currentInput.accountDeposit)
-                ).toString(),
-                icon: currentInput.icon,
-                dateCreated: account.dateCreated,
-                dateUpdated: dateNow,
-              }
-            : account;
-        }),
-      };
-    });
+    const findAccount = accounts.find((account) => account.id === id);
+
+    if (!findAccount) return;
+
+    const updatedDeposit =
+      parseFloat(findAccount.accountDeposit) +
+      parseFloat(currentInput.accountDeposit);
+    const updatedBalance =
+      parseFloat(findAccount.accountBalance) +
+      parseFloat(currentInput.accountDeposit);
+
+    setStorage((prev) => ({
+      ...prev,
+      accounts: prev.accounts.map((account) =>
+        account.id === id
+          ? {
+              ...account,
+              accountDeposit: updatedDeposit.toString(),
+              accountBalance: updatedBalance.toString(),
+              accountName: currentInput.accountName,
+              icon: currentInput.icon,
+              dateUpdated: dateNow,
+            }
+          : account
+      ),
+    }));
+
+    const transaction = {
+      accountId: findAccount.id,
+      accountName: findAccount.accountName,
+      accountDeposit: currentInput.accountDeposit.toString(),
+      accountBalance: updatedBalance.toString(),
+      accountAction: "edit",
+    };
+
+    useAccountTransaction(transaction);
   };
 
   const handleDeleteAccount = (accountId) => {
@@ -108,6 +131,17 @@ const useForm = () => {
         ),
       };
     });
+
+    const findAccount = accounts.find((account) => account.id === accountId);
+
+    const transaction = {
+      accountId: findAccount.id,
+      accountName: findAccount.accountName,
+      accountBalance: findAccount.accountBalance,
+      accountAction: "delete",
+    };
+
+    useAccountTransaction(transaction);
   };
 
   const handleInputChange = (event) => {
