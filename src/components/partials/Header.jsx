@@ -8,7 +8,7 @@ const Header = ({ currentTheme, setTheme }) => {
       <div>
         <p className="text-lg font-bold">Hello, Kevin!</p>
         <p className="text-[.75rem] font-light">
-          Take control of your spending with penny wise!
+          Track your spending with penny wise!
         </p>
       </div>
       {currentTheme === "light" && (

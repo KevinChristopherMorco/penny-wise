@@ -5,7 +5,7 @@ import { IconHome } from "@tabler/icons-react";
 
 const ClientError = () => {
   return (
-    <section className="basis-[100%] bg-white dark:bg-gray-900">
+    <section className="grow bg-white dark:bg-gray-900">
       <div className="py-8 px-4 flex flex-col mx-auto max-w-screen-xl lg:py-16 lg:px-6">
         <div className="flex flex-col items-center gap-6 max-w-screen-sm text-center">
           <img

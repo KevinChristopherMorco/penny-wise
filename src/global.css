@@ -31,11 +31,27 @@
   src: url("/src/assets/fonts/Poppins-Regular.ttf");
 }
 
-html,
+html {
+  @apply h-screen;
+}
 body {
-  @apply h-full;
+  @apply min-h-screen;
 }
 
 #root {
-  @apply h-full min-h-full flex flex-col text-black transition duration-100 delay-0 bg-[var(--secondary-color)] dark:bg-[var(--dark-primary-color)] dark:text-white;
+  @apply h-full min-h-screen flex flex-col text-black transition duration-100 delay-0 bg-[var(--secondary-color)] dark:bg-[var(--dark-primary-color)] dark:text-white;
+}
+
+/* Hide scrollbar for WebKit browsers */
+.horizontalFilter {
+  scrollbar-width: none; /* For Firefox */
+}
+
+.horizontalFilter::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}
+
+/* Hide scrollbar for Firefox */
+.horizontalFilter {
+  scrollbar-width: none; /* Hide scrollbar */
 }

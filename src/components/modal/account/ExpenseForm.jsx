@@ -60,7 +60,7 @@ const ExpenseForm = () => {
               <label htmlFor="expenseCategory" className="font-bold">
                 Category
               </label>
-              <div className=" w-full py-2 px-4 flex gap-8 overflow-y-scroll bg-[var(--neutral-color)] dark:bg-[var(--dark-neutral-color)] rounded-xl">
+              <div className="horizontalFilter w-full py-2 px-4 flex gap-8 overflow-y-scroll bg-[var(--neutral-color)] dark:bg-[var(--dark-neutral-color)] rounded-xl">
                 <ul className="flex gap-8">
                   {category.map((category, index) => (
                     <li
