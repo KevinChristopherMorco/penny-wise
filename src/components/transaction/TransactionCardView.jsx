@@ -54,10 +54,10 @@ const TransactionCardView = () => {
 
           <div className="px-4 text-base text-center">{transactionMessage}</div>
           <div className="flex flex-col gap-1">
-            <p className="text-[.65rem] text-center text-gray-400">
+            <p className="text-[.60rem] text-center text-gray-400">
               Transaction ID:
             </p>
-            <p className="w-full text-[.65rem] text-center text-wrap text-gray-400 break-words">
+            <p className="w-full text-[.60rem] text-center text-wrap text-gray-400 break-words">
               {id}
             </p>
           </div>

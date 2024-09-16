@@ -16,6 +16,10 @@ const BudgetForm = () => {
     handleInputChange,
   } = useBudgetContext();
 
+  const {
+    category: { imagePath, colorCode, altText, label },
+  } = JSON.parse(localStorage.getItem("categoryChoice"));
+
   return (
     <div className="w-full h-full fixed flex justify-center items-center bg-[#000] bg-opacity-80 animate-fadeIn z-[999]">
       <div className="w-[85%] h-fit px-4 pt-2 pb-6 mb-[5rem] flex flex-col gap-8 bg-[var(--primary-color)] rounded-xl dark:bg-[var(--dark-primary-color)]">
@@ -33,7 +37,20 @@ const BudgetForm = () => {
             }}
           />
         </div>
-        <div>
+        <div className="flex flex-col gap-8">
+          <div className="flex items-center gap-2">
+            <div
+              className="w-10 h-10 flex justify-center items-center rounded-full"
+              style={{ backgroundColor: colorCode }}
+            >
+              <img
+                src={imagePath}
+                alt={altText}
+                className="w-7 h-7 rounded-full"
+              />
+            </div>
+            <p className="font-bold">{altText}</p>
+          </div>
           <form
             onSubmit={handleAddBudget}
             className="flex flex-col gap-8"
@@ -48,7 +65,9 @@ const BudgetForm = () => {
                   type="number"
                   id="budgetAmount"
                   name="budgetAmount"
-                  className={` w-full p-2 text-black bg-[var(--neutral-color)] rounded-lg dark:bg-[var(--dark-neutral-color)] dark:text-[#fff]`}
+                  className={`${
+                    errorBudgetAmount ? "border border-red-500" : ""
+                  } w-full p-2 text-black bg-[var(--neutral-color)] rounded-lg dark:bg-[var(--dark-neutral-color)] dark:text-[#fff]`}
                   placeholder="1.00"
                   onChange={handleInputChange}
                 />
@@ -62,7 +81,7 @@ const BudgetForm = () => {
             </div>
             <input
               type="submit"
-              class="w-full p-2 text-base text-[var(--text-accent)] font-bold rounded-xl bg-[var(--accent-color)] cursor-pointer dark:bg-[var(--dark-accent-color)] dark:text-[var(--dark-text-accent)]"
+              className="w-full p-2 text-base text-[var(--text-accent)] font-bold rounded-xl bg-[var(--accent-color)] cursor-pointer dark:bg-[var(--dark-accent-color)] dark:text-[var(--dark-text-accent)]"
               value="Add"
             />{" "}
           </form>

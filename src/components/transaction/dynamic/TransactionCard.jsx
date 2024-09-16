@@ -1,21 +1,31 @@
 import React from "react";
-import { IconMail } from "@tabler/icons-react";
+import { IconMail, IconMailOpened } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
 import useTransactionTitle from "../../../hooks/fetch/transaction/useTransactionTitle";
+import useTransaction from "../../../hooks/user-actions/transaction/useTransaction";
 
-const TransactionCard = ({ transaction }) => {
+const TransactionCard = ({ transaction, isRead }) => {
   const title = useTransactionTitle({ transaction });
+  const { setIsRead } = useTransaction();
 
   return (
     <Link
       to={`${transaction.transactionId}`}
       key={transaction.transactionId}
+      onClick={() => setIsRead(transaction.transactionId)}
       className="w-full p-4 flex justify-between items-center shadow bg-[var(--primary-color)] rounded-lg cursor-pointer"
     >
-      <div className="basis-[9%] flex justify-center items-center relative">
-        <IconMail className="w-full h-full text-[var(--accent-color)]" />
-        <span className="w-3 h-3 bg-red-500 top-0 -left-1 absolute rounded-full"></span>
-      </div>
+      {!isRead ? (
+        <div className="basis-[9%] flex justify-center items-center relative">
+          <IconMail className="w-full h-full text-[var(--accent-color)]" />
+          <span className="w-3 h-3 bg-red-500 top-0 -left-1 absolute rounded-full"></span>
+        </div>
+      ) : (
+        <div className="basis-[9%] flex justify-center items-center">
+          <IconMailOpened className="w-full h-full text-[var(--accent-color)]" />
+        </div>
+      )}
+
       <div className="basis-[85%] overflow-hidden truncate">
         <p className="text-[var(--accent-color)] font-extrabold">{title}</p>
         <p className="overflow-hidden truncate text-[0.9rem]">

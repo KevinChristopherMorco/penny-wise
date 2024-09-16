@@ -12,15 +12,19 @@ const useTransaction = () => {
       accountDeposit,
       accountAction,
     } = transaction;
+
     const dateNow = new Date().toUTCString();
+
     const depositFormat = parseFloat(accountDeposit).toLocaleString("en-US", {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     });
+
     const amountFormat = parseFloat(accountBalance).toLocaleString("en-US", {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     });
+
     let transactionMessage = "";
 
     switch (accountAction) {
@@ -45,6 +49,7 @@ const useTransaction = () => {
       transactionAmount: accountBalance,
       transactionMessage: transactionMessage,
       dateCreated: dateNow,
+      isRead: false,
     };
 
     setStorage((prev) => {
@@ -57,7 +62,20 @@ const useTransaction = () => {
 
   const useExpenseTransaction = () => {};
 
-  return { useAccountTransaction };
+  const setIsRead = (id) => {
+    setStorage((prev) => {
+      return {
+        ...prev,
+        transactions: prev.transactions.map((transaction) => {
+          return transaction.transactionId === id
+            ? { ...transaction, isRead: true }
+            : transaction;
+        }),
+      };
+    });
+  };
+
+  return { useAccountTransaction, setIsRead };
 };
 
 export default useTransaction;
