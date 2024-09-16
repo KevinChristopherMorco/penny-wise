@@ -5,7 +5,9 @@ const useFetchStorage = () => {
     storage: { accounts, expenses, budget, transactions },
   } = useStorageContext();
 
-  return { accounts, expenses, budget, transactions };
+  const categoryChoice = JSON.parse(localStorage.getItem("categoryChoice"));
+
+  return { accounts, expenses, budget, transactions, categoryChoice };
 };
 
 export default useFetchStorage;

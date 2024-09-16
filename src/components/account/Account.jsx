@@ -12,7 +12,7 @@ const Account = () => {
   return (
     <div className="px-4 py-2 flex flex-col gap-3 bg-[var(--primary-color)]">
       <p className="text-lg font-bold">Accounts</p>
-      <div className="mb-[3rem] flex flex-col gap-4">
+      <div className="mb-[5rem] flex flex-col gap-4">
         {Boolean(accounts) && accounts.length > 0 ? (
           accounts.map((account) => (
             <AccountCard key={account.id} accountProps={account} />

@@ -25,7 +25,7 @@ const Expense = () => {
   const { accounts } = useFetchStorage();
 
   return (
-    <div className="relative mb-[3rem] flex flex-col gap-6">
+    <div className="relative mb-[5rem] flex flex-col gap-6">
       <div className="px-4 flex justify-center items-center">
         <img
           src="https://static.vecteezy.com/system/resources/previews/003/421/244/non_2x/e-wallet-technology-payment-concept-with-team-people-and-gold-free-vector.jpg"

@@ -24,9 +24,8 @@ const ExpenseSummary = () => {
     },
   } = useNavigateContext();
 
-  if (!isValidAccountId) {
-    return <ClientError />;
-  }
+  if (!isValidAccountId) return <ClientError />;
+
   return (
     <div className="min-h-full mb-[4rem] flex flex-col gap-4 animate-fadeIn overflow-y-scroll">
       <ExpenseSummaryHeader />
