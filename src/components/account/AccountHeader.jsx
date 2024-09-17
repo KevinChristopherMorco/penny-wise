@@ -22,8 +22,8 @@ const AccountHeader = () => {
         <Link to="/" className="cursor-pointer">
           <IconChevronLeft className="w-5 h-5 self-start" />
         </Link>
-        <div className="w-full flex justify-center items-center font-medium">
-          <p className="basis-[35%] text-sm">Total Balance:</p>
+        <div className="w-full flex justify-center items-center gap-1 font-medium">
+          <p className="text-sm">Total Balance:</p>
           <p className="flex items-center justify-center text-base text-green-300 font-bold dark:text-green-400">
             <IconCurrencyPeso className="w-5 h-5" />
             {totalBalance.toLocaleString("en", {
@@ -46,7 +46,7 @@ const AccountHeader = () => {
         </div>
         <div className="flex flex-col font-medium">
           <p className="text-sm">Total Expenses</p>
-          <p className="w-full flex items-center justify-center text-base text-red-400 font-bold dark:text-red-400">
+          <p className="w-full flex items-center justify-center text-base text-red-700 font-bold dark:text-red-400">
             <IconCurrencyPeso className="w-5 h-5" />
             {totalExpenses.toLocaleString("en", {
               minimumFractionDigits: 2,

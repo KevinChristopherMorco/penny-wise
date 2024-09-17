@@ -27,7 +27,7 @@ const TransactionCardView = () => {
     <div className="h-full min-h-screen flex flex-col text-black transition duration-100 delay-0 bg-[var(--secondary-color)] dark:bg-[var(--dark-primary-color)] dark:text-white">
       <TransactionHeader />
       <div className="px-5 flex-1">
-        <div className="w-full h-fit py-10 bg-[var(--primary-color)] translate-y-[25%] flex flex-col items-center gap-8 relative rounded-lg">
+        <div className="w-full h-fit py-10 bg-[var(--primary-color)] translate-y-[25%] flex flex-col items-center gap-8 shadow relative rounded-lg">
           <div className="p-3 bg-[var(--accent-color)] text-[var(--text-accent)] absolute -top-6 rounded-full ">
             <IconMailOpened className="w-8 h-8" />
           </div>
