@@ -27,7 +27,19 @@ const TransactionCard = ({ transaction, isRead }) => {
       )}
 
       <div className="basis-[85%] overflow-hidden truncate">
-        <p className="text-[var(--accent-color)] font-extrabold">{title}</p>
+        <div className="flex justify-between items-center">
+          <p
+            className={`${
+              !isRead ? "font-extrabold" : ""
+            } text-[var(--accent-color)]`}
+          >
+            {title}
+          </p>
+          <p className="text-[.7rem] text-gray-400 font-bold">
+            {new Date(transaction.dateCreated).toLocaleDateString("en-US")}
+          </p>
+        </div>
+
         <p className="overflow-hidden truncate text-[0.9rem]">
           {transaction.transactionMessage}
         </p>

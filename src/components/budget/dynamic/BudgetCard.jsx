@@ -1,15 +1,30 @@
-import React from "react";
-import { IconAlertCircleFilled, IconCurrencyPeso } from "@tabler/icons-react";
+import React, { useState } from "react";
+import {
+  IconAlertCircleFilled,
+  IconCurrencyPeso,
+  IconPencilMinus,
+  IconTrash,
+} from "@tabler/icons-react";
+import { useNavigateContext } from "../../../hooks/general/navigation/useActiveNavigation";
+import { useBudgetContext } from "../../../hooks/user-actions/budget/useManageBudget";
 import useCardFilter from "../../../hooks/user-actions/budget/filter/dynamic/useBudgetCardFilter";
 
 const BudgetCard = ({ category, formattedYear, currentDate }) => {
+  const [hover, setHover] = useState(false);
   const { imagePath, colorCode, label, altText } = category;
+
   const { progressPercentage, budgetCategoryInfo, totalExpenseAmount } =
     useCardFilter(formattedYear, currentDate, label);
+  const { handleDeleteBudget, setPopulateBudget } = useBudgetContext();
+  const { setCurrentActive } = useNavigateContext();
 
   return (
-    <div className="p-4 shadow bg-[var(--primary-color)] rounded-lg">
-      <div className="h-[7rem] flex flex-col justify-between">
+    <div
+      className="p-4 shadow bg-[var(--primary-color)] rounded-lg"
+      onMouseOver={() => setHover(true)}
+      onMouseOut={() => setHover(false)}
+    >
+      <div className="flex flex-col gap-4  justify-between">
         <div className="flex justify-between items-center">
           <div>
             <p className="text-gray-400">Total Budget</p>
@@ -93,6 +108,35 @@ const BudgetCard = ({ category, formattedYear, currentDate }) => {
             )}
           </div>
         </div>
+        {hover && (
+          <div className="flex gap-2 text-gray-400 self-end animate-fadeIn">
+            <div
+              className="flex items-center gap-1"
+              onClick={() => {
+                setPopulateBudget(budgetCategoryInfo.budgetId);
+
+                setCurrentActive("modal", {
+                  modalName: "editBudget",
+                  type: "edit",
+                });
+                localStorage.setItem(
+                  "categoryChoice",
+                  JSON.stringify({ category })
+                );
+              }}
+            >
+              <IconPencilMinus className="w-4 h-4" />
+              <p className="text-sm">Edit</p>
+            </div>
+            <div
+              className="flex items-center gap-1"
+              onClick={() => handleDeleteBudget(budgetCategoryInfo.budgetId)}
+            >
+              <IconTrash className="w-4 h-4" />
+              <p className="text-sm">Delete</p>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

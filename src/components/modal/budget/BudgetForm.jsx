@@ -4,27 +4,34 @@ import { useNavigateContext } from "../../../hooks/general/navigation/useActiveN
 import { useBudgetContext } from "../../../hooks/user-actions/budget/useManageBudget";
 
 const BudgetForm = () => {
-  const { setCurrentActive } = useNavigateContext();
+  const {
+    currentActive: {
+      modal: { type },
+    },
+    setCurrentActive,
+  } = useNavigateContext();
+
   const {
     defaultInput,
-    currentInput,
+    currentInput: { budgetAmount },
     setInput,
     defaultError,
     error: { errorBudgetAmount },
     setError,
+    setPopulateBudget,
     handleAddBudget,
+    handleEditBudget,
     handleInputChange,
   } = useBudgetContext();
 
-  const {
-    category: { imagePath, colorCode, altText, label },
-  } = JSON.parse(localStorage.getItem("categoryChoice"));
+  const { category: { imagePath, colorCode, altText } = {} } =
+    JSON.parse(localStorage.getItem("categoryChoice")) || {};
 
   return (
     <div className="w-full h-full fixed flex justify-center items-center bg-[#000] bg-opacity-80 animate-fadeIn z-[999]">
       <div className="w-[85%] h-fit px-4 pt-2 pb-6 mb-[5rem] flex flex-col gap-8 bg-[var(--primary-color)] rounded-xl dark:bg-[var(--dark-primary-color)]">
         <div className="py-2 flex justify-between items-center font-bold border-b border-[var(--accent-color)] dark:border-[var(--dark-accent-color)]">
-          <p>Set a budget</p>
+          <p>{type === "add" ? "Set a budget" : "Edit a budget"}</p>
           <IconCircleX
             className="w-6 h-6"
             onClick={() => {
@@ -34,6 +41,7 @@ const BudgetForm = () => {
                 modalName: null,
                 type: null,
               });
+              setPopulateBudget(defaultInput);
             }}
           />
         </div>
@@ -52,7 +60,7 @@ const BudgetForm = () => {
             <p className="font-bold">{altText}</p>
           </div>
           <form
-            onSubmit={handleAddBudget}
+            onSubmit={type === "add" ? handleAddBudget : handleEditBudget}
             className="flex flex-col gap-8"
             method="POST"
           >
@@ -70,6 +78,7 @@ const BudgetForm = () => {
                   } w-full p-2 text-black bg-[var(--neutral-color)] rounded-lg dark:bg-[var(--dark-neutral-color)] dark:text-[#fff]`}
                   placeholder="1.00"
                   onChange={handleInputChange}
+                  value={budgetAmount}
                 />
               </div>
               {errorBudgetAmount && (

@@ -5,10 +5,16 @@ import useBudgetFilter from "../../hooks/user-actions/budget/filter/useBudgetFil
 import BudgetCard from "./dynamic/BudgetCard";
 import BudgetCategory from "./BudgetCategory";
 import Empty from "../../alerts/indicators/Empty";
+import useFetchStorage from "../../hooks/fetch/useFetchStorage";
+import { IconAlertCircleFilled } from "@tabler/icons-react";
 
 const BudgetContainer = () => {
   const { formattedYear, currentDate } = useBudgetContext();
-  const { categoriesWithBudget, categoriesNoBudget } = useBudgetFilter();
+  const {
+    categoriesWithBudget,
+    categoriesNoBudget,
+    categoriesNoBudgetWithExpense,
+  } = useBudgetFilter();
 
   return (
     <div className="mb-[7rem] flex flex-col gap-16">
@@ -16,9 +22,9 @@ const BudgetContainer = () => {
         <div className="px-4 flex flex-col gap-5">
           <p className="py-1 font-bold">Budget for the month:</p>
         </div>
-        <div className="px-4 flex flex-col gap-3">
-          {Boolean(categoriesWithBudget) && categoriesWithBudget.length > 0 ? (
-            categoriesWithBudget.map((category, index) => {
+        {Boolean(categoriesWithBudget) && categoriesWithBudget.length > 0 ? (
+          <div className="px-4 flex flex-col gap-3">
+            {categoriesWithBudget.map((category, index) => {
               return (
                 <BudgetCard
                   key={index}
@@ -27,18 +33,27 @@ const BudgetContainer = () => {
                   currentDate={currentDate}
                 />
               );
-            })
-          ) : (
-            <Empty
-              title="No Budget Set for This Month"
-              subtext="Please set a budget to better manage and track your expenses for this month."
-            />
-          )}
-        </div>
+            })}
+          </div>
+        ) : (
+          <Empty
+            title="No Budget Set for This Month"
+            subtext="Please set a budget to better manage and track your expenses for this month."
+          />
+        )}
       </div>
       <div className="flex flex-col gap-5">
         <div className="px-4 flex flex-col gap-5">
           <p className="py-1 font-bold">Set budget for:</p>
+          {categoriesNoBudgetWithExpense.length > 0 && (
+            <div className="flex gap-1 text-[.7rem] text-red-500 font-bold">
+              <IconAlertCircleFilled className="w-4 h-4" />
+              <div>
+                <p>There are categories that already had expenses.</p>
+                <p>Please set a budget to manage your financials effectively</p>
+              </div>
+            </div>
+          )}
         </div>
         <div>
           {categoriesNoBudget.map((category, index) => {

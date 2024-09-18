@@ -1,6 +1,6 @@
 const useTransactionTitle = ({ transaction }) => {
   let title = "";
-  switch (transaction.transactionType) {
+  switch (transaction.transactionAction) {
     case "deposit":
       title = "New Account Created!";
       break;
@@ -9,6 +9,15 @@ const useTransactionTitle = ({ transaction }) => {
       break;
     case "delete":
       title = "Account Deleted!";
+      break;
+    case "addExpense":
+      title = "New Expense!";
+      break;
+    case "editExpense":
+      title = "Updated Expense!";
+      break;
+    case "deleteExpense":
+      title = "Deleted Expense!";
       break;
     default:
       break;

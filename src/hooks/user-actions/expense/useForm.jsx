@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import { useStorageContext } from "../../storage/useStorage";
 import useValidation from "./useValidation";
 import usePopulate from "./usePopulate";
+import useTransaction from "../transaction/useTransaction";
 
 const useForm = () => {
   const defaultInput = {
@@ -18,7 +19,7 @@ const useForm = () => {
   const [isSubmit, setSubmit] = useState(false);
 
   const {
-    storage: { expenses },
+    storage: { accounts, expenses },
     setStorage,
   } = useStorageContext();
 
@@ -35,6 +36,8 @@ const useForm = () => {
     setPopulateExpense,
   } = usePopulate(defaultInput);
 
+  const { useExpenseTransaction } = useTransaction();
+
   const handleAddExpense = (event) => {
     event.preventDefault();
 
@@ -45,69 +48,97 @@ const useForm = () => {
     if (hasError) return;
 
     const dateNow = new Date().toUTCString();
+
+    const newExpense = {
+      ...currentInput,
+      expenseId: `exp${uuidv4().split("-").join("")}${Date.now()}`,
+      dateCreated: dateNow,
+      dateUpdated: dateNow,
+    };
+
+    let updatedAccount;
+
     setStorage((prev) => {
       return {
         ...prev,
         accounts: prev.accounts.map((account) => {
-          return account.id === currentInput.expenseAccount
-            ? {
-                ...account,
-                accountBalance: (
-                  account.accountBalance - currentInput.expenseAmount
-                ).toString(),
-              }
-            : account;
+          if (account.id === currentInput.expenseAccount) {
+            updatedAccount = {
+              ...account,
+              accountBalance: (
+                account.accountBalance - currentInput.expenseAmount
+              ).toString(),
+            };
+
+            return updatedAccount;
+          }
+          return account;
         }),
 
-        expenses: [
-          ...prev.expenses,
-          {
-            ...currentInput,
-            expenseId: `exp${uuidv4().split("-").join("")}${Date.now()}`,
-            dateCreated: dateNow,
-            dateUpdated: dateNow,
-          },
-        ],
+        expenses: [...prev.expenses, newExpense],
       };
     });
+
+    const transaction = {
+      ...newExpense,
+      ...updatedAccount,
+      expenseAction: "addExpense",
+    };
+
     setInput(defaultInput);
     setSubmit(false);
+    useExpenseTransaction(transaction);
   };
 
   const handleEditExpense = (event) => {
     event.preventDefault();
 
+    let updatedAccount;
+    let updatedExpense;
+
     setStorage((prev) => {
+      const expenseAmount = expenses.find(
+        (expense) => expense.expenseId === expenseId
+      ).expenseAmount;
+
       return {
         ...prev,
         accounts: prev.accounts.map((account) => {
-          const expenseAmount = expenses.find(
-            (expense) => expense.expenseId === expenseId
-          ).expenseAmount;
-          return account.id === expenseAccount
-            ? {
-                ...account,
-                accountBalance:
-                  parseFloat(account.accountBalance) -
-                  (
-                    parseFloat(currentInput.expenseAmount) -
-                    parseFloat(expenseAmount)
-                  ).toString(),
-              }
-            : account;
+          if (account.id === expenseAccount) {
+            updatedAccount = {
+              ...account,
+              accountBalance:
+                parseFloat(account.accountBalance) -
+                (
+                  parseFloat(currentInput.expenseAmount) -
+                  parseFloat(expenseAmount)
+                ).toString(),
+            };
+            return updatedAccount;
+          }
+          return account;
         }),
         expenses: prev.expenses.map((expense) => {
-          return expense.expenseId === expenseId
-            ? {
-                ...expense,
-                expenseName: currentInput.expenseName,
-                expenseCategory: currentInput.expenseCategory,
-                expenseAmount: currentInput.expenseAmount,
-              }
-            : expense;
+          if (expense.expenseId === expenseId) {
+            updatedExpense = {
+              ...expense,
+              expenseName: currentInput.expenseName,
+              expenseCategory: currentInput.expenseCategory,
+              expenseAmount: currentInput.expenseAmount,
+            };
+            return updatedExpense;
+          }
+          return expense;
         }),
       };
     });
+    const transaction = {
+      ...updatedExpense,
+      ...updatedAccount,
+      expenseAction: "editExpense",
+    };
+
+    useExpenseTransaction(transaction);
   };
 
   const handleInputChange = (event) => {
@@ -159,27 +190,45 @@ const useForm = () => {
   }, [currentInput]);
 
   const handleDeleteExpense = (accountId, expenseId) => {
+    let updatedAccount;
+    let expense;
+
     setStorage((prev) => {
+      const expenseAmount = prev.expenses.find(
+        (expense) => expense.expenseAccount === accountId
+      ).expenseAmount;
+
+      expense = prev.expenses.find(
+        (expense) => expense.expenseId !== expenseId
+      );
+
       return {
         ...prev,
         accounts: prev.accounts.map((account) => {
-          const expenseAmount = prev.expenses.find(
-            (expense) => expense.expenseAccount === accountId
-          ).expenseAmount;
-          return account.id === accountId
-            ? {
-                ...account,
-                accountBalance: (
-                  parseFloat(account.accountBalance) + parseFloat(expenseAmount)
-                ).toString(),
-              }
-            : account;
+          if (account.id === accountId) {
+            updatedAccount = {
+              ...account,
+              accountBalance: (
+                parseFloat(account.accountBalance) + parseFloat(expenseAmount)
+              ).toString(),
+            };
+            return updatedAccount;
+          }
+          return account;
         }),
         expenses: prev.expenses.filter(
           (expense) => expense.expenseId !== expenseId
         ),
       };
     });
+
+    const transaction = {
+      ...expense,
+      ...updatedAccount,
+      expenseAction: "deleteExpense",
+    };
+
+    useExpenseTransaction(transaction);
   };
 
   return {

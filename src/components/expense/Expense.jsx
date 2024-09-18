@@ -26,7 +26,7 @@ const Expense = () => {
 
   return (
     <div className="relative mb-[5rem] flex flex-col gap-6">
-      <div className="px-4 flex justify-center items-center">
+      <div className="px-4 py-5 flex justify-center items-center">
         <img
           src="https://static.vecteezy.com/system/resources/previews/003/421/244/non_2x/e-wallet-technology-payment-concept-with-team-people-and-gold-free-vector.jpg"
           alt=""
@@ -156,7 +156,11 @@ const Expense = () => {
               } py-2 px-4 text-sm rounded-lg bg-[var(--neutral-color)] dark:bg-[var(--dark-neutral-color)]`}
               onClick={() => setViewAccount(true)}
             >
-              <p className="text-[#B2A3B3]">
+              <p
+                className={`${
+                  currentInput.expenseAccount ? "text-black" : "text-[#B2A3B3]"
+                }`}
+              >
                 {currentInput.expenseAccount
                   ? accounts.find(
                       (account) => account.id === currentInput.expenseAccount
@@ -182,7 +186,7 @@ const Expense = () => {
         </form>
       </div>
       {viewAccount && (
-        <div className="w-full h-full -my-4 absolute bg-black bg-opacity-5 z-[999]">
+        <div className="w-full h-full top-0 absolute bg-black bg-opacity-50  z-[999]">
           <div className="w-full h-[70%] p-4 flex flex-col absolute gap-4 -bottom-20 bg-[var(--primary-color)] dark:bg-[var(--dark-primary-color)] animate-slideUp">
             <div className="flex justify-between items-center">
               <p className="font-bold">Choose an account</p>
@@ -190,7 +194,7 @@ const Expense = () => {
                 <IconX onClick={() => setViewAccount(false)} />
               </span>
             </div>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 overflow-y-scroll">
               {accounts.map((account) => (
                 <div
                   key={account.id}
@@ -227,16 +231,16 @@ const Expense = () => {
                   </div>
                 </div>
               ))}
-              <Link
-                to="/manage-account"
-                className="mx-auto p-2 flex justify-center items-center text-sm text-[var(--accent-color)] font-bold border border-[var(--accent-color)] rounded transition-colors hover:bg-[var(--accent-color)] hover:text-white dark:text-[var(--dark-accent-color)] dark:border-[var(--dark-accent-color)] hover:dark:bg-[var(--dark-accent-color)]"
-              >
-                <p className="flex items-center gap-1 font-bold">
-                  <span className="w-4 h-4">+</span>
-                  Add an Account
-                </p>
-              </Link>
             </div>
+            <Link
+              to="/manage-account"
+              className="mx-auto p-2 flex justify-center items-center text-sm text-[var(--accent-color)] font-bold border border-[var(--accent-color)] rounded transition-colors hover:bg-[var(--accent-color)] hover:text-white dark:text-[var(--dark-accent-color)] dark:border-[var(--dark-accent-color)] hover:dark:bg-[var(--dark-accent-color)]"
+            >
+              <p className="flex items-center gap-1 font-bold">
+                <span className="w-4 h-4">+</span>
+                Add an Account
+              </p>
+            </Link>
           </div>
         </div>
       )}

@@ -26,23 +26,22 @@ const AddAccount = () => {
     handleInputChange,
   } = useAccountContext();
 
+  const handleOnClose = () => {
+    setInput(defaultInput);
+    setError(defaultError);
+    setPopulateAccount(defaultInput);
+    setCurrentActive("modal", {
+      modalName: null,
+      type: null,
+    });
+  };
+
   return (
     <div className="w-full h-full fixed flex justify-center items-center bg-[#000] bg-opacity-80 animate-fadeIn z-[999]">
       <div className="w-[85%] h-fit px-4 pt-2 pb-6 mb-[5rem] flex flex-col gap-8 bg-[var(--primary-color)] rounded-xl dark:bg-[var(--dark-primary-color)]">
         <div className="py-2 flex justify-between items-center font-bold border-b border-[var(--accent-color)] dark:border-[var(--dark-accent-color)]">
           <p>{type === "add" ? "Add an Account" : "Edit an Account"}</p>
-          <IconCircleX
-            className="w-6 h-6"
-            onClick={() => {
-              setInput(defaultInput);
-              setError(defaultError);
-              setPopulateAccount(defaultInput);
-              setCurrentActive("modal", {
-                modalName: null,
-                type: null,
-              });
-            }}
-          />
+          <IconCircleX className="w-6 h-6" onClick={() => handleOnClose()} />
         </div>
         <div>
           <form

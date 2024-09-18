@@ -9,12 +9,12 @@ const useValidation = () => {
 
     const error = {
       errorAccountName: !Boolean(accountName),
-      erroraccountDeposit:
+      errorAccountDeposit:
         !Boolean(parseFloat(accountDeposit)) || parseFloat(accountDeposit) < 1,
     };
 
     setError(error);
-    return error.errorAccountName || error.erroraccountDeposit;
+    return error.errorAccountName || error.errorAccountDeposit;
   };
 
   return { defaultError, error, setError, checkErrors };

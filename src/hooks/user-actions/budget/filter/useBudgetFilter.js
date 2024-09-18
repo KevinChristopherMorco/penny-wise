@@ -23,7 +23,38 @@ const useBudgetFilter = () => {
         .includes(category.label)
   );
 
-  return { monthlyBudgetFilter, categoriesWithBudget, categoriesNoBudget };
+  const categoriesNoBudgetWithExpense = expenses.filter(
+    (expense) =>
+      new Date(expense.dateCreated).toLocaleDateString("en-US", {
+        month: "long",
+        year: "numeric",
+      }) === formattedYear &&
+      !budgetView
+        .map((budget) => budget.budgetCategory)
+        .includes(expense.expenseCategory)
+  );
+
+  const totalExpenseWithNoBudget = categoriesNoBudgetWithExpense.reduce(
+    (total, category) => {
+      const groupCategoryAmount = parseFloat(category.expenseAmount);
+      const groupCategory = category.expenseCategory;
+
+      if (!Boolean(total[groupCategory])) total[groupCategory] = 0;
+
+      total[groupCategory] += groupCategoryAmount;
+
+      return total;
+    },
+    {}
+  );
+
+  return {
+    monthlyBudgetFilter,
+    categoriesWithBudget,
+    categoriesNoBudget,
+    categoriesNoBudgetWithExpense,
+    totalExpenseWithNoBudget,
+  };
 };
 
 export default useBudgetFilter;

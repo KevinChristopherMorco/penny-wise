@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useStorageContext } from "../../storage/useStorage";
 import { v4 as uuidv4 } from "uuid";
 import useValidation from "./useValidation";
+import usePopulate from "./usePopulate";
 
 const useForm = (formattedYear, categoryChoice) => {
   const defaultInput = { budgetAmount: "" };
@@ -9,10 +10,15 @@ const useForm = (formattedYear, categoryChoice) => {
   const [currentInput, setInput] = useState(defaultInput);
   const [isSubmit, setSubmit] = useState(false);
 
-  const { setStorage } = useStorageContext();
   const {
-    category: { label: budgetCategory },
-  } = categoryChoice;
+    storage: { budget },
+    setStorage,
+  } = useStorageContext();
+  const { category: { label: budgetCategory } = {} } = categoryChoice || {};
+  const {
+    populateBudget: { budgetId, budgetAmount },
+    setPopulateBudget,
+  } = usePopulate(defaultInput);
 
   const { defaultError, error, setError, checkErrors } = useValidation();
 
@@ -47,8 +53,45 @@ const useForm = (formattedYear, categoryChoice) => {
     setSubmit(false);
   };
 
+  const handleEditBudget = (event) => {
+    event.preventDefault();
+
+    const hasError = checkErrors(currentInput);
+
+    setSubmit(true);
+
+    if (hasError) return;
+
+    const dateNow = new Date().toUTCString();
+
+    setStorage((prev) => {
+      return {
+        ...prev,
+        budget: prev.budget.map((budget) => {
+          console.log(budget.budgetId === budgetId);
+          return budget.budgetId === budgetId
+            ? {
+                ...budget,
+                budgetAmount: currentInput.budgetAmount,
+                dateUpdated: dateNow,
+              }
+            : budget;
+        }),
+      };
+    });
+    setSubmit(false);
+  };
+
+  const handleDeleteBudget = (budgetId) => {
+    setStorage((prev) => {
+      return {
+        ...prev,
+        budget: prev.budget.filter((budget) => budget.budgetId !== budgetId),
+      };
+    });
+  };
+
   const handleInputChange = (event) => {
-    console.log(currentInput);
     const { name, value } = event.target;
     setInput((prev) => {
       return {
@@ -57,6 +100,15 @@ const useForm = (formattedYear, categoryChoice) => {
       };
     });
   };
+
+  useEffect(() => {
+    setInput((prev) => {
+      return {
+        ...prev,
+        budgetAmount: budgetAmount,
+      };
+    });
+  }, [budgetId]);
 
   useEffect(() => {
     if (!isSubmit) return;
@@ -69,8 +121,11 @@ const useForm = (formattedYear, categoryChoice) => {
     setInput,
     defaultError,
     error,
+    setPopulateBudget,
     setError,
     handleAddBudget,
+    handleEditBudget,
+    handleDeleteBudget,
     handleInputChange,
   };
 };

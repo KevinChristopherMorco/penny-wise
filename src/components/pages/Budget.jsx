@@ -16,7 +16,9 @@ const Budget = () => {
       <div className="flex flex-col gap-5 animate-fadeIn">
         <BudgetHeader />
         <BudgetContainer />
-        {modalName === "addBudget" && <BudgetForm />}
+        {(modalName === "addBudget" || modalName === "editBudget") && (
+          <BudgetForm />
+        )}
       </div>
     </BudgetProvider>
   );

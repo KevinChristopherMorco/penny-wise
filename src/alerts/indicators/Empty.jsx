@@ -3,7 +3,7 @@ import sadPenguin from "../../assets/images/gif/sad-penguin.gif";
 
 const Empty = ({ title, subtext, warning }) => {
   return (
-    <div className="flex flex-col items-center gap-4">
+    <div className="py-4 flex flex-col items-center gap-4 shadow-md bg-[var(--primary-color)]">
       <div>
         <img src={sadPenguin} alt="" className="w-[7rem] h-[7rem]" />
       </div>

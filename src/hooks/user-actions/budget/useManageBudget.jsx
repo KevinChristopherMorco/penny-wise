@@ -15,7 +15,10 @@ const BudgetProvider = ({ children }) => {
     defaultError,
     error,
     setError,
+    setPopulateBudget,
     handleAddBudget,
+    handleEditBudget,
+    handleDeleteBudget,
     handleInputChange,
   } = useForm(formattedYear, categoryChoice);
 
@@ -28,10 +31,13 @@ const BudgetProvider = ({ children }) => {
         defaultError,
         error,
         setError,
+        setPopulateBudget,
         currentDate,
         formattedYear,
         handleDateChoice,
         handleAddBudget,
+        handleEditBudget,
+        handleDeleteBudget,
         handleInputChange,
       }}
     >
