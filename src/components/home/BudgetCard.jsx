@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 const BudgetCard = () => {
   return (
     <div className="px-4">
-      <div className="p-4 flex flex-col items-center gap-10 bg-[#4B136C] rounded-xl dark:bg-[var(--dark-secondary-color)]">
+      <div className="p-4 flex flex-col items-center gap-10 bg-[#4B136C] rounded-xl dark:bg-[#02383C]">
         <div className="flex flex-col gap-4 text-white">
           <div className="flex flex-col gap-2">
             <p className="text-sm text-center font-light">My Budget</p>
@@ -42,7 +42,7 @@ const BudgetCard = () => {
             <p>Budget Overview</p>
           </div>
           <div className="flex justify-between items-center">
-            <div className="p-2 flex flex-col gap-4 basis-[45%] bg-white text-black rounded-lg">
+            <div className="p-2 flex flex-col gap-4 basis-[45%] bg-white text-black rounded-lg dark:bg-[var(--dark-secondary-color)] dark:text-white">
               <div className="flex justify-between items-center">
                 <p>
                   <IconPigMoney className="w-5 h-5" />
@@ -57,7 +57,7 @@ const BudgetCard = () => {
                 <p className="text-base font-bold">₱3,500.00</p>
               </div>
             </div>
-            <div className="p-2 flex flex-col gap-4 basis-[45%] bg-white text-black rounded-lg">
+            <div className="p-2 flex flex-col gap-4 basis-[45%] bg-white text-black rounded-lg dark:bg-[var(--dark-secondary-color)] dark:text-white">
               <div className="flex justify-between items-center text-sm">
                 <p>
                   <IconCash className="w-5 h-5" />

@@ -20,7 +20,7 @@ const BudgetCard = ({ category, formattedYear, currentDate }) => {
 
   return (
     <div
-      className="p-4 shadow bg-[var(--primary-color)] rounded-lg"
+      className="p-4 shadow bg-[var(--primary-color)] rounded-lg dark:bg-[var(--dark-primary-color)]"
       onMouseOver={() => setHover(true)}
       onMouseOut={() => setHover(false)}
     >
@@ -50,11 +50,13 @@ const BudgetCard = ({ category, formattedYear, currentDate }) => {
             >
               <img src={imagePath} alt="" className="w-5 h-5 rounded-full" />
             </div>
-            <p className="text-[.8rem] text-gray-500 font-bold">{altText}</p>
+            <p className="text-[.8rem] text-gray-500 dark:text-gray-300 font-bold">
+              {altText}
+            </p>
           </div>
         </div>
         <div className="flex flex-col gap-2">
-          <div className="w-full h-2 bg-gray-300 rounded-full">
+          <div className="w-full h-2 bg-gray-300 rounded-full dark:bg-[var(--dark-secondary-color)]">
             {progressPercentage > 100 ? (
               <div
                 className={`w-full h-2 flex bg-red-500 items-center rounded-full animate-fillWidth relative`}
@@ -75,7 +77,7 @@ const BudgetCard = ({ category, formattedYear, currentDate }) => {
           </div>
           <div className="flex justify-between text-[.8rem]">
             <div className="flex gap-1 font-medium">
-              <p className="text-gray-500">Spent:</p>
+              <p className="text-gray-500 dark:text-gray-300">Spent:</p>
               <div
                 className={`${
                   progressPercentage > 100 ? "text-red-500" : ""
@@ -102,7 +104,7 @@ const BudgetCard = ({ category, formattedYear, currentDate }) => {
                 </p>
               </div>
             ) : (
-              <div className="text-gray-500">
+              <div className="text-gray-500 dark:text-gray-300">
                 <p>{progressPercentage}%</p>
               </div>
             )}
@@ -111,7 +113,7 @@ const BudgetCard = ({ category, formattedYear, currentDate }) => {
         {hover && (
           <div className="flex gap-2 text-gray-400 self-end animate-fadeIn">
             <div
-              className="flex items-center gap-1"
+              className="flex items-center gap-1 text-orange-500 font-bold"
               onClick={() => {
                 setPopulateBudget(budgetCategoryInfo.budgetId);
 
@@ -129,7 +131,7 @@ const BudgetCard = ({ category, formattedYear, currentDate }) => {
               <p className="text-sm">Edit</p>
             </div>
             <div
-              className="flex items-center gap-1"
+              className="flex items-center gap-1 text-red-500 font-bold"
               onClick={() => handleDeleteBudget(budgetCategoryInfo.budgetId)}
             >
               <IconTrash className="w-4 h-4" />

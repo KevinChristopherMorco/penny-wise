@@ -7,7 +7,7 @@ const BudgetHeader = () => {
   const navigate = useNavigate();
   const { formattedYear, handleDateChoice } = useBudgetContext();
   return (
-    <div className="p-4 flex items-center bg-[var(--accent-color)] text-[var(--text-accent)]">
+    <div className="p-4 flex items-center bg-[var(--accent-color)] text-[var(--text-accent)] border-b dark:bg-[var(--dark-primary-color)] dark:border-[--dark-accent-color]">
       <div className="w-full flex justify-center gap-4 items-center font-bold">
         <IconChevronLeft
           className="w-5 h-5 cursor-pointer"

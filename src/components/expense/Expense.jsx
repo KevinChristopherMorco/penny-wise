@@ -33,10 +33,10 @@ const Expense = () => {
           className="rounded-lg"
         />
       </div>
-      <div className="py-4 bg-[var(--primary-color)]">
+      <div className="py-4 bg-[var(--primary-color)] dark:bg-[var(--dark-secondary-color)]">
         <form
           method="POST"
-          className="px-4 flex flex-col gap-6 bg-[var(--primary-color) dark:bg-[var(--dark-primary-color)]"
+          className="px-4 flex flex-col gap-6 bg-[var(--primary-color) dark:bg-[var(--dark-secondary-color)]"
           onSubmit={handleAddExpense}
         >
           <div className="flex flex-col gap-2">

@@ -12,35 +12,38 @@ import ClientError from "./alerts/status/ClientError";
 import Transaction from "./components/pages/Transaction";
 import TransactionCardView from "./components/transaction/TransactionCardView";
 import Budget from "./components/pages/Budget";
+import ThemeProvider from "./hooks/general/theme/useTheme";
 
 function App() {
   return (
-    <StorageProvider>
-      <ExpenseProvider>
-        <NavigationProvider>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Home />}></Route>
-              <Route path="/manage-account" element={<Account />}></Route>
-              <Route
-                path="/manage-account/:accountId"
-                element={<ExpenseSummary />}
-              ></Route>
-              <Route path="/manage-expense" element={<Expense />}></Route>
-              <Route path="/transactions" element={<Transaction />}></Route>
-              <Route path="/manage-budget-plan" element={<Budget />}></Route>
+    <ThemeProvider>
+      <StorageProvider>
+        <ExpenseProvider>
+          <NavigationProvider>
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={<Home />}></Route>
+                <Route path="/manage-account" element={<Account />}></Route>
+                <Route
+                  path="/manage-account/:accountId"
+                  element={<ExpenseSummary />}
+                ></Route>
+                <Route path="/manage-expense" element={<Expense />}></Route>
+                <Route path="/transactions" element={<Transaction />}></Route>
+                <Route path="/manage-budget-plan" element={<Budget />}></Route>
 
-              <Route
-                path="/transactions/:transactionId"
-                element={<TransactionCardView />}
-              ></Route>
-              <Route path="*" element={<ClientError />} />
-            </Routes>
-            <MobileNavigation />
-          </BrowserRouter>
-        </NavigationProvider>
-      </ExpenseProvider>
-    </StorageProvider>
+                <Route
+                  path="/transactions/:transactionId"
+                  element={<TransactionCardView />}
+                ></Route>
+                <Route path="*" element={<ClientError />} />
+              </Routes>
+              <MobileNavigation />
+            </BrowserRouter>
+          </NavigationProvider>
+        </ExpenseProvider>
+      </StorageProvider>
+    </ThemeProvider>
   );
 }
 

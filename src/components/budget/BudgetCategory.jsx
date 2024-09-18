@@ -17,7 +17,7 @@ const BudgetCategory = ({ category }) => {
   );
 
   return (
-    <div className="p-4 shadow-lg bg-[var(--primary-color)] rounded-lg">
+    <div className="p-4 shadow-lg bg-[var(--primary-color)] dark:bg-[var(--dark-primary-color)] dark:shadow dark:shadow-[var(--dark-accent-color)]">
       <div className="flex justify-between items-center">
         <div className="flex flex-col gap-1">
           <div className="flex items-center gap-2">
@@ -52,7 +52,7 @@ const BudgetCategory = ({ category }) => {
           )}
         </div>
         <button
-          className="px-3 py-1 text-[.8rem] border border-[var(--accent-color)] text-[var(--accent-color)] font-bold rounded-lg"
+          className="px-3 py-1 text-[.8rem] border border-[var(--accent-color)] text-[var(--accent-color)] font-bold rounded-lg dark:text-[var(--dark-accent-color)] dark:border-[var(--dark-accent-color)]"
           onClick={() => {
             setCurrentActive("modal", {
               modalName: "addBudget",

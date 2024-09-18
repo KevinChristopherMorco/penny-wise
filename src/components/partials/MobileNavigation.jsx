@@ -27,7 +27,7 @@ const MobileNavigation = () => {
   const { totalUnreadTransactions } = useTransactionFilter();
 
   return (
-    <div className="w-full border-t border-gray-300 h-[3rem] px-4 py-10 fixed bottom-0 flex items-center bg-[#fff] dark:bg-[var(--dark-primary-color)]">
+    <div className="w-full border-t border-gray-300 h-[3rem] px-4 py-10 fixed bottom-0 flex items-center bg-[#fff] dark:bg-[var(--dark-primary-color)] dark:border-[var(--dark-accent-color)]">
       <ul className="w-full flex justify-between items-center">
         <Link
           to="/"

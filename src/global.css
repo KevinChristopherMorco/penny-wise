@@ -17,12 +17,12 @@
   --text-color: #000;
   --text-accent: #fff;
 
-  --dark-primary-color: #22092c;
-  --dark-secondary-color: #ff204e;
-  --dark-accent-color: #ffcd4b;
+  --dark-primary-color: #14181c;
+  --dark-secondary-color: #040d12;
+  --dark-accent-color: #009d1a;
   --dark-text-color: #fff;
-  --dark-text-accent: #000;
-  --dark-neutral-color: #391047;
+  --dark-text-accent: #fff;
+  --dark-neutral-color: #1e2429;
   /* f9d276 */
 }
 
@@ -46,7 +46,7 @@ body {
 }
 
 #root {
-  @apply h-full min-h-screen flex flex-col text-black transition duration-100 delay-0 bg-[var(--secondary-color)] dark:bg-[var(--dark-primary-color)] dark:text-white;
+  @apply h-full min-h-screen flex flex-col text-black transition duration-100 delay-0 bg-[var(--secondary-color)] dark:bg-[var(--dark-secondary-color)] dark:text-white;
 }
 
 /* Hide scrollbar for WebKit browsers */

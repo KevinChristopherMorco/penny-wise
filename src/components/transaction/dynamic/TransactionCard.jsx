@@ -13,16 +13,16 @@ const TransactionCard = ({ transaction, isRead }) => {
       to={`${transaction.transactionId}`}
       key={transaction.transactionId}
       onClick={() => setIsRead(transaction.transactionId)}
-      className="w-full p-4 flex justify-between items-center shadow bg-[var(--primary-color)] rounded-lg cursor-pointer"
+      className="w-full p-4 flex justify-between items-center shadow bg-[var(--primary-color)] cursor-pointer dark:bg-[var(--dark-primary-color)]"
     >
       {!isRead ? (
         <div className="basis-[9%] flex justify-center items-center relative">
-          <IconMail className="w-full h-full text-[var(--accent-color)]" />
+          <IconMail className="w-full h-full text-[var(--accent-color)] dark:text-[var(--dark-accent-color)]" />
           <span className="w-3 h-3 bg-red-500 top-0 -left-1 absolute rounded-full"></span>
         </div>
       ) : (
         <div className="basis-[9%] flex justify-center items-center">
-          <IconMailOpened className="w-full h-full text-[var(--accent-color)]" />
+          <IconMailOpened className="w-full h-full text-[var(--accent-color)] dark:text-[var(--dark-accent-color)]" />
         </div>
       )}
 
@@ -31,7 +31,7 @@ const TransactionCard = ({ transaction, isRead }) => {
           <p
             className={`${
               !isRead ? "font-extrabold" : ""
-            } text-[var(--accent-color)]`}
+            } text-[var(--accent-color)] dark:text-[var(--dark-accent-color)]`}
           >
             {title}
           </p>

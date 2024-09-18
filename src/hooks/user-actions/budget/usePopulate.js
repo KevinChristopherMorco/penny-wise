@@ -9,7 +9,6 @@ const usePopulate = (defaultInput) => {
   );
 
   const setPopulateBudget = (id) => {
-    console.log(id);
     setPopulate(
       budget.find((budget) => budget.budgetId === id) || defaultInput
     );

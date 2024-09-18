@@ -16,7 +16,7 @@ const TransactionFilter = ({ chooseFilter }) => {
           <li
             className={`${
               active === "all"
-                ? "border-[2.5px] border-[var(--accent-color)] text-[var(--accent-color)]"
+                ? "border-[2.5px] border-[var(--accent-color)] text-[var(--accent-color)] dark:border-[var(--dark-accent-color)] dark:text-[var(--dark-accent-color)]"
                 : "border border-gray-500 text-gray-500"
             } py-[.20rem] px-4 font-extrabold rounded-full cursor-pointer`}
             onClick={() => handleFilter("all")}
@@ -26,7 +26,7 @@ const TransactionFilter = ({ chooseFilter }) => {
           <li
             className={`${
               active === "account"
-                ? "border-[2.5px] border-[var(--accent-color)] text-[var(--accent-color)]"
+                ? "border-[2.5px] border-[var(--accent-color)] text-[var(--accent-color)] dark:border-[var(--dark-accent-color)] dark:text-[var(--dark-accent-color)]"
                 : "border border-gray-500 text-gray-500"
             } py-[.20rem] px-4 font-extrabold rounded-full cursor-pointer`}
             onClick={() => handleFilter("account")}
@@ -36,7 +36,7 @@ const TransactionFilter = ({ chooseFilter }) => {
           <li
             className={`${
               active === "expense"
-                ? "border-[2.5px] border-[var(--accent-color)] text-[var(--accent-color)]"
+                ? "border-[2.5px] border-[var(--accent-color)] text-[var(--accent-color)] dark:border-[var(--dark-accent-color)] dark:text-[var(--dark-accent-color)]"
                 : "border border-gray-500 text-gray-500"
             } py-[.20rem] px-4 font-extrabold rounded-full cursor-pointer`}
             onClick={() => handleFilter("expense")}
