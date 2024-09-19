@@ -18,7 +18,15 @@ const IncomeCard = ({
 }) => {
   const [toggle, setToggle] = useState(false);
   const { setCurrentActive } = useNavigateContext();
-  const { setPopulateAccount, handleDeleteAccount } = useAccountContext();
+  const { setPopulateFields, handleDeleteAccount } = useAccountContext();
+
+  const handleOnClickEdit = () => {
+    setPopulateFields(id);
+    setCurrentActive("modal", {
+      modalName: "editAccount",
+      type: "edit",
+    });
+  };
 
   return (
     <div className="h-[4.5rem] px-4 flex justify-between items-center shadow-md bg-[var(--neutral-color)] rounded-lg dark:bg-[var(--dark-neutral-color)] relative">
@@ -53,13 +61,7 @@ const IncomeCard = ({
           <ul className="flex flex-col gap-2 font-medium">
             <li
               className="flex items-center gap-1 text-orange-400 font-bold"
-              onClick={() => {
-                setPopulateAccount(id);
-                setCurrentActive("modal", {
-                  modalName: "editAccount",
-                  type: "edit",
-                });
-              }}
+              onClick={() => handleOnClickEdit()}
             >
               <IconEdit className="w-5 h-5" />
               Edit

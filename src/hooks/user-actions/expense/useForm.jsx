@@ -3,8 +3,9 @@ import { v4 as uuidv4 } from "uuid";
 
 import { useStorageContext } from "../../storage/useStorage";
 import useValidation from "./useValidation";
-import usePopulate from "./usePopulate";
+// import usePopulate from "./usePopulate";
 import useTransaction from "../transaction/useTransaction";
+import usePopulate from "../../fetch/form/usePopulate";
 
 const useForm = () => {
   const defaultInput = {
@@ -25,16 +26,27 @@ const useForm = () => {
 
   const { error, checkErrors } = useValidation();
 
+  // const {
+  //   populateExpense: {
+  //     expenseId,
+  //     expenseName,
+  //     expenseAmount,
+  //     expenseCategory,
+  //     expenseAccount,
+  //   },
+  //   setPopulateExpense,
+  // } = usePopulate(defaultInput);
+
   const {
-    populateExpense: {
+    populate: {
       expenseId,
       expenseName,
       expenseAmount,
       expenseCategory,
       expenseAccount,
     },
-    setPopulateExpense,
-  } = usePopulate(defaultInput);
+    setPopulateFields,
+  } = usePopulate(defaultInput, "expenses");
 
   const { useExpenseTransaction } = useTransaction();
 
@@ -240,7 +252,7 @@ const useForm = () => {
     handleEditExpense,
     handleDeleteExpense,
     handleInputChange,
-    setPopulateExpense,
+    setPopulateFields,
   };
 };
 

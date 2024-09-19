@@ -13,7 +13,7 @@ const ExpenseProvider = ({ children }) => {
     handleEditExpense,
     handleDeleteExpense,
     handleInputChange,
-    setPopulateExpense,
+    setPopulateFields,
   } = useForm();
   return (
     <ExpenseContext.Provider
@@ -26,7 +26,7 @@ const ExpenseProvider = ({ children }) => {
         handleEditExpense,
         handleDeleteExpense,
         handleInputChange,
-        setPopulateExpense,
+        setPopulateFields,
       }}
     >
       {children}

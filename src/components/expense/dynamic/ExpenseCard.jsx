@@ -15,7 +15,7 @@ import category from "../../../json/expenseCategory.json";
 const ExpenseCard = ({ expense }) => {
   const [toggle, setToggle] = useState(false);
   const { accountId } = useParams();
-  const { handleDeleteExpense, setPopulateExpense } = useExpenseContext();
+  const { handleDeleteExpense, setPopulateFields } = useExpenseContext();
   const { setCurrentActive } = useNavigateContext();
 
   const getCategoryColor = (expense) => {
@@ -69,7 +69,7 @@ const ExpenseCard = ({ expense }) => {
               className="flex gap-1 text-orange-400 font-bold"
               onClick={() => {
                 setToggle(false);
-                setPopulateExpense(expense.expenseId);
+                setPopulateFields(expense.expenseId);
                 setCurrentActive("modal", {
                   modalName: "editExpense",
                   type: "edit",

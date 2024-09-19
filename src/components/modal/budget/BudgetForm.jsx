@@ -18,7 +18,7 @@ const BudgetForm = () => {
     defaultError,
     error: { errorBudgetAmount },
     setError,
-    setPopulateBudget,
+    setPopulateFields,
     handleAddBudget,
     handleEditBudget,
     handleInputChange,
@@ -41,7 +41,7 @@ const BudgetForm = () => {
                 modalName: null,
                 type: null,
               });
-              setPopulateBudget(defaultInput);
+              setPopulateFields(defaultInput);
             }}
           />
         </div>
@@ -91,7 +91,7 @@ const BudgetForm = () => {
             <input
               type="submit"
               className="w-full p-2 text-base text-[var(--text-accent)] font-bold rounded-xl bg-[var(--accent-color)] cursor-pointer dark:bg-[var(--dark-accent-color)] dark:text-[var(--dark-text-accent)]"
-              value="Add"
+              value={type === "add" ? "Add" : "Save"}
             />{" "}
           </form>
         </div>

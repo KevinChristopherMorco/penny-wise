@@ -11,7 +11,7 @@ const ExpenseForm = () => {
     defaultInput,
     currentInput,
     setInput,
-    setPopulateExpense,
+    setPopulateFields,
     handleEditExpense,
     handleInputChange,
   } = useExpenseContext();
@@ -19,7 +19,7 @@ const ExpenseForm = () => {
   const { setCurrentActive } = useNavigateContext();
 
   const handleOnClose = () => {
-    setPopulateExpense(defaultInput);
+    setPopulateFields(defaultInput);
     setInput(defaultInput);
     setCurrentActive("modal", {
       modalName: null,

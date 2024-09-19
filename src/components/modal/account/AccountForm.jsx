@@ -20,7 +20,7 @@ const AddAccount = () => {
     defaultError,
     setInput,
     setError,
-    setPopulateAccount,
+    setPopulateFields,
     handleAddAccount,
     handleEditAccount,
     handleInputChange,
@@ -29,7 +29,7 @@ const AddAccount = () => {
   const handleOnClose = () => {
     setInput(defaultInput);
     setError(defaultError);
-    setPopulateAccount(defaultInput);
+    setPopulateFields(defaultInput);
     setCurrentActive("modal", {
       modalName: null,
       type: null,

@@ -15,7 +15,7 @@ const BudgetCard = ({ category, formattedYear, currentDate }) => {
 
   const { progressPercentage, budgetCategoryInfo, totalExpenseAmount } =
     useCardFilter(formattedYear, currentDate, label);
-  const { handleDeleteBudget, setPopulateBudget } = useBudgetContext();
+  const { handleDeleteBudget, setPopulateFields } = useBudgetContext();
   const { setCurrentActive } = useNavigateContext();
 
   return (
@@ -115,7 +115,7 @@ const BudgetCard = ({ category, formattedYear, currentDate }) => {
             <div
               className="flex items-center gap-1 text-orange-500 font-bold"
               onClick={() => {
-                setPopulateBudget(budgetCategoryInfo.budgetId);
+                setPopulateFields(budgetCategoryInfo.budgetId);
 
                 setCurrentActive("modal", {
                   modalName: "editBudget",

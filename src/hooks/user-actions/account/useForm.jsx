@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useStorageContext } from "../../storage/useStorage";
 import { v4 as uuidv4 } from "uuid";
-import usePopulate from "./usePopulate";
+// import usePopulate from "./usePopulate";
 import useValidation from "./useValidation";
 import useTransaction from "../transaction/useTransaction";
+import usePopulate from "../../fetch/form/usePopulate";
 
 const useForm = () => {
   const defaultInput = {
@@ -21,9 +22,9 @@ const useForm = () => {
   } = useStorageContext();
 
   const {
-    populateAccount: { id, accountName, accountDeposit, icon },
-    setPopulateAccount,
-  } = usePopulate(defaultInput);
+    populate: { id, accountName, accountDeposit, icon },
+    setPopulateFields,
+  } = usePopulate(defaultInput, "accounts");
 
   const { defaultError, error, setError, checkErrors } = useValidation();
 
@@ -32,7 +33,7 @@ const useForm = () => {
   const handleAddAccount = (event) => {
     event.preventDefault();
 
-    const hasError = checkErrors(currentInput);
+    const hasError = checkErrors(currentInput, "add");
 
     setSubmit(true);
 
@@ -78,7 +79,9 @@ const useForm = () => {
   const handleEditAccount = (event) => {
     event.preventDefault();
 
-    const hasError = checkErrors(currentInput);
+    const hasError = checkErrors(currentInput, "edit");
+    setSubmit(true);
+
     if (hasError) return;
 
     const dateNow = new Date().toUTCString();
@@ -119,6 +122,7 @@ const useForm = () => {
     };
 
     useAccountTransaction(transaction);
+    setSubmit(false);
   };
 
   const handleDeleteAccount = (accountId) => {
@@ -159,7 +163,12 @@ const useForm = () => {
 
   useEffect(() => {
     if (!isSubmit) return;
-    checkErrors(currentInput);
+    checkErrors(currentInput, "add");
+  }, [currentInput]);
+
+  useEffect(() => {
+    if (!isSubmit) return;
+    checkErrors(currentInput, "edit");
   }, [currentInput]);
 
   return {
@@ -173,7 +182,7 @@ const useForm = () => {
     handleAddAccount,
     handleEditAccount,
     handleDeleteAccount,
-    setPopulateAccount,
+    setPopulateFields,
   };
 };
 

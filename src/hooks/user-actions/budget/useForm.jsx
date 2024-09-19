@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useStorageContext } from "../../storage/useStorage";
 import { v4 as uuidv4 } from "uuid";
 import useValidation from "./useValidation";
-import usePopulate from "./usePopulate";
+import usePopulate from "../../fetch/form/usePopulate";
 
 const useForm = (formattedYear, categoryChoice) => {
   const defaultInput = { budgetAmount: "" };
@@ -10,15 +10,13 @@ const useForm = (formattedYear, categoryChoice) => {
   const [currentInput, setInput] = useState(defaultInput);
   const [isSubmit, setSubmit] = useState(false);
 
-  const {
-    storage: { budget },
-    setStorage,
-  } = useStorageContext();
+  const { setStorage } = useStorageContext();
   const { category: { label: budgetCategory } = {} } = categoryChoice || {};
+
   const {
-    populateBudget: { budgetId, budgetAmount },
-    setPopulateBudget,
-  } = usePopulate(defaultInput);
+    populate: { budgetId, budgetAmount },
+    setPopulateFields,
+  } = usePopulate(defaultInput, "budget");
 
   const { defaultError, error, setError, checkErrors } = useValidation();
 
@@ -121,7 +119,7 @@ const useForm = (formattedYear, categoryChoice) => {
     setInput,
     defaultError,
     error,
-    setPopulateBudget,
+    setPopulateFields,
     setError,
     handleAddBudget,
     handleEditBudget,
