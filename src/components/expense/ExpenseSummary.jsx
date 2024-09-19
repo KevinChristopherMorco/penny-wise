@@ -27,9 +27,9 @@ const ExpenseSummary = () => {
   if (!isValidAccountId) return <ClientError />;
 
   return (
-    <div className="min-h-full mb-[7rem] flex flex-col gap-4 animate-fadeIn overflow-y-scroll">
+    <div className="min-h-full mb-[7rem] flex flex-col gap-4 animate-fadeIn overflow-y-scroll text-[var(--accent-color)] dark:text-[var(--dark-text-color)]">
       <ExpenseSummaryHeader />
-      <div className="py-2 flex flex-col gap-8 bg-[var(--primary-color)]">
+      <div className="py-2 flex flex-col gap-8 bg-[var(--primary-color)] dark:bg-[var(--dark-primary-color)]">
         {expensesByDate.length > 0 && (
           <div className="px-4 flex flex-col gap-4">
             <p className="font-bold">Hey, Kevin!</p>
@@ -46,14 +46,14 @@ const ExpenseSummary = () => {
             </p>
           </div>
         )}
-        <div className="px-4 py-5 flex flex-col gap-8">
+        <div className="px-4 py-6 flex flex-col gap-8 bg-[var(--neutral-color)] dark:bg-[var(--dark-neutral-color)]">
           {expensesByDate.length > 0 ? (
             expensesByDate
               .sort((a, b) => new Date(b.date) - new Date(a.date))
               .map((date, index) => {
                 return (
                   <div key={index} className="flex flex-col gap-4">
-                    <p className="w-[80%] py-2 font-bold border-b-2 border-[var(--accent-color)] dark:border-[var(--dark-accent-color)]">
+                    <p className="w-[80%] pb-2 font-bold border-b-2 border-[var(--accent-color)] dark:border-[var(--dark-accent-color)]">
                       {date.date}
                     </p>
                     {date.expenses

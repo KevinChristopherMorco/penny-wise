@@ -15,8 +15,8 @@ const AddAccount = () => {
 
   const {
     defaultInput,
-    currentInput: { accountName, accountDeposit, icon },
-    error: { errorAccountName, errorAccountDeposit },
+    currentInput: { accountName = "", accountDeposit = "", icon = "" } = {},
+    error: { errorAccountName, errorAccountDeposit } = {},
     defaultError,
     setInput,
     setError,
@@ -135,7 +135,7 @@ const AddAccount = () => {
             </div>
             <input
               type="submit"
-              className="w-full p-2 text-base text-[var(--text-accent)] font-bold rounded-xl bg-[var(--accent-color)] cursor-pointer dark:bg-[var(--dark-accent-color)] dark:text-[var(--dark-text-accent)]"
+              className="w-full p-2 text-base text-[var(--text-accent)] font-bold rounded-xl bg-[var(--accent-color)] cursor-pointer dark:bg-[var(--dark-accent-color)] dark:text-[var(--dark-primary-color)]"
               value={type === "add" ? "Add" : "Save"}
             />
           </form>

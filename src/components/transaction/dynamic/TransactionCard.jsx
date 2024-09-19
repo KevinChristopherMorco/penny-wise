@@ -13,7 +13,11 @@ const TransactionCard = ({ transaction, isRead }) => {
       to={`${transaction.transactionId}`}
       key={transaction.transactionId}
       onClick={() => setIsRead(transaction.transactionId)}
-      className="w-full p-4 flex justify-between items-center shadow bg-[var(--primary-color)] cursor-pointer dark:bg-[var(--dark-primary-color)]"
+      className={`${
+        !isRead
+          ? "bg-[var(--neutral-color)] dark:bg-[var(--dark-neutral-color)]"
+          : "bg-[var(--primary-color)] dark:bg-[var(--dark-primary-color)]"
+      } w-full p-4 flex justify-between items-center shadow  cursor-pointer `}
     >
       {!isRead ? (
         <div className="basis-[9%] flex justify-center items-center relative">
@@ -26,7 +30,7 @@ const TransactionCard = ({ transaction, isRead }) => {
         </div>
       )}
 
-      <div className="basis-[85%] overflow-hidden truncate">
+      <div className="basis-[85%] flex flex-col gap-1 overflow-hidden truncate">
         <div className="flex justify-between items-center">
           <p
             className={`${

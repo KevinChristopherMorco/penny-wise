@@ -17,7 +17,7 @@ const BudgetContainer = () => {
   } = useBudgetFilter();
 
   return (
-    <div className="mb-[7rem] flex flex-col gap-16">
+    <div className="mb-[7rem] flex flex-col gap-16 text-[var(--accent-color)] dark:text-[var(--dark-text-color)]">
       <div className="flex flex-col gap-5">
         <div className="px-4 flex flex-col gap-5">
           <p className="py-1 font-bold">Budget for the month:</p>
@@ -55,7 +55,7 @@ const BudgetContainer = () => {
             </div>
           )}
         </div>
-        <div>
+        <div className="flex flex-col">
           {categoriesNoBudget.map((category, index) => {
             return <BudgetCategory key={index} category={category} />;
           })}

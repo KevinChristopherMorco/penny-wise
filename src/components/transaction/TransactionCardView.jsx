@@ -24,11 +24,11 @@ const TransactionCardView = () => {
   const title = useTransactionTitle({ transaction });
 
   return (
-    <div className="h-full min-h-screen flex flex-col text-black transition duration-100 delay-0 bg-[var(--secondary-color)] dark:bg-[var(--dark-secondary-color)] dark:text-white">
+    <div className="h-full min-h-screen flex flex-col text-black transition duration-100 delay-0 bg-[var(--neutral-color)] dark:bg-[var(--dark-neutral-color)] dark:text-white">
       <TransactionHeader />
       <div className="px-5 flex-1">
         <div className="w-full h-fit py-10 bg-[var(--primary-color)] translate-y-[25%] flex flex-col items-center gap-8 shadow relative rounded-lg dark:bg-[var(--dark-primary-color)]">
-          <div className="p-3 bg-[var(--accent-color)] text-[var(--text-accent)] absolute -top-6 rounded-full dark:bg-[var(--dark-accent-color)] ">
+          <div className="p-3 bg-[var(--accent-color)] text-[var(--text-accent)] absolute -top-6 rounded-full dark:bg-[var(--dark-accent-color)] dark:text-[var(--dark-primary-color)] ">
             <IconMailOpened className="w-8 h-8" />
           </div>
           <div className="w-full py-4 flex flex-col gap-2 items-center shadow-[0_1px_3px_-2px] shadow-[var(--accent-color)] dark:shadow-[var(--dark-accent-color)]">

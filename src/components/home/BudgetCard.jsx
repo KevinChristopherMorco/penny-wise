@@ -9,8 +9,8 @@ import { Link } from "react-router-dom";
 const BudgetCard = () => {
   return (
     <div className="px-4">
-      <div className="p-4 flex flex-col items-center gap-10 bg-[#4B136C] rounded-xl dark:bg-[#02383C]">
-        <div className="flex flex-col gap-4 text-white">
+      <div className="p-4 flex flex-col items-center gap-10 bg-[var(--accent-color)] rounded-xl dark:bg-[var(--dark-secondary-color)]">
+        <div className="flex flex-col gap-4 text-white dark:text-[var(--dark-text-color)]">
           <div className="flex flex-col gap-2">
             <p className="text-sm text-center font-light">My Budget</p>
             <p className="text-3xl text-center font-extrabold">₱1,500.00</p>
@@ -22,14 +22,14 @@ const BudgetCard = () => {
           <div className="flex justify-center gap-6">
             <Link
               to="/manage-account"
-              className="p-2 flex items-center gap-2 text-sm text-[var(--text-accent)] font-medium bg-[var(--accent-color)] rounded-xl dark:bg-[var(--dark-accent-color)] dark:text-[var(--dark-text-accent)]"
+              className="p-2 flex items-center gap-2 text-sm text-[var(--accent-color)] font-bold bg-[var(--secondary-color)] rounded-xl dark:bg-white dark:text-[var(--dark-primary-color)]"
             >
               <IconPigMoney />
               Add Account
             </Link>
             <Link
               to="/manage-expense"
-              className="p-2 flex items-center gap-2 text-sm text-[var(--text-accent)] font-medium bg-[var(--accent-color)] rounded-xl dark:bg-[var(--dark-accent-color)] dark:text-[var(--dark-text-accent)]"
+              className="p-2 flex items-center gap-2 text-sm text-[var(--accent-color)] font-bold bg-[var(--secondary-color)] rounded-xl dark:bg-white dark:text-[var(--dark-primary-color)]"
             >
               <IconCash />
               Add Expenses
@@ -37,12 +37,12 @@ const BudgetCard = () => {
           </div>
         </div>
 
-        <div className="w-full self-start flex flex-col gap-2 text-white font-light">
+        {/* <div className="w-full self-start flex flex-col gap-2 text-white font-light">
           <div>
             <p>Budget Overview</p>
           </div>
           <div className="flex justify-between items-center">
-            <div className="p-2 flex flex-col gap-4 basis-[45%] bg-white text-black rounded-lg dark:bg-[var(--dark-secondary-color)] dark:text-white">
+            <div className="p-2 flex flex-col gap-4 basis-[45%] bg-white text-black rounded-lg dark:bg-white dark:text-[var(--dark-primary-color)]">
               <div className="flex justify-between items-center">
                 <p>
                   <IconPigMoney className="w-5 h-5" />
@@ -57,7 +57,7 @@ const BudgetCard = () => {
                 <p className="text-base font-bold">₱3,500.00</p>
               </div>
             </div>
-            <div className="p-2 flex flex-col gap-4 basis-[45%] bg-white text-black rounded-lg dark:bg-[var(--dark-secondary-color)] dark:text-white">
+            <div className="p-2 flex flex-col gap-4 basis-[45%] bg-white text-black rounded-lg dark:bg-white dark:text-[var(--dark-primary-color)]">
               <div className="flex justify-between items-center text-sm">
                 <p>
                   <IconCash className="w-5 h-5" />
@@ -73,7 +73,7 @@ const BudgetCard = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -46,7 +46,7 @@ const AccountHeader = () => {
         </div>
         <div className="flex flex-col font-medium">
           <p className="text-sm">Total Expenses</p>
-          <p className="w-full flex items-center justify-center text-base text-red-700 font-bold dark:text-red-400">
+          <p className="w-full flex items-center justify-center text-base text-red-400 font-bold dark:text-red-400">
             <IconCurrencyPeso className="w-5 h-5" />
             {totalExpenses.toLocaleString("en", {
               minimumFractionDigits: 2,

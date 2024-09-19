@@ -44,7 +44,7 @@ const Transaction = () => {
           transactions.some((transaction) => transaction.isRead) && (
             <div className="flex flex-col gap-4">
               <p className="px-4 font-extrabold">Viewed Transactions</p>
-              <div className="flex flex-col gap-1 bg-[var(--primary-color)] dark:bg-[var(--dark-secondary-color)] ">
+              <div className="flex flex-col gap-1 bg-[var(--primary-color)] dark:bg-[var(--dark-primary-color)] ">
                 {transactions
                   .sort(
                     (a, b) => new Date(b.dateCreated) - new Date(a.dateCreated)

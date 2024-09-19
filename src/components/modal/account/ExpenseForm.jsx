@@ -9,7 +9,12 @@ import category from "../../../json/expenseCategory.json";
 const ExpenseForm = () => {
   const {
     defaultInput,
-    currentInput,
+    currentInput: {
+      expenseName = "",
+      expenseCategory = "",
+      expenseAmount = "",
+    } = {},
+
     setInput,
     setPopulateFields,
     handleEditExpense,
@@ -52,7 +57,7 @@ const ExpenseForm = () => {
                 className="py-2 px-4 text-sm rounded-lg bg-[var(--neutral-color)] dark:bg-[var(--dark-neutral-color)]"
                 placeholder="Type expense name"
                 onChange={handleInputChange}
-                value={currentInput.expenseName}
+                value={expenseName}
               />
             </div>
             <div className="flex flex-col gap-2">
@@ -71,14 +76,12 @@ const ExpenseForm = () => {
                     >
                       <p
                         className={`${
-                          currentInput.expenseCategory === category.label
-                            ? "font-bold"
-                            : ""
+                          expenseCategory === category.label ? "font-bold" : ""
                         } flex items-center gap-2 text-sm`}
                       >
                         <span
                           className={`${
-                            currentInput.expenseCategory === category.label
+                            expenseCategory === category.label
                               ? "border-4 border-[var(--accent-color)] dark:border-[var(--dark-accent-color)]  transition-colors"
                               : ""
                           } w-10 h-10 flex justify-center items-center rounded-lg`}
@@ -111,14 +114,14 @@ const ExpenseForm = () => {
                 className="py-2 px-4 text-sm rounded-lg bg-[var(--neutral-color)] dark:bg-[var(--dark-neutral-color)]"
                 placeholder="Type expense amount"
                 onChange={handleInputChange}
-                value={currentInput.expenseAmount}
+                value={expenseAmount}
               />
             </div>
 
             <input
               type="submit"
               value="Save"
-              className="w-full p-3 text-base text-white font-bold rounded-xl bg-blue-600 cursor-pointer dark:bg-blue-800"
+              className="w-full p-3 text-base text-white font-bold rounded-xl bg-[var(--accent-color)] cursor-pointer dark:bg-[var(--dark-accent-color)] dark:text-[var(--dark-primary-color)]"
             />
           </form>
         </div>

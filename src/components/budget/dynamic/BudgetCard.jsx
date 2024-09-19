@@ -20,7 +20,7 @@ const BudgetCard = ({ category, formattedYear, currentDate }) => {
 
   return (
     <div
-      className="p-4 shadow bg-[var(--primary-color)] rounded-lg dark:bg-[var(--dark-primary-color)]"
+      className="p-4 shadow bg-[var(--neutral-color)] border-b-[3px] border-[var(--accent-color)] rounded-lg dark:bg-[var(--dark-neutral-color)] dark:border-[var(--dark-accent-color)]"
       onMouseOver={() => setHover(true)}
       onMouseOut={() => setHover(false)}
     >
@@ -56,7 +56,7 @@ const BudgetCard = ({ category, formattedYear, currentDate }) => {
           </div>
         </div>
         <div className="flex flex-col gap-2">
-          <div className="w-full h-2 bg-gray-300 rounded-full dark:bg-[var(--dark-secondary-color)]">
+          <div className="w-full h-2 bg-gray-300 rounded-full dark:bg-[var(--dark-primary-color)]">
             {progressPercentage > 100 ? (
               <div
                 className={`w-full h-2 flex bg-red-500 items-center rounded-full animate-fillWidth relative`}

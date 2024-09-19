@@ -17,7 +17,7 @@ const BudgetCategory = ({ category }) => {
   );
 
   return (
-    <div className="p-4 shadow-lg bg-[var(--primary-color)] dark:bg-[var(--dark-primary-color)] dark:shadow dark:shadow-[var(--dark-accent-color)]">
+    <div className="p-4 bg-[var(--neutral-color)] dark:bg-[var(--dark-neutral-color)]">
       <div className="flex justify-between items-center">
         <div className="flex flex-col gap-1">
           <div className="flex items-center gap-2">

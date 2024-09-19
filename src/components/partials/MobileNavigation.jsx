@@ -13,21 +13,10 @@ import useTransactionFilter from "../../hooks/user-actions/transaction/filter/us
 const MobileNavigation = () => {
   const { currentActive, setCurrentActive } = useNavigateContext();
   const { nav } = currentActive;
-  // const { transactions } = useFetchStorage();
-  // const totalUnreadTransactions = transactions
-  //   .filter((transaction) => !transaction.isRead)
-  //   .reduce((total, transaction) => {
-  //     const { isRead } = transaction;
-  //     if (isRead) return;
-  //     total += 1;
-
-  //     return total;
-  //   }, 0);
-
   const { totalUnreadTransactions } = useTransactionFilter();
 
   return (
-    <div className="w-full border-t border-gray-300 h-[3rem] px-4 py-10 fixed bottom-0 flex items-center bg-[#fff] dark:bg-[var(--dark-primary-color)] dark:border-[var(--dark-accent-color)]">
+    <div className="w-full border-t border-gray-300 h-[3rem] px-4 py-10 fixed bottom-0 flex items-center bg-[#fff] dark:bg-[var(--dark-primary-color)] dark:border-[var(--dark-accent-color)] z-[99]">
       <ul className="w-full flex justify-between items-center">
         <Link
           to="/"

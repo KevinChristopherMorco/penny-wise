@@ -33,10 +33,10 @@ const Expense = () => {
           className="rounded-lg"
         />
       </div>
-      <div className="py-4 bg-[var(--primary-color)] dark:bg-[var(--dark-secondary-color)]">
+      <div className="py-4 bg-[var(--primary-color)] dark:bg-[var(--dark-primary-color)]">
         <form
           method="POST"
-          className="px-4 flex flex-col gap-6 bg-[var(--primary-color) dark:bg-[var(--dark-secondary-color)]"
+          className="px-4 flex flex-col gap-6 bg-[var(--primary-color) dark:bg-[var(--dark-primary-color)]"
           onSubmit={handleAddExpense}
         >
           <div className="flex flex-col gap-2">
@@ -181,7 +181,7 @@ const Expense = () => {
           <input
             type="submit"
             value="Save"
-            className="w-full p-3 text-base text-[var(--text-accent)] font-bold rounded-xl bg-[var(--accent-color)] cursor-pointer dark:bg-[var(--dark-accent-color)] dark:text-[var(--dark-text-accent)]"
+            className="w-full p-3 text-base text-[var(--text-accent)] font-bold rounded-xl bg-[var(--accent-color)] cursor-pointer dark:bg-[var(--dark-accent-color)] dark:text-[var(--dark-primary-color)]"
           />
         </form>
       </div>

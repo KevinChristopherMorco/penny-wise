@@ -30,7 +30,7 @@ const IncomeCard = ({
 
   return (
     <div className="h-[4.5rem] px-4 flex justify-between items-center shadow-md bg-[var(--neutral-color)] rounded-lg dark:bg-[var(--dark-neutral-color)] relative">
-      <div className="basis-[20%] w-14 h-14 p-2 flex justify-center items-center bg-[var(--accent-color)] rounded-xl">
+      <div className="basis-[20%] w-14 h-14 p-2 flex justify-center items-center bg-[var(--neutral-color)] rounded-xl dark:bg-[var(--dark-primary-color)]">
         <img
           src={`/src/assets/flaticons/${icon}.png`}
           alt=""
@@ -57,7 +57,7 @@ const IncomeCard = ({
         <IconDots />
       </div>
       {toggle && (
-        <div className="w-fit px-4 py-2 absolute right-0 -bottom-[7rem] bg-[var(--primary-color)] shadow-lg z-[99] animate-fadeIn rounded-lg dark:bg-[var(--dark-primary-color)]">
+        <div className="w-fit px-4 py-2 absolute right-0 -bottom-[5rem] bg-[var(--primary-color)] shadow-lg z-[99] animate-fadeIn rounded-lg dark:bg-[var(--dark-primary-color)]">
           <ul className="flex flex-col gap-2 font-medium">
             <li
               className="flex items-center gap-1 text-orange-400 font-bold"
