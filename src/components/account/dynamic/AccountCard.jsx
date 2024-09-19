@@ -73,7 +73,7 @@ const IncomeCard = ({
               <IconTrash className="w-5 h-5" />
               Delete
             </li>
-            <li className="flex gap-1 text-blue-600 font-bold">
+            <li className="flex gap-1 text-[var(--accent-color)] dark:text-[var(--dark-accent-color)] font-bold">
               <Link
                 className="flex items-center gap-1"
                 to={`/manage-account/${id}`}

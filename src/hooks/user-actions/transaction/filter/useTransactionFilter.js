@@ -14,7 +14,7 @@ const useTransactionFilter = () => {
     setFilter(() => (filter.length > 0 ? filter : transactions));
   };
 
-  const totalUnreadTransactions = transactions
+  const totalUnreadTransactions = filteredTransaction
     .filter((transaction) => !transaction.isRead)
     .reduce((total, transaction) => {
       const { isRead } = transaction;
@@ -24,7 +24,32 @@ const useTransactionFilter = () => {
       return total;
     }, 0);
 
-  return { filteredTransaction, totalUnreadTransactions, chooseFilter };
+  const totalReadTransactions = filteredTransaction
+    .filter((transaction) => transaction.isRead)
+    .reduce((total, transaction) => {
+      const { isRead } = transaction;
+      if (!isRead) return;
+      total += 1;
+
+      return total;
+    }, 0);
+
+  const totalTransaction = filteredTransaction.reduce((total, transaction) => {
+    const checkIsRead = transaction.isRead;
+    if (!Boolean(total[checkIsRead])) total[checkIsRead] = 0;
+
+    total[checkIsRead] += 1;
+
+    return total;
+  }, {});
+
+  return {
+    filteredTransaction,
+    totalUnreadTransactions,
+    totalReadTransactions,
+    totalTransaction,
+    chooseFilter,
+  };
 };
 
 export default useTransactionFilter;

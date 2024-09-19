@@ -39,13 +39,13 @@ const BudgetForm = () => {
 
   return (
     <div className="w-full h-full fixed flex justify-center items-center bg-[#000] bg-opacity-80 animate-fadeIn z-[999]">
-      <div className="w-[85%] h-fit px-4 pt-2 pb-6 mb-[5rem] flex flex-col gap-8 bg-[var(--primary-color)] rounded-xl dark:bg-[var(--dark-primary-color)]">
+      <div className="w-[85%] h-fit px-4 pt-2 pb-6 mb-[5rem] flex flex-col gap-8 bg-[var(--primary-color)] text-[var(--accent-color)] rounded-xl dark:bg-[var(--dark-primary-color)] dark:text-[var(--dark-text-color)]">
         <div className="py-2 flex justify-between items-center font-bold border-b border-[var(--accent-color)] dark:border-[var(--dark-accent-color)]">
           <p>{type === "add" ? "Set a budget" : "Edit a budget"}</p>
           <IconCircleX className="w-6 h-6" onClick={() => handleOnClose()} />
         </div>
         <div className="flex flex-col gap-8">
-          <div className="flex items-center gap-2">
+          <div className="py-3 px-4 flex items-center gap-2 bg-[var(--neutral-color)] rounded-lg dark:bg-[var(--dark-neutral-color)]">
             <div
               className="w-10 h-10 flex justify-center items-center rounded-full"
               style={{ backgroundColor: colorCode }}
@@ -89,7 +89,7 @@ const BudgetForm = () => {
             </div>
             <input
               type="submit"
-              className="w-full p-2 text-base text-[var(--text-accent)] font-bold rounded-xl bg-[var(--accent-color)] cursor-pointer dark:bg-[var(--dark-accent-color)] dark:text-[var(--dark-text-accent)]"
+              className="w-full p-2 text-base text-[var(--text-accent)] font-bold rounded-xl bg-[var(--accent-color)] cursor-pointer dark:bg-[var(--dark-accent-color)] dark:text-[var(--dark-primary-color)]"
               value={type === "add" ? "Add" : "Save"}
             />{" "}
           </form>
