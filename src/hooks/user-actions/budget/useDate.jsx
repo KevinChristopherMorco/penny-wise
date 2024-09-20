@@ -40,7 +40,7 @@ const useDate = () => {
     }
 
     if (id === "monthDesc") {
-      if (count === currentMonth) return;
+      // if (count === currentMonth) return;
       if (count === 0) return;
 
       setCount((prev) => prev - 1);

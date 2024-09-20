@@ -20,7 +20,7 @@ const BudgetCard = ({ category, formattedYear, currentDate }) => {
 
   return (
     <div
-      className="p-4 shadow bg-[var(--neutral-color)] border-b-[3px] border-[var(--accent-color)] rounded-lg dark:bg-[var(--dark-neutral-color)] dark:border-[var(--dark-accent-color)]"
+      className="p-4 shadow bg-[var(--primary-color)] shadow-md rounded-lg dark:bg-[var(--dark-neutral-color)] dark:border-[var(--dark-accent-color)]"
       onMouseOver={() => setHover(true)}
       onMouseOut={() => setHover(false)}
     >
@@ -28,7 +28,7 @@ const BudgetCard = ({ category, formattedYear, currentDate }) => {
         <div className="flex justify-between items-center">
           <div>
             <p className="text-gray-400">Total Budget</p>
-            <div className="flex items-center text-lg font-bold">
+            <div className="flex items-center text-lg text-[var(--accent-color)] font-extrabold">
               <span>
                 <IconCurrencyPeso className="w-5 h-5" />
               </span>
@@ -80,11 +80,11 @@ const BudgetCard = ({ category, formattedYear, currentDate }) => {
               <p className="text-gray-500 dark:text-gray-300">Spent:</p>
               <div
                 className={`${
-                  progressPercentage > 100 ? "text-red-500" : ""
+                  progressPercentage > 100 ? "text-red-500" : "text-gray-500"
                 } flex items-center font-bold`}
               >
                 <span>
-                  <IconCurrencyPeso className="w-5 h-5" />
+                  <IconCurrencyPeso className="w-4 h-4" />
                 </span>
                 <p>
                   {parseFloat(totalExpenseAmount || 0).toLocaleString("en-US", {

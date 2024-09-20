@@ -27,7 +27,7 @@ const ExpenseSummary = () => {
   if (!isValidAccountId) return <ClientError />;
 
   return (
-    <div className="min-h-full mb-[7rem] flex flex-col gap-4 animate-fadeIn overflow-y-scroll text-[var(--accent-color)] dark:text-[var(--dark-text-color)]">
+    <div className="min-h-full mb-[7rem] flex flex-col gap-4 animate-fadeIn overflow-y-scroll text-[var(--text-color)] dark:text-[var(--dark-text-color)]">
       <ExpenseSummaryHeader />
       <div className="py-2 flex flex-col gap-8 bg-[var(--primary-color)] dark:bg-[var(--dark-primary-color)]">
         {expensesByDate.length > 0 && (
@@ -46,7 +46,7 @@ const ExpenseSummary = () => {
             </p>
           </div>
         )}
-        <div className="px-4 py-6 flex flex-col gap-8 bg-[var(--neutral-color)] dark:bg-[var(--dark-neutral-color)]">
+        <div className="px-4 py-6 flex flex-col gap-8">
           {expensesByDate.length > 0 ? (
             expensesByDate
               .sort((a, b) => new Date(b.date) - new Date(a.date))

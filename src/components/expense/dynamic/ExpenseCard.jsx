@@ -23,7 +23,7 @@ const ExpenseCard = ({ expense }) => {
   };
 
   return (
-    <div className="h-[4.5rem] px-4 py-12 flex justify-between items-center shadow-md bg-[var(--primary-color)] rounded-lg dark:bg-[var(--dark-primary-color)] relative">
+    <div className="h-[4.5rem] px-4 py-12 flex justify-between items-center shadow-md bg-[var(--primary-color)] rounded-lg dark:bg-[var(--dark-neutral-color)] relative">
       <div
         className="p-1 w-12 h-12 flex justify-center items-center shadow-xl rounded-xl"
         style={{

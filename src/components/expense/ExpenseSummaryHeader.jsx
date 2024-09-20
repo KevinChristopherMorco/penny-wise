@@ -28,9 +28,9 @@ const ExpenseSummaryHeader = () => {
         <button className="cursor-pointer" onClick={() => navigate(-1)}>
           <IconChevronLeft className="w-5 h-5 self-start" />
         </button>
-        <div className="w-full flex justify-center items-center font-medium">
-          <p className="basis-[35%] text-sm">Total Balance:</p>
-          <p className="flex items-center justify-center text-base text-green-300 font-bold dark:text-green-400">
+        <div className="w-full flex gap-1 justify-center items-center font-medium">
+          <p className="text-sm">Total Balance:</p>
+          <p className="flex items-center justify-center text-base text-green-200 font-bold dark:text-green-400">
             <IconCurrencyPeso className="w-5 h-5" />
             {totalBalance.toLocaleString("en", {
               minimumFractionDigits: 2,
@@ -42,7 +42,7 @@ const ExpenseSummaryHeader = () => {
       <div className="flex justify-around items-center">
         <div className="flex flex-col font-medium">
           <p className="text-sm">Total Deposit</p>
-          <p className="w-full flex items-center justify-center text-base text-green-300 font-bold dark:text-green-400">
+          <p className="w-full flex items-center justify-center text-base text-green-200 font-bold dark:text-green-400">
             <IconCurrencyPeso className="w-5 h-5" />
             {totalDeposit.toLocaleString("en", {
               minimumFractionDigits: 2,
@@ -52,7 +52,7 @@ const ExpenseSummaryHeader = () => {
         </div>
         <div className="flex flex-col font-medium">
           <p className="text-sm">Total Expenses</p>
-          <p className="w-full flex items-center justify-center text-base text-red-400 font-bold dark:text-red-400">
+          <p className="w-full flex items-center justify-center text-base text-red-600 font-bold dark:text-red-400">
             <IconCurrencyPeso className="w-5 h-5" />
             {totalExpenses.toLocaleString("en", {
               minimumFractionDigits: 2,

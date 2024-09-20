@@ -10,17 +10,17 @@
   --text-color: #000;
   --text-accent: #fff; */
 
-  --primary-color: #ffffff;
-  --neutral-color: #f6f6f6;
-  --secondary-color: #98ded9;
-  --accent-color: #161d6f;
-  --text-color: #000;
-  --text-accent: #f6f6f6;
+  --primary-color: #fff;
+  --neutral-color: #fcf6f6;
+  --secondary-color: #4dfe4e;
+  --accent-color: #01c802;
+  --text-color: #001900;
+  --text-accent: #e6ffe6;
 
-  --dark-primary-color: #14142b;
-  --dark-neutral-color: #24263a;
-  --dark-secondary-color: #161d6f;
-  --dark-accent-color: #98ded9;
+  --dark-primary-color: #000d00;
+  --dark-neutral-color: #0d160d;
+  --dark-secondary-color: #01c802;
+  --dark-accent-color: #01c802;
   --dark-text-color: #fff;
   --dark-text-accent: #fff;
   /* f9d276 */
