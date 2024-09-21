@@ -5,7 +5,7 @@ import {
   IconCurrency,
   IconCurrencyPeso,
 } from "@tabler/icons-react";
-import useBudgetFilter from "../../hooks/user-actions/budget/filter/useBudgetFilter";
+import useBudgetFilter from "../../hooks/fetch/budget/useBudgetFilter";
 
 const BudgetCategory = ({ category }) => {
   const { setCurrentActive } = useNavigateContext();

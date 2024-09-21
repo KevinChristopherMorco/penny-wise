@@ -5,6 +5,7 @@ import {
   IconCoins,
   IconContract,
   IconAdjustmentsHorizontal,
+  IconReportAnalytics,
 } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
 
@@ -28,7 +29,7 @@ const MobileNavigation = () => {
           onClick={() => setCurrentActive("nav", "home")}
         >
           <IconHome className="w-6 h-6" />
-          <p className="text-[.9]">Home</p>
+          <p className="text-[.7rem]">Home</p>
         </Link>
         <Link
           to="/manage-budget-plan"
@@ -40,8 +41,22 @@ const MobileNavigation = () => {
           onClick={() => setCurrentActive("nav", "budget")}
         >
           <IconCoins className="w-6 h-6" />
-          <p className="text-[.9]">Budget</p>
+          <p className="text-[.7rem]">Budget</p>
         </Link>
+
+        <Link
+          to="/analysis"
+          className={`${
+            nav === "analysis"
+              ? "text-[var(--accent-color)] font-extrabold dark:text-[var(--dark-accent-color)] animate-navFadeIn"
+              : "text-gray-400 font-bold"
+          } flex flex-col items-center gap-2 text-sm`}
+          onClick={() => setCurrentActive("nav", "analysis")}
+        >
+          <IconReportAnalytics className="w-6 h-6" />
+          <p className="text-[.7rem]">Analysis</p>
+        </Link>
+
         <Link
           to="/transactions"
           className={`${
@@ -63,9 +78,10 @@ const MobileNavigation = () => {
 
               <IconContract className="w-6 h-6" />
             </div>
-            <p className="text-[.9]">Transactions</p>
+            <p className="text-[.7rem]">Transactions</p>
           </div>
         </Link>
+
         <Link
           to="/settings"
           className={`${
@@ -76,7 +92,7 @@ const MobileNavigation = () => {
           onClick={() => setCurrentActive("nav", "settings")}
         >
           <IconAdjustmentsHorizontal className="w-6 h-6" />
-          <p className="text-[.9]">Settings</p>
+          <p className="text-[.7rem]">Settings</p>
         </Link>
       </ul>
     </div>

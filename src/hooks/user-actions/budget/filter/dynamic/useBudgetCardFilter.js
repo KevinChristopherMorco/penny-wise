@@ -1,8 +1,8 @@
 import useFetchStorage from "../../../../fetch/useFetchStorage";
-import useBudgetFilter from "../useBudgetFilter";
+import useBudgetFilter from "../../../../fetch/budget/useBudgetFilter";
 
 const useCardFilter = (formattedYear, currentDate, label) => {
-  const { budget, expenses } = useFetchStorage();
+  const { expenses } = useFetchStorage();
   const { monthlyBudgetFilter } = useBudgetFilter();
 
   const budgetCategoryInfo = monthlyBudgetFilter.find(

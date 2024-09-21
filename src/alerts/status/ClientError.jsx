@@ -5,7 +5,7 @@ import { IconHome } from "@tabler/icons-react";
 
 const ClientError = () => {
   return (
-    <section className="h-full min-h-screen bg-white dark:bg-gray-900">
+    <section className="h-full min-h-screen bg-[var(--primary-color)] text-[var(--text-color)] dark:bg-[var(--dark-primary-color)] dark:text-[var(--dark-text-color)]">
       <div className="py-8 px-4 flex flex-col mx-auto max-w-screen-xl lg:py-16 lg:px-6">
         <div className="flex flex-col items-center gap-6 max-w-screen-sm text-center">
           <img
@@ -13,14 +13,14 @@ const ClientError = () => {
             className="mx-auto w-[8.5rem] h-[8.5rem]"
             alt="Page not found"
           />
-          <p className="text-4xl tracking-tight font-bold text-gray-900 md:text-4xl dark:text-white">
+          <p className="text-4xl tracking-tight font-bold md:text-4xl">
             Whoops!
           </p>
           <div className="flex flex-col gap-3">
-            <p className="text-lg font-light text-gray-500 dark:text-gray-400">
+            <p className="text-lg font-light">
               Sorry, the page doesn’t exist anymore.{" "}
             </p>
-            <p className="text-lg font-light text-gray-500 dark:text-gray-400">
+            <p className="text-lg font-light">
               No worries! You can head back to our homepage to continue
               exploring!{" "}
             </p>

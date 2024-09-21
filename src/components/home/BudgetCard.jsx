@@ -1,21 +1,32 @@
+import React from "react";
 import {
   IconPigMoney,
   IconCash,
   IconArrowElbowRight,
+  IconCurrencyPeso,
 } from "@tabler/icons-react";
-import React from "react";
 import { Link } from "react-router-dom";
+import useMonthlyBudget from "../../hooks/fetch/budget/useMonthlyBudget";
 
 const BudgetCard = () => {
+  const { currentMonth, totalMonthlyBudget } = useMonthlyBudget();
   return (
     <div className="px-4">
       <div className="p-4 flex flex-col items-center gap-10 bg-[var(--accent-color)] rounded-xl dark:bg-[var(--dark-secondary-color)]">
         <div className="flex flex-col gap-4 text-white dark:text-[var(--dark-text-color)]">
           <div className="flex flex-col gap-2">
             <p className="text-sm text-center font-light">My Budget</p>
-            <p className="text-3xl text-center font-extrabold">₱1,500.00</p>
+            <p className="flex justify-center items-center text-3xl text-center font-extrabold">
+              <span>
+                <IconCurrencyPeso className="w-8 h-8" />
+              </span>
+              {parseFloat(totalMonthlyBudget).toLocaleString("en-US", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })}
+            </p>
             <p className="text-[.7rem] text-center font-medium ">
-              (September 2024)
+              as of {currentMonth}
             </p>
           </div>
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { useBudgetContext } from "../../hooks/user-actions/budget/useManageBudget";
-import useBudgetFilter from "../../hooks/user-actions/budget/filter/useBudgetFilter";
+import useBudgetFilter from "../../hooks/fetch/budget/useBudgetFilter";
 
 import BudgetCard from "./dynamic/BudgetCard";
 import BudgetCategory from "./BudgetCategory";

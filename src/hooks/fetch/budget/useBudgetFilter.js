@@ -1,6 +1,6 @@
-import useFetchStorage from "../../../fetch/useFetchStorage";
-import { useBudgetContext } from "../useManageBudget";
-import category from "../../../../json/expenseCategory.json";
+import useFetchStorage from "../useFetchStorage";
+import { useBudgetContext } from "../../user-actions/budget/useManageBudget";
+import category from "../../../json/expenseCategory.json";
 
 const useBudgetFilter = () => {
   const { budget: budgetView, expenses } = useFetchStorage();
@@ -30,6 +30,7 @@ const useBudgetFilter = () => {
         year: "numeric",
       }) === formattedYear &&
       !budgetView
+        .filter((budget) => budget.budgetForMonth === formattedYear)
         .map((budget) => budget.budgetCategory)
         .includes(expense.expenseCategory)
   );

@@ -30,7 +30,7 @@ const IncomeCard = ({
 
   return (
     <div className="h-[4.5rem] px-4 flex justify-between items-center shadow-md bg-[var(--neutral-color)] rounded-lg dark:bg-[var(--dark-neutral-color)] relative">
-      <div className="basis-[20%] w-14 h-14 p-2 flex justify-center items-center bg-[var(--neutral-color)] rounded-xl dark:bg-[var(--dark-primary-color)]">
+      <div className="basis-[20%] w-14 h-14 p-2 flex justify-center items-center bg-[var(--accent-color)] rounded-xl dark:bg-[var(--dark-accent-color)]">
         <img
           src={`/src/assets/flaticons/${icon}.png`}
           alt=""

@@ -75,8 +75,8 @@ const BudgetCard = ({ category, formattedYear, currentDate }) => {
               </div>
             )}
           </div>
-          <div className="flex justify-between text-[.8rem]">
-            <div className="flex gap-1 font-medium">
+          <div className="flex justify-between items-center text-[.8rem]">
+            <div className="flex items-center gap-1 font-medium">
               <p className="text-gray-500 dark:text-gray-300">Spent:</p>
               <div
                 className={`${
@@ -86,7 +86,7 @@ const BudgetCard = ({ category, formattedYear, currentDate }) => {
                 <span>
                   <IconCurrencyPeso className="w-4 h-4" />
                 </span>
-                <p>
+                <p className="flex items-center">
                   {parseFloat(totalExpenseAmount || 0).toLocaleString("en-US", {
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 2,
