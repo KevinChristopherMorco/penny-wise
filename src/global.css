@@ -23,6 +23,18 @@
   --dark-accent-color: #01c802;
   --dark-text-color: #fff;
   --dark-text-accent: #fff;
+
+  --brand-color: #01c802;
+  --brand-color-100: #e6ffe6;
+  --brand-color-200: #b3ffb3;
+  --brand-color-300: #80fe81;
+  --brand-color-400: #4dfe4e;
+  --brand-color-500: #1bfe1c;
+  --brand-color-600: #01e402;
+  --brand-color-700: #01b202;
+  --brand-color-800: #017f01;
+  --brand-color-900: #004c01;
+
   /* f9d276 */
 }
 

@@ -1,9 +1,29 @@
 import useFetchStorage from "../useFetchStorage";
 
-const useBarFilter = (month, label) => {
+const useBarFilter = (label) => {
   const { expenses, budget } = useFetchStorage();
 
-  const totalExpensesByMonth = expenses
+  const months = [
+    { month: "January 2024", totalExpenses: 0, totalBudget: 0, percentage: 0 },
+    { month: "February 2024", totalExpenses: 0, totalBudget: 0, percentage: 0 },
+    { month: "March 2024", totalExpenses: 0, totalBudget: 0, percentage: 0 },
+    { month: "April 2024", totalExpenses: 0, totalBudget: 0, percentage: 0 },
+    { month: "May 2024", totalExpenses: 0, totalBudget: 0, percentage: 0 },
+    { month: "June 2024", totalExpenses: 0, totalBudget: 0, percentage: 0 },
+    { month: "July 2024", totalExpenses: 0, totalBudget: 0, percentage: 0 },
+    { month: "August 2024", totalExpenses: 0, totalBudget: 0, percentage: 0 },
+    {
+      month: "September 2024",
+      totalExpenses: 0,
+      totalBudget: 0,
+      percentage: 0,
+    },
+    { month: "October 2024", totalExpenses: 0, totalBudget: 0, percentage: 0 },
+    { month: "November 2024", totalExpenses: 0, totalBudget: 0, percentage: 0 },
+    { month: "December 2024", totalExpenses: 0, totalBudget: 0, percentage: 0 },
+  ];
+
+  const barData = expenses
     .filter((expense) => expense.expenseCategory === label)
     .map((expense) => {
       return {
@@ -14,40 +34,35 @@ const useBarFilter = (month, label) => {
         }),
       };
     })
+    .concat(budget.filter((budget) => budget.budgetCategory === label))
     .reduce((total, item) => {
-      const date = item.dateCreated;
-      const amount = parseFloat(item.expenseAmount);
+      const monthData = total.find(
+        (total) =>
+          total.month === item.dateCreated ||
+          total.month === item.budgetForMonth
+      );
 
-      if (!Boolean(total[date])) total[date] = 0;
+      if (item.expenseAmount) {
+        const amount = parseFloat(item.expenseAmount);
+        if (monthData) monthData.totalExpenses += amount;
+      }
 
-      total[date] += amount;
+      if (item.budgetAmount) {
+        const amount = parseFloat(item.budgetAmount);
+        if (monthData) monthData.totalBudget += amount;
+      }
+
+      if (monthData) {
+        monthData.percentage = monthData.totalBudget
+          ? Math.round((monthData.totalExpenses / monthData.totalBudget) * 100)
+          : 0;
+      }
 
       return total;
-    }, {});
-
-  const monthlyBudgetData = budget
-    .filter((budget) => budget.budgetCategory === label)
-    .map((budget) => {
-      return {
-        ...budget,
-        expenseTotal: totalExpensesByMonth[budget.budgetForMonth].toString(),
-      };
-    })
-    .find((x) => x.budgetForMonth === `${month} 2024`);
-
-  const {
-    budgetAmount = 0,
-    expenseTotal = 0,
-    budgetForMonth,
-  } = monthlyBudgetData || {};
-
-  const budgetPercentage =
-    budgetAmount > 0 ? Math.round((expenseTotal / budgetAmount) * 100) : 0;
+    }, months);
 
   return {
-    totalExpensesByMonth,
-    budgetPercentage,
-    budgetForMonth,
+    barData,
   };
 };
 

@@ -4,7 +4,7 @@ import AnalysisContainer from "../analysis/AnalysisContainer";
 
 const Analysis = () => {
   return (
-    <div>
+    <div className="flex flex-col animate-fadeIn grow">
       <AnalysisHeader />
       <AnalysisContainer />
     </div>

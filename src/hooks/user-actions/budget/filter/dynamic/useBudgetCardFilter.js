@@ -1,7 +1,7 @@
 import useFetchStorage from "../../../../fetch/useFetchStorage";
 import useBudgetFilter from "../../../../fetch/budget/useBudgetFilter";
 
-const useCardFilter = (formattedYear, currentDate, label) => {
+const useCardFilter = (formattedYear, currentMonthFormat, label) => {
   const { expenses } = useFetchStorage();
   const { monthlyBudgetFilter } = useBudgetFilter();
 
@@ -44,7 +44,7 @@ const useCardFilter = (formattedYear, currentDate, label) => {
     : 0;
 
   const progressPercentage =
-    currentDate === formattedYear
+    currentMonthFormat === formattedYear
       ? Math.round((totalExpenseAmount / budgetCategoryInfo.budgetAmount) * 100)
       : 0;
 

@@ -6,122 +6,112 @@ import BudgetCard from "./dynamic/BudgetCard";
 import BudgetCategory from "./BudgetCategory";
 import Empty from "../../alerts/indicators/Empty";
 import useFetchStorage from "../../hooks/fetch/useFetchStorage";
-import { IconAlertCircleFilled } from "@tabler/icons-react";
+import {
+  IconAlertCircleFilled,
+  IconChevronLeft,
+  IconChevronRight,
+} from "@tabler/icons-react";
 
 const BudgetContainer = () => {
-  const { formattedYear, currentDate } = useBudgetContext();
+  const {
+    monthChoice,
+    yearChoice,
+    formattedYear,
+    currentMonthFormat,
+    handleDateChoice,
+    handleYearChoice,
+  } = useBudgetContext();
   const {
     categoriesWithBudget,
     categoriesNoBudget,
     categoriesNoBudgetWithExpense,
   } = useBudgetFilter();
 
-  {
-    return new Date(formattedYear) >= new Date(currentDate) ? (
-      <div className="mb-[7rem] flex flex-col gap-16 text-[var(--text-color)] dark:text-[var(--dark-text-color)]">
-        <div className="flex flex-col gap-5">
-          <div className="px-4 flex flex-col gap-5">
-            <p className="py-1 font-bold">Budget for the month:</p>
-          </div>
-          {Boolean(categoriesWithBudget) && categoriesWithBudget.length > 0 ? (
-            <div className="px-4 flex flex-col gap-6">
-              {categoriesWithBudget.map((category, index) => {
-                return (
-                  <BudgetCard
-                    key={index}
-                    category={category}
-                    formattedYear={formattedYear}
-                    currentDate={currentDate}
-                  />
-                );
-              })}
-            </div>
-          ) : (
-            <Empty
-              title="No Budget Set for This Month"
-              subtext="Please set a budget to better manage and track your expenses for this month."
-            />
-          )}
+  return (
+    <div className="mb-[7rem] flex flex-col gap-10 text-[var(--text-color)] dark:text-[var(--dark-text-color)]">
+      <div className="p-4 flex justify-center items-center gap-2">
+        <div className="min-w-[50%] p-3 flex justify-center items-center gap-2 text-[var(--primary-color)] bg-[var(--brand-color-600)] dark:text-[var(--dark-text-color)] dark:bg-[var(--brand-color-900)]  rounded-xl">
+          <IconChevronLeft
+            className="w-5 h-5 text-[var(--primary-color)] font-bold cursor-pointer"
+            id="monthDesc"
+            onClick={handleDateChoice}
+          />
+          <p className="min-w-[60%] flex justify-center items-center font-bold">
+            {monthChoice}
+          </p>
+          <IconChevronRight
+            className="w-5 h-5 text-[var(--primary-color)] font-bold cursor-pointer"
+            id="monthAsc"
+            onClick={handleDateChoice}
+          />
         </div>
-        <div className="flex flex-col gap-5">
-          <div className="px-4 flex flex-col gap-5">
-            <p className="py-1 font-bold">Set budget for:</p>
-            {categoriesNoBudgetWithExpense.length > 0 && (
-              <div className="flex gap-1 text-[.7rem] text-red-500 font-bold">
-                <IconAlertCircleFilled className="w-4 h-4" />
-                <div>
-                  <p>There are categories that already had expenses.</p>
-                  <p>
-                    Please set a budget to manage your financials effectively
-                  </p>
-                </div>
-              </div>
-            )}
+        <div className="p-3 flex justify-center items-center gap-2 text-[var(--primary-color)] bg-[var(--brand-color-600)] dark:text-[var(--dark-text-color)] dark:bg-[var(--brand-color-900)]  rounded-xl">
+          <div>
+            <span>
+              <IconChevronLeft
+                id="yearDesc"
+                className="w-5 h-5 text-[var(--primary-color)] font-bold cursor-pointer"
+                onClick={handleYearChoice}
+              />
+            </span>
           </div>
-          <div className="flex flex-col">
-            {categoriesNoBudget.map((category, index) => {
-              return <BudgetCategory key={index} category={category} />;
+          <p className="font-bold">{yearChoice}</p>
+          <div>
+            <span>
+              <IconChevronRight
+                id="yearAsc"
+                className="w-5 h-5 text-[var(--primary-color)] font-bold cursor-pointer"
+                onClick={handleYearChoice}
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-col gap-5">
+        <div className="px-4 flex flex-col gap-5">
+          <p className="py-1 font-bold">Budget for the month:</p>
+        </div>
+        {Boolean(categoriesWithBudget) && categoriesWithBudget.length > 0 ? (
+          <div className="px-4 flex flex-col gap-6">
+            {categoriesWithBudget.map((category, index) => {
+              return (
+                <BudgetCard
+                  key={index}
+                  category={category}
+                  formattedYear={formattedYear}
+                  currentMonthFormat={currentMonthFormat}
+                />
+              );
             })}
           </div>
+        ) : (
+          <Empty
+            title="No Budget Set for This Month"
+            subtext="Please set a budget to better manage and track your expenses for this month."
+          />
+        )}
+      </div>
+      <div className="flex flex-col gap-5">
+        <div className="px-4 flex flex-col gap-5">
+          <p className="py-1 font-bold">Set budget for:</p>
+          {categoriesNoBudgetWithExpense.length > 0 && (
+            <div className="flex gap-1 text-[.7rem] text-red-500 font-bold">
+              <IconAlertCircleFilled className="w-4 h-4" />
+              <div>
+                <p>There are categories that already had expenses.</p>
+                <p>Please set a budget to manage your financials effectively</p>
+              </div>
+            </div>
+          )}
+        </div>
+        <div className="flex flex-col">
+          {categoriesNoBudget.map((category, index) => {
+            return <BudgetCategory key={index} category={category} />;
+          })}
         </div>
       </div>
-    ) : (
-      <div>
-        <p>Compare Budget</p>
-      </div>
-    );
-  }
-
-  // if (new Date(formattedYear) >= new Date(currentDate))
-  //   return (
-  //     <div className="mb-[7rem] flex flex-col gap-16 text-[var(--accent-color)] dark:text-[var(--dark-text-color)]">
-  //       <div className="flex flex-col gap-5">
-  //         <div className="px-4 flex flex-col gap-5">
-  //           <p className="py-1 font-bold">Budget for the month:</p>
-  //         </div>
-  //         {Boolean(categoriesWithBudget) && categoriesWithBudget.length > 0 ? (
-  //           <div className="px-4 flex flex-col gap-3">
-  //             {categoriesWithBudget.map((category, index) => {
-  //               return (
-  //                 <BudgetCard
-  //                   key={index}
-  //                   category={category}
-  //                   formattedYear={formattedYear}
-  //                   currentDate={currentDate}
-  //                 />
-  //               );
-  //             })}
-  //           </div>
-  //         ) : (
-  //           <Empty
-  //             title="No Budget Set for This Month"
-  //             subtext="Please set a budget to better manage and track your expenses for this month."
-  //           />
-  //         )}
-  //       </div>
-  //       <div className="flex flex-col gap-5">
-  //         <div className="px-4 flex flex-col gap-5">
-  //           <p className="py-1 font-bold">Set budget for:</p>
-  //           {categoriesNoBudgetWithExpense.length > 0 && (
-  //             <div className="flex gap-1 text-[.7rem] text-red-500 font-bold">
-  //               <IconAlertCircleFilled className="w-4 h-4" />
-  //               <div>
-  //                 <p>There are categories that already had expenses.</p>
-  //                 <p>
-  //                   Please set a budget to manage your financials effectively
-  //                 </p>
-  //               </div>
-  //             </div>
-  //           )}
-  //         </div>
-  //         <div className="flex flex-col">
-  //           {categoriesNoBudget.map((category, index) => {
-  //             return <BudgetCategory key={index} category={category} />;
-  //           })}
-  //         </div>
-  //       </div>
-  //     </div>
-  //   );
+    </div>
+  );
 };
 
 export default BudgetContainer;

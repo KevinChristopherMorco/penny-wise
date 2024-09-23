@@ -21,12 +21,17 @@ export default {
           "0%": { width: "0%" },
           "100%": { maxWidth: "100%" },
         },
+        fillHeight: {
+          "0%": { height: "0%" },
+          "100%": { maxHeight: "100%" },
+        },
       },
       animation: {
         navFadeIn: "navFadeIn 300ms ease-in-out",
         fadeIn: "fadeIn 100ms ease-in-out",
         slideUp: "slideUp 0.2s ease-in-out",
         fillWidth: "fillWidth 0.4s ease-in-out",
+        fillHeight: "fillHeight 0.4s ease-in-out",
       },
     },
   },

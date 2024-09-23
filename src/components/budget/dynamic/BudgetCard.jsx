@@ -9,12 +9,12 @@ import { useNavigateContext } from "../../../hooks/general/navigation/useActiveN
 import { useBudgetContext } from "../../../hooks/user-actions/budget/useManageBudget";
 import useCardFilter from "../../../hooks/user-actions/budget/filter/dynamic/useBudgetCardFilter";
 
-const BudgetCard = ({ category, formattedYear, currentDate }) => {
+const BudgetCard = ({ category, formattedYear, currentMonthFormat }) => {
   const [hover, setHover] = useState(false);
   const { imagePath, colorCode, label, altText } = category;
 
   const { progressPercentage, budgetCategoryInfo, totalExpenseAmount } =
-    useCardFilter(formattedYear, currentDate, label);
+    useCardFilter(formattedYear, currentMonthFormat, label);
   const { handleDeleteBudget, setPopulateFields } = useBudgetContext();
   const { setCurrentActive } = useNavigateContext();
 
@@ -59,7 +59,7 @@ const BudgetCard = ({ category, formattedYear, currentDate }) => {
           <div className="w-full h-2 bg-gray-300 rounded-full dark:bg-[var(--dark-primary-color)]">
             {progressPercentage > 100 ? (
               <div
-                className={`w-full h-2 flex bg-red-500 items-center rounded-full animate-fillWidth relative`}
+                className={`w-full h-2 flex bg-red-500 items-center rounded-full transition-all duration-[0.4s] relative`}
               >
                 <div className="w-2 h-2 right-0 absolute bg-white rounded-full"></div>
               </div>

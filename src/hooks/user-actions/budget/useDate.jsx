@@ -2,48 +2,62 @@ import React, { useState } from "react";
 import useServerDate from "../../fetch/useServerDate";
 
 const useDate = () => {
-  const { currentMonth, currentYear, currentDate } = useServerDate();
-  const [count, setCount] = useState(currentMonth);
+  const { monthsList, currentMonth, currentYear, currentMonthFormat } =
+    useServerDate();
 
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
+  const [month, setMonth] = useState(currentMonth);
+  const [yearChoice, setYear] = useState(currentYear);
 
-  const formattedYear = new Date(currentYear, count).toLocaleString("en", {
+  const monthChoice = monthsList[month];
+
+  const formattedYear = new Date(yearChoice, month).toLocaleString("en", {
     year: "numeric",
     month: "long",
   });
+
+  console.log(formattedYear);
 
   const handleDateChoice = (event) => {
     const { id } = event.target;
 
     if (id === "monthAsc") {
-      if (count === months.length - 1) return;
-      setCount((prev) => prev + 1);
+      if (month === monthsList.length - 1) return;
+      setMonth((prev) => prev + 1);
       return;
     }
 
     if (id === "monthDesc") {
-      if (count === currentMonth) return;
-      if (count === 0) return;
+      // if (month === currentMonth) return;
+      if (month === 0) return;
 
-      setCount((prev) => prev - 1);
+      setMonth((prev) => prev - 1);
       return;
     }
   };
 
-  return { handleDateChoice, currentDate, formattedYear };
+  const handleYearChoice = (event) => {
+    const { id } = event.target;
+    if (id === "yearAsc") {
+      if (yearChoice === currentYear) return;
+
+      setYear((prev) => prev + 1);
+      return;
+    }
+
+    if (id === "yearDesc") {
+      if (yearChoice > currentYear - 1) setYear((prev) => prev - 1);
+      return;
+    }
+  };
+
+  return {
+    monthChoice,
+    yearChoice,
+    currentMonthFormat,
+    formattedYear,
+    handleDateChoice,
+    handleYearChoice,
+  };
 };
 
 export default useDate;

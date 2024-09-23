@@ -6,7 +6,14 @@ import useForm from "./useForm";
 const BudgetContext = createContext();
 
 const BudgetProvider = ({ children }) => {
-  const { handleDateChoice, currentDate, formattedYear } = useDate();
+  const {
+    monthChoice,
+    yearChoice,
+    currentMonthFormat,
+    formattedYear,
+    handleDateChoice,
+    handleYearChoice,
+  } = useDate();
   const { categoryChoice } = useFetchStorage();
   const {
     defaultInput,
@@ -27,14 +34,17 @@ const BudgetProvider = ({ children }) => {
       value={{
         defaultInput,
         currentInput,
-        setInput,
         defaultError,
         error,
+        monthChoice,
+        yearChoice,
+        currentMonthFormat,
+        formattedYear,
+        setInput,
         setError,
         setPopulateFields,
-        currentDate,
-        formattedYear,
         handleDateChoice,
+        handleYearChoice,
         handleAddBudget,
         handleEditBudget,
         handleDeleteBudget,
