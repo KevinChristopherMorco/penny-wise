@@ -6,7 +6,7 @@ const useCardFilter = (
   currentMonthYearFormat,
   label
 ) => {
-  const { expenses } = useFetchStorage();
+  const { budget, expenses } = useFetchStorage();
   const { monthlyBudgetFilter } = useBudgetFilter();
 
   const budgetCategoryInfo = monthlyBudgetFilter.find(
@@ -52,7 +52,61 @@ const useCardFilter = (
       ? Math.round((totalExpenseAmount / budgetCategoryInfo.budgetAmount) * 100)
       : 0;
 
-  return { progressPercentage, budgetCategoryInfo, totalExpenseAmount };
+  const groupExpensesByCategory = expenses
+    .map((expense) => ({
+      ...expense,
+      dateCreated: new Date(expense.dateCreated).toLocaleString("en-US", {
+        month: "long",
+        year: "numeric",
+      }),
+    }))
+    .filter(
+      (expense) =>
+        expense.dateCreated === monthYearChoiceFormat &&
+        monthlyBudgetFilter
+          .map((budget) => budget.budgetCategory)
+          .includes(expense.expenseCategory)
+    )
+    .concat(
+      ...budget.filter(
+        (budget) => budget.budgetForMonth === monthYearChoiceFormat
+      )
+    )
+    .reduce((total, item) => {
+      const categorizeItem = item.expenseCategory || item.budgetCategory;
+      const expenseAmount = parseFloat(item.expenseAmount) || 0;
+      const budgetAmount = parseFloat(item.budgetAmount) || 0;
+
+      const existingCategory = total.find(
+        (cat) => cat.category === categorizeItem
+      );
+
+      if (existingCategory) {
+        existingCategory.expenses += expenseAmount;
+        existingCategory.budget += budgetAmount;
+        existingCategory.percentage = Math.round(
+          (existingCategory.expenses / existingCategory.budget) * 100
+        );
+      } else {
+        total.push({
+          category: categorizeItem,
+          expenses: expenseAmount,
+          budget: budgetAmount,
+          percentage: 0,
+        });
+      }
+
+      return total;
+    }, []);
+
+  console.log(test);
+
+  return {
+    groupExpensesByCategory,
+    progressPercentage,
+    budgetCategoryInfo,
+    totalExpenseAmount,
+  };
 };
 
 export default useCardFilter;
