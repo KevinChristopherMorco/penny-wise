@@ -8,8 +8,6 @@ const DynamicBar = ({ data }) => {
   const { currentMonthYearFormat } = useServerDate();
   const { month, totalExpenses, totalBudget, percentage } = data;
 
-  console.log(percentage);
-
   return (
     <div className="h-full flex flex-col gap-2 justify-end text-light text-center text-gray-400 text-[.9rem]">
       <div className="flex flex-col">

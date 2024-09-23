@@ -1,20 +1,24 @@
 import React from "react";
-import { useBudgetContext } from "../../hooks/user-actions/budget/useManageBudget";
-import useBudgetFilter from "../../hooks/fetch/budget/useBudgetFilter";
 
-import BudgetCard from "./dynamic/BudgetCard";
-import BudgetCategory from "./BudgetCategory";
-import Empty from "../../alerts/indicators/Empty";
 import {
   IconAlertCircleFilled,
   IconChevronLeft,
   IconChevronRight,
 } from "@tabler/icons-react";
 
+import { useBudgetContext } from "../../hooks/user-actions/budget/useManageBudget";
+import useBudgetFilter from "../../hooks/fetch/budget/useBudgetFilter";
+
+import BudgetCard from "./dynamic/BudgetCard";
+import BudgetCategory from "./BudgetCategory";
+import Empty from "../../alerts/indicators/Empty";
+import useServerDate from "../../hooks/fetch/useServerDate";
+
 const BudgetContainer = () => {
   const { monthChoice, yearChoice, handleDateChoice, handleYearChoice } =
     useBudgetContext();
   const { budgetCategory } = useBudgetFilter();
+  const { monthYearChoiceFormat, currentMonthYearFormat } = useServerDate();
 
   return (
     <div className="mb-[7rem] flex flex-col gap-10 text-[var(--text-color)] dark:text-[var(--dark-text-color)]">
@@ -58,7 +62,10 @@ const BudgetContainer = () => {
       </div>
       <div className="flex flex-col gap-5">
         <div className="px-4 flex flex-col gap-5">
-          <p className="py-1 font-bold">Budget for the month:</p>
+          {new Date(monthYearChoiceFormat).getTime() >=
+            new Date(currentMonthYearFormat).getTime() && (
+            <p className="py-1 font-bold">Budget for the month:</p>
+          )}
         </div>
 
         {budgetCategory.some((budget) => budget.budget > 0) ? (
@@ -69,18 +76,29 @@ const BudgetContainer = () => {
                 return <BudgetCard key={index} budgetData={budgetData} />;
               })}
           </div>
-        ) : (
+        ) : new Date(monthYearChoiceFormat).getTime() >=
+          new Date(currentMonthYearFormat).getTime() ? (
           <Empty
             title="No Budget Set for This Month"
             subtext="Please set a budget to better manage and track your expenses for this month."
+          />
+        ) : (
+          <Empty
+            title="No Budget Set for This Month"
+            subtext="Plan ahead! Set a budget for future months to stay on track."
           />
         )}
       </div>
       <div className="flex flex-col gap-5">
         <div className="px-4 flex flex-col gap-5">
-          <p className="py-1 font-bold">Set budget for:</p>
+          <p className="py-1 font-bold">
+            {new Date(monthYearChoiceFormat).getTime() >=
+            new Date(currentMonthYearFormat).getTime()
+              ? "Set budget for:"
+              : "Categories with No Prior Budget"}
+          </p>
           {budgetCategory.some(
-            (budget) => budget.budget === 0 && budget.expense > 0
+            (budget) => budget.budget === 0 && budget.expenses > 0
           ) && (
             <div className="flex gap-1 text-[.7rem] text-red-500 font-bold">
               <IconAlertCircleFilled className="w-4 h-4" />

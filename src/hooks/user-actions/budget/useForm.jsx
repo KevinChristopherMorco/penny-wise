@@ -67,7 +67,6 @@ const useForm = (monthYearChoiceFormat, categoryChoice) => {
       return {
         ...prev,
         budget: prev.budget.map((budget) => {
-          console.log(budget.budgetId === budgetId);
           return budget.budgetId === budgetId
             ? {
                 ...budget,

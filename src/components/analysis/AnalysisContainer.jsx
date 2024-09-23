@@ -55,7 +55,7 @@ const AnalysisContainer = () => {
               </span>
             </div>
           </div>
-          <div className="p-2 flex justify-center items-center gap-2 text-[var(--primary-color)] bg-[var(--brand-color-500)] dark:text-[var(--dark-text-color)] dark:bg-[var(--brand-color-900)]  rounded-xl">
+          <div className="p-3 flex justify-center items-center gap-2 text-[var(--primary-color)] bg-[var(--brand-color-500)] dark:text-[var(--dark-text-color)] dark:bg-[var(--brand-color-900)]  rounded-xl">
             <div>
               <span>
                 <IconChevronLeft
@@ -64,7 +64,7 @@ const AnalysisContainer = () => {
                 />
               </span>
             </div>
-            <p className="text-sm">2024</p>
+            <p>2024</p>
             <div>
               <span>
                 <IconChevronRight

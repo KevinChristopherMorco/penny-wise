@@ -58,6 +58,7 @@ const useBudgetFilter = () => {
         existingCategory.budgetId = budgetId;
         existingCategory.expenses += expenseAmount;
         existingCategory.budget += budgetAmount;
+
         existingCategory.percentage =
           existingCategory.budget === Infinity
             ? 0
