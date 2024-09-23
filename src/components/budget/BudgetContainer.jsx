@@ -16,8 +16,8 @@ const BudgetContainer = () => {
   const {
     monthChoice,
     yearChoice,
-    formattedYear,
-    currentMonthFormat,
+    monthYearChoiceFormat,
+    currentMonthYearFormat,
     handleDateChoice,
     handleYearChoice,
   } = useBudgetContext();
@@ -78,8 +78,8 @@ const BudgetContainer = () => {
                 <BudgetCard
                   key={index}
                   category={category}
-                  formattedYear={formattedYear}
-                  currentMonthFormat={currentMonthFormat}
+                  monthYearChoiceFormat={monthYearChoiceFormat}
+                  currentMonthYearFormat={currentMonthYearFormat}
                 />
               );
             })}

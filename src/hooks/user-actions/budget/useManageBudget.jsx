@@ -9,8 +9,8 @@ const BudgetProvider = ({ children }) => {
   const {
     monthChoice,
     yearChoice,
-    currentMonthFormat,
-    formattedYear,
+    currentMonthYearFormat,
+    monthYearChoiceFormat,
     handleDateChoice,
     handleYearChoice,
   } = useDate();
@@ -27,7 +27,7 @@ const BudgetProvider = ({ children }) => {
     handleEditBudget,
     handleDeleteBudget,
     handleInputChange,
-  } = useForm(formattedYear, categoryChoice);
+  } = useForm(monthYearChoiceFormat, categoryChoice);
 
   return (
     <BudgetContext.Provider
@@ -38,8 +38,8 @@ const BudgetProvider = ({ children }) => {
         error,
         monthChoice,
         yearChoice,
-        currentMonthFormat,
-        formattedYear,
+        currentMonthYearFormat,
+        monthYearChoiceFormat,
         setInput,
         setError,
         setPopulateFields,

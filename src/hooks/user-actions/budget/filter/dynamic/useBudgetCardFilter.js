@@ -1,7 +1,11 @@
 import useFetchStorage from "../../../../fetch/useFetchStorage";
 import useBudgetFilter from "../../../../fetch/budget/useBudgetFilter";
 
-const useCardFilter = (formattedYear, currentMonthFormat, label) => {
+const useCardFilter = (
+  monthYearChoiceFormat,
+  currentMonthYearFormat,
+  label
+) => {
   const { expenses } = useFetchStorage();
   const { monthlyBudgetFilter } = useBudgetFilter();
 
@@ -19,7 +23,7 @@ const useCardFilter = (formattedYear, currentMonthFormat, label) => {
     }))
     .filter(
       (expense) =>
-        expense.dateCreated === formattedYear &&
+        expense.dateCreated === monthYearChoiceFormat &&
         monthlyBudgetFilter
           .map((budget) => budget.budgetCategory)
           .includes(expense.expenseCategory)
@@ -44,7 +48,7 @@ const useCardFilter = (formattedYear, currentMonthFormat, label) => {
     : 0;
 
   const progressPercentage =
-    currentMonthFormat === formattedYear
+    currentMonthYearFormat === monthYearChoiceFormat
       ? Math.round((totalExpenseAmount / budgetCategoryInfo.budgetAmount) * 100)
       : 0;
 

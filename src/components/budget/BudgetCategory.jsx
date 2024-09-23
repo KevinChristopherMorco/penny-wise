@@ -6,11 +6,14 @@ import {
   IconCurrencyPeso,
 } from "@tabler/icons-react";
 import useBudgetFilter from "../../hooks/fetch/budget/useBudgetFilter";
+import { useBudgetContext } from "../../hooks/user-actions/budget/useManageBudget";
 
 const BudgetCategory = ({ category }) => {
   const { setCurrentActive } = useNavigateContext();
   const { categoriesNoBudgetWithExpense: filter, totalExpenseWithNoBudget } =
     useBudgetFilter();
+
+  const { currentMonthYearFormat, monthYearChoiceFormat } = useBudgetContext();
 
   const categoriesNoBudgetWithExpense = filter.find(
     (expense) => expense.expenseCategory === category.label
@@ -51,21 +54,24 @@ const BudgetCategory = ({ category }) => {
             </div>
           )}
         </div>
-        <button
-          className="px-3 py-1 text-[.8rem] border border-[var(--accent-color)] text-[var(--accent-color)] font-bold rounded-lg dark:text-[var(--dark-accent-color)] dark:border-[var(--dark-accent-color)]"
-          onClick={() => {
-            setCurrentActive("modal", {
-              modalName: "addBudget",
-              type: "add",
-            });
-            localStorage.setItem(
-              "categoryChoice",
-              JSON.stringify({ category })
-            );
-          }}
-        >
-          Set Budget
-        </button>
+        {new Date(monthYearChoiceFormat).getTime() >=
+          new Date(currentMonthYearFormat).getTime() && (
+          <button
+            className="px-3 py-1 text-[.8rem] border border-[var(--accent-color)] text-[var(--accent-color)] font-bold rounded-lg dark:text-[var(--dark-accent-color)] dark:border-[var(--dark-accent-color)]"
+            onClick={() => {
+              setCurrentActive("modal", {
+                modalName: "addBudget",
+                type: "add",
+              });
+              localStorage.setItem(
+                "categoryChoice",
+                JSON.stringify({ category })
+              );
+            }}
+          >
+            Set Budget
+          </button>
+        )}
       </div>
     </div>
   );

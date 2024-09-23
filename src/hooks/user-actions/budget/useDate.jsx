@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import useServerDate from "../../fetch/useServerDate";
 
 const useDate = () => {
-  const { monthsList, currentMonth, currentYear, currentMonthFormat } =
+  const { monthsList, currentMonth, currentYear, currentMonthYearFormat } =
     useServerDate();
 
   const [month, setMonth] = useState(currentMonth);
@@ -10,12 +10,13 @@ const useDate = () => {
 
   const monthChoice = monthsList[month];
 
-  const formattedYear = new Date(yearChoice, month).toLocaleString("en", {
-    year: "numeric",
-    month: "long",
-  });
-
-  console.log(formattedYear);
+  const monthYearChoiceFormat = new Date(yearChoice, month).toLocaleString(
+    "en",
+    {
+      year: "numeric",
+      month: "long",
+    }
+  );
 
   const handleDateChoice = (event) => {
     const { id } = event.target;
@@ -53,8 +54,8 @@ const useDate = () => {
   return {
     monthChoice,
     yearChoice,
-    currentMonthFormat,
-    formattedYear,
+    currentMonthYearFormat,
+    monthYearChoiceFormat,
     handleDateChoice,
     handleYearChoice,
   };

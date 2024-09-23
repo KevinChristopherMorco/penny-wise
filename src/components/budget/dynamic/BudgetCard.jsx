@@ -9,14 +9,28 @@ import { useNavigateContext } from "../../../hooks/general/navigation/useActiveN
 import { useBudgetContext } from "../../../hooks/user-actions/budget/useManageBudget";
 import useCardFilter from "../../../hooks/user-actions/budget/filter/dynamic/useBudgetCardFilter";
 
-const BudgetCard = ({ category, formattedYear, currentMonthFormat }) => {
+const BudgetCard = ({
+  category,
+  monthYearChoiceFormat,
+  currentMonthYearFormat,
+}) => {
   const [hover, setHover] = useState(false);
   const { imagePath, colorCode, label, altText } = category;
 
   const { progressPercentage, budgetCategoryInfo, totalExpenseAmount } =
-    useCardFilter(formattedYear, currentMonthFormat, label);
+    useCardFilter(monthYearChoiceFormat, currentMonthYearFormat, label);
   const { handleDeleteBudget, setPopulateFields } = useBudgetContext();
   const { setCurrentActive } = useNavigateContext();
+
+  const handleEditOnClick = () => {
+    setPopulateFields(budgetCategoryInfo.budgetId);
+
+    setCurrentActive("modal", {
+      modalName: "editBudget",
+      type: "edit",
+    });
+    localStorage.setItem("categoryChoice", JSON.stringify({ category }));
+  };
 
   return (
     <div
@@ -110,35 +124,26 @@ const BudgetCard = ({ category, formattedYear, currentMonthFormat }) => {
             )}
           </div>
         </div>
-        {hover && (
-          <div className="flex gap-2 text-gray-400 self-end animate-fadeIn">
-            <div
-              className="flex items-center gap-1 text-orange-500 font-bold"
-              onClick={() => {
-                setPopulateFields(budgetCategoryInfo.budgetId);
-
-                setCurrentActive("modal", {
-                  modalName: "editBudget",
-                  type: "edit",
-                });
-                localStorage.setItem(
-                  "categoryChoice",
-                  JSON.stringify({ category })
-                );
-              }}
-            >
-              <IconPencilMinus className="w-4 h-4" />
-              <p className="text-sm">Edit</p>
+        {hover &&
+          new Date(monthYearChoiceFormat).getTime() >=
+            new Date(currentMonthYearFormat).getTime() && (
+            <div className="flex gap-2 text-gray-400 self-end animate-fadeIn">
+              <div
+                className="flex items-center gap-1 text-orange-500 font-bold"
+                onClick={() => handleEditOnClick()}
+              >
+                <IconPencilMinus className="w-4 h-4" />
+                <p className="text-sm">Edit</p>
+              </div>
+              <div
+                className="flex items-center gap-1 text-red-500 font-bold"
+                onClick={() => handleDeleteBudget(budgetCategoryInfo.budgetId)}
+              >
+                <IconTrash className="w-4 h-4" />
+                <p className="text-sm">Delete</p>
+              </div>
             </div>
-            <div
-              className="flex items-center gap-1 text-red-500 font-bold"
-              onClick={() => handleDeleteBudget(budgetCategoryInfo.budgetId)}
-            >
-              <IconTrash className="w-4 h-4" />
-              <p className="text-sm">Delete</p>
-            </div>
-          </div>
-        )}
+          )}
       </div>
     </div>
   );

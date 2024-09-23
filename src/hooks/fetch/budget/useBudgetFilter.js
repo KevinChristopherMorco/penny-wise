@@ -4,10 +4,10 @@ import category from "../../../json/expenseCategory.json";
 
 const useBudgetFilter = () => {
   const { budget: budgetView, expenses } = useFetchStorage();
-  const { formattedYear } = useBudgetContext();
+  const { monthYearChoiceFormat } = useBudgetContext();
 
   const monthlyBudgetFilter = budgetView.filter(
-    (budget) => budget.budgetForMonth === formattedYear
+    (budget) => budget.budgetForMonth === monthYearChoiceFormat
   );
 
   const categoriesWithBudget = category.filter((category) =>
@@ -28,9 +28,9 @@ const useBudgetFilter = () => {
       new Date(expense.dateCreated).toLocaleDateString("en-US", {
         month: "long",
         year: "numeric",
-      }) === formattedYear &&
+      }) === monthYearChoiceFormat &&
       !budgetView
-        .filter((budget) => budget.budgetForMonth === formattedYear)
+        .filter((budget) => budget.budgetForMonth === monthYearChoiceFormat)
         .map((budget) => budget.budgetCategory)
         .includes(expense.expenseCategory)
   );

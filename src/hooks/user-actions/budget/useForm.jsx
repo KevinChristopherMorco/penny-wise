@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import useValidation from "./useValidation";
 import usePopulate from "../../fetch/form/usePopulate";
 
-const useForm = (formattedYear, categoryChoice) => {
+const useForm = (monthYearChoiceFormat, categoryChoice) => {
   const defaultInput = { budgetAmount: "" };
 
   const [currentInput, setInput] = useState(defaultInput);
@@ -39,7 +39,7 @@ const useForm = (formattedYear, categoryChoice) => {
           {
             ...currentInput,
             budgetId: `acc${uuidv4().split("-").join("")}${Date.now()}`,
-            budgetForMonth: formattedYear,
+            budgetForMonth: monthYearChoiceFormat,
             budgetCategory: budgetCategory,
             dateCreated: dateNow,
             dateUpdated: dateNow,

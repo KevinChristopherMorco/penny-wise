@@ -17,15 +17,15 @@ const useServerDate = () => {
     "December",
   ];
 
-  const currentMonthFormat = new Date(currentYear, currentMonth).toLocaleString(
-    "en",
-    {
-      year: "numeric",
-      month: "long",
-    }
-  );
+  const currentMonthYearFormat = new Date(
+    currentYear,
+    currentMonth
+  ).toLocaleString("en", {
+    year: "numeric",
+    month: "long",
+  });
 
-  return { monthsList, currentMonth, currentYear, currentMonthFormat };
+  return { monthsList, currentMonth, currentYear, currentMonthYearFormat };
 };
 
 export default useServerDate;

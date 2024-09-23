@@ -5,7 +5,7 @@ import useFetchStorage from "../../../hooks/fetch/useFetchStorage";
 import { IconAlertCircleFilled } from "@tabler/icons-react";
 
 const DynamicBar = ({ data }) => {
-  const { currentMonthFormat } = useServerDate();
+  const { currentMonthYearFormat } = useServerDate();
   const { month, totalExpenses, totalBudget, percentage } = data;
 
   console.log(percentage);
@@ -15,7 +15,7 @@ const DynamicBar = ({ data }) => {
       <div className="flex flex-col">
         <p
           className={`${
-            currentMonthFormat === month
+            currentMonthYearFormat === month
               ? percentage > 100 || (totalExpenses > 0 && totalBudget === 0)
                 ? "text-[#FF0000] font-bold"
                 : "text-[--brand-color-500] font-bold"
@@ -48,7 +48,7 @@ const DynamicBar = ({ data }) => {
           </p>
         </div>
       </div>
-      {currentMonthFormat === month ? (
+      {currentMonthYearFormat === month ? (
         <div
           className={`${
             percentage > 100 || (totalExpenses > 0 && totalBudget === 0)
@@ -70,7 +70,7 @@ const DynamicBar = ({ data }) => {
 
       <p
         className={`${
-          currentMonthFormat === month
+          currentMonthYearFormat === month
             ? percentage > 100 || (totalExpenses > 0 && totalBudget === 0)
               ? "text-[#FF0000] font-bold"
               : "text-[--brand-color-500] font-bold"
