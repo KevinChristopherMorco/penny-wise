@@ -24,7 +24,7 @@ const BudgetForm = () => {
     handleInputChange,
   } = useBudgetContext();
 
-  const { category: { imagePath, colorCode, altText } = {} } =
+  const { categoryContext: { imagePath, colorCode, altText } = {} } =
     JSON.parse(localStorage.getItem("categoryChoice")) || {};
 
   const handleOnClose = () => {

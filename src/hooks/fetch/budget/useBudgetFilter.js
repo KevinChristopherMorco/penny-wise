@@ -10,51 +10,76 @@ const useBudgetFilter = () => {
     (budget) => budget.budgetForMonth === monthYearChoiceFormat
   );
 
-  const categoriesWithBudget = category.filter((category) =>
-    monthlyBudgetFilter
-      .map((budget) => budget.budgetCategory)
-      .includes(category.label)
-  );
+  const initializeCategory = category.reduce((category, item) => {
+    const categoryName = item.label;
 
-  const categoriesNoBudget = category.filter(
-    (category) =>
-      !monthlyBudgetFilter
-        .map((budget) => budget.budgetCategory)
-        .includes(category.label)
-  );
+    const existingCategory = category.find(
+      (cat) => cat.category === categoryName
+    );
 
-  const categoriesNoBudgetWithExpense = expenses.filter(
-    (expense) =>
-      new Date(expense.dateCreated).toLocaleDateString("en-US", {
+    if (!existingCategory) {
+      category.push({
+        budgetId: "",
+        category: categoryName,
+        expenses: 0,
+        budget: 0,
+        percentage: 0,
+      });
+    }
+
+    return category;
+  }, []);
+
+  const budgetCategory = expenses
+    .map((expense) => ({
+      ...expense,
+      dateCreated: new Date(expense.dateCreated).toLocaleString("en-US", {
         month: "long",
         year: "numeric",
-      }) === monthYearChoiceFormat &&
-      !budgetView
-        .filter((budget) => budget.budgetForMonth === monthYearChoiceFormat)
-        .map((budget) => budget.budgetCategory)
-        .includes(expense.expenseCategory)
-  );
+      }),
+    }))
+    .filter((expense) => expense.dateCreated === monthYearChoiceFormat)
+    .concat(
+      ...budgetView.filter(
+        (budget) => budget.budgetForMonth === monthYearChoiceFormat
+      )
+    )
+    .reduce((total, item) => {
+      const categorizeItem = item.expenseCategory || item.budgetCategory;
+      const expenseAmount = parseFloat(item.expenseAmount) || 0;
+      const budgetAmount = parseFloat(item.budgetAmount) || 0;
+      const budgetId = item.budgetId || "";
 
-  const totalExpenseWithNoBudget = categoriesNoBudgetWithExpense.reduce(
-    (total, category) => {
-      const groupCategoryAmount = parseFloat(category.expenseAmount);
-      const groupCategory = category.expenseCategory;
+      const existingCategory = total.find(
+        (cat) => cat.category === categorizeItem
+      );
 
-      if (!Boolean(total[groupCategory])) total[groupCategory] = 0;
-
-      total[groupCategory] += groupCategoryAmount;
+      if (existingCategory) {
+        existingCategory.budgetId = budgetId;
+        existingCategory.expenses += expenseAmount;
+        existingCategory.budget += budgetAmount;
+        existingCategory.percentage =
+          existingCategory.budget === Infinity
+            ? 0
+            : Math.round(
+                (existingCategory.expenses / existingCategory.budget) * 100
+              );
+      } else {
+        total.push({
+          budgetId,
+          category: categorizeItem,
+          expenses: expenseAmount,
+          budget: budgetAmount,
+          percentage: 0,
+        });
+      }
 
       return total;
-    },
-    {}
-  );
+    }, initializeCategory);
 
   return {
     monthlyBudgetFilter,
-    categoriesWithBudget,
-    categoriesNoBudget,
-    categoriesNoBudgetWithExpense,
-    totalExpenseWithNoBudget,
+    budgetCategory,
   };
 };
 

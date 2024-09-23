@@ -11,7 +11,8 @@ const useForm = (monthYearChoiceFormat, categoryChoice) => {
   const [isSubmit, setSubmit] = useState(false);
 
   const { setStorage } = useStorageContext();
-  const { category: { label: budgetCategory } = {} } = categoryChoice || {};
+  const { categoryContext: { label: budgetCategory } = {} } =
+    categoryChoice || {};
 
   const {
     populate: { budgetId, budgetAmount },

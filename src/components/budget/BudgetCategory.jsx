@@ -5,19 +5,19 @@ import {
   IconCurrency,
   IconCurrencyPeso,
 } from "@tabler/icons-react";
-import useBudgetFilter from "../../hooks/fetch/budget/useBudgetFilter";
 import { useBudgetContext } from "../../hooks/user-actions/budget/useManageBudget";
+import categories from "../../json/expenseCategory.json";
 
-const BudgetCategory = ({ category }) => {
+const BudgetCategory = ({
+  budgetData: { category: categoryName, expenses, budget },
+}) => {
   const { setCurrentActive } = useNavigateContext();
-  const { categoriesNoBudgetWithExpense: filter, totalExpenseWithNoBudget } =
-    useBudgetFilter();
-
   const { currentMonthYearFormat, monthYearChoiceFormat } = useBudgetContext();
-
-  const categoriesNoBudgetWithExpense = filter.find(
-    (expense) => expense.expenseCategory === category.label
+  const categoryContext = categories.find(
+    (category) => category.label === categoryName
   );
+
+  const { imagePath, colorCode, altText } = categoryContext;
 
   return (
     <div className="p-4 bg-[var(--neutral-color)] dark:bg-[var(--dark-neutral-color)]">
@@ -26,27 +26,24 @@ const BudgetCategory = ({ category }) => {
           <div className="flex items-center gap-2">
             <div
               className="w-10 h-10 flex justify-center items-center rounded-full"
-              style={{ backgroundColor: category.colorCode }}
+              style={{ backgroundColor: colorCode }}
             >
               <img
-                src={category.imagePath}
-                alt=""
+                src={imagePath}
+                alt={altText}
                 className="w-7 h-7 rounded-full"
               />
             </div>
-            <p className="text-sm font-bold">{category.altText}</p>
-
-            {categoriesNoBudgetWithExpense && (
+            <p className="text-sm font-bold">{altText}</p>
+            {expenses > 0 && budget === 0 && (
               <IconAlertCircleFilled className="w-5 h-5 text-red-500" />
             )}
           </div>
-          {categoriesNoBudgetWithExpense && (
+          {expenses > 0 && budget === 0 && (
             <div>
               <p className="flex items-center text-[.7rem] text-red-500 font-bold">
                 Expenses amounting to: <IconCurrencyPeso className="w-4 h-4" />
-                {parseFloat(
-                  totalExpenseWithNoBudget[category.label]
-                ).toLocaleString("en-US", {
+                {parseFloat(expenses).toLocaleString("en-US", {
                   minimumFractionDigits: 2,
                   maximumFractionDigits: 2,
                 })}{" "}
@@ -65,7 +62,7 @@ const BudgetCategory = ({ category }) => {
               });
               localStorage.setItem(
                 "categoryChoice",
-                JSON.stringify({ category })
+                JSON.stringify({ categoryContext })
               );
             }}
           >

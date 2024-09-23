@@ -7,29 +7,41 @@ import {
 } from "@tabler/icons-react";
 import { useNavigateContext } from "../../../hooks/general/navigation/useActiveNavigation";
 import { useBudgetContext } from "../../../hooks/user-actions/budget/useManageBudget";
-import useCardFilter from "../../../hooks/user-actions/budget/filter/dynamic/useBudgetCardFilter";
+import categoryData from "../../../json/expenseCategory.json";
 
 const BudgetCard = ({
-  category,
-  monthYearChoiceFormat,
-  currentMonthYearFormat,
+  budgetData: {
+    category: categoryName,
+    budgetId,
+    expenses,
+    budget,
+    percentage,
+  },
 }) => {
   const [hover, setHover] = useState(false);
-  const { imagePath, colorCode, label, altText } = category;
 
-  const { progressPercentage, budgetCategoryInfo, totalExpenseAmount } =
-    useCardFilter(monthYearChoiceFormat, currentMonthYearFormat, label);
-  const { handleDeleteBudget, setPopulateFields } = useBudgetContext();
+  const {
+    monthYearChoiceFormat,
+    currentMonthYearFormat,
+    handleDeleteBudget,
+    setPopulateFields,
+  } = useBudgetContext();
   const { setCurrentActive } = useNavigateContext();
 
+  const categoryContext = categoryData.find(
+    (category) => category.label === categoryName
+  );
+
+  const { imagePath, colorCode, altText } = categoryContext;
+
   const handleEditOnClick = () => {
-    setPopulateFields(budgetCategoryInfo.budgetId);
+    setPopulateFields(budgetId);
 
     setCurrentActive("modal", {
       modalName: "editBudget",
       type: "edit",
     });
-    localStorage.setItem("categoryChoice", JSON.stringify({ category }));
+    localStorage.setItem("categoryChoice", JSON.stringify({ categoryContext }));
   };
 
   return (
@@ -47,13 +59,10 @@ const BudgetCard = ({
                 <IconCurrencyPeso className="w-5 h-5" />
               </span>
               <p>
-                {parseFloat(budgetCategoryInfo.budgetAmount).toLocaleString(
-                  "en-US",
-                  {
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2,
-                  }
-                )}
+                {parseFloat(budget).toLocaleString("en-US", {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}
               </p>
             </div>
           </div>
@@ -71,7 +80,7 @@ const BudgetCard = ({
         </div>
         <div className="flex flex-col gap-2">
           <div className="w-full h-2 bg-gray-300 rounded-full dark:bg-[var(--dark-primary-color)]">
-            {progressPercentage > 100 ? (
+            {percentage > 100 ? (
               <div
                 className={`w-full h-2 flex bg-red-500 items-center rounded-full transition-all duration-[0.4s] relative`}
               >
@@ -81,7 +90,7 @@ const BudgetCard = ({
               <div
                 className={` h-2 flex items-center rounded-full animate-fillWidth relative`}
                 style={{
-                  width: `${progressPercentage}%`,
+                  width: `${percentage}%`,
                   backgroundColor: colorCode,
                 }}
               >
@@ -94,21 +103,21 @@ const BudgetCard = ({
               <p className="text-gray-500 dark:text-gray-300">Spent:</p>
               <div
                 className={`${
-                  progressPercentage > 100 ? "text-red-500" : "text-gray-500"
+                  percentage > 100 ? "text-red-500" : "text-gray-500"
                 } flex items-center font-bold`}
               >
                 <span>
                   <IconCurrencyPeso className="w-4 h-4" />
                 </span>
                 <p className="flex items-center">
-                  {parseFloat(totalExpenseAmount || 0).toLocaleString("en-US", {
+                  {parseFloat(expenses || 0).toLocaleString("en-US", {
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 2,
                   })}
                 </p>
               </div>
             </div>
-            {progressPercentage > 100 ? (
+            {percentage > 100 ? (
               <div className="text-red-500 font-bold">
                 <p className="flex items-center gap-1">
                   <span>
@@ -119,7 +128,7 @@ const BudgetCard = ({
               </div>
             ) : (
               <div className="text-gray-500 dark:text-gray-300">
-                <p>{progressPercentage}%</p>
+                <p>{percentage}%</p>
               </div>
             )}
           </div>
@@ -137,7 +146,7 @@ const BudgetCard = ({
               </div>
               <div
                 className="flex items-center gap-1 text-red-500 font-bold"
-                onClick={() => handleDeleteBudget(budgetCategoryInfo.budgetId)}
+                onClick={() => handleDeleteBudget(budgetId)}
               >
                 <IconTrash className="w-4 h-4" />
                 <p className="text-sm">Delete</p>

@@ -5,7 +5,6 @@ import useBudgetFilter from "../../hooks/fetch/budget/useBudgetFilter";
 import BudgetCard from "./dynamic/BudgetCard";
 import BudgetCategory from "./BudgetCategory";
 import Empty from "../../alerts/indicators/Empty";
-import useFetchStorage from "../../hooks/fetch/useFetchStorage";
 import {
   IconAlertCircleFilled,
   IconChevronLeft,
@@ -13,19 +12,9 @@ import {
 } from "@tabler/icons-react";
 
 const BudgetContainer = () => {
-  const {
-    monthChoice,
-    yearChoice,
-    monthYearChoiceFormat,
-    currentMonthYearFormat,
-    handleDateChoice,
-    handleYearChoice,
-  } = useBudgetContext();
-  const {
-    categoriesWithBudget,
-    categoriesNoBudget,
-    categoriesNoBudgetWithExpense,
-  } = useBudgetFilter();
+  const { monthChoice, yearChoice, handleDateChoice, handleYearChoice } =
+    useBudgetContext();
+  const { budgetCategory } = useBudgetFilter();
 
   return (
     <div className="mb-[7rem] flex flex-col gap-10 text-[var(--text-color)] dark:text-[var(--dark-text-color)]">
@@ -71,18 +60,14 @@ const BudgetContainer = () => {
         <div className="px-4 flex flex-col gap-5">
           <p className="py-1 font-bold">Budget for the month:</p>
         </div>
-        {Boolean(categoriesWithBudget) && categoriesWithBudget.length > 0 ? (
+
+        {budgetCategory.some((budget) => budget.budget > 0) ? (
           <div className="px-4 flex flex-col gap-6">
-            {categoriesWithBudget.map((category, index) => {
-              return (
-                <BudgetCard
-                  key={index}
-                  category={category}
-                  monthYearChoiceFormat={monthYearChoiceFormat}
-                  currentMonthYearFormat={currentMonthYearFormat}
-                />
-              );
-            })}
+            {budgetCategory
+              .filter((budget) => budget.budget > 0)
+              .map((budgetData, index) => {
+                return <BudgetCard key={index} budgetData={budgetData} />;
+              })}
           </div>
         ) : (
           <Empty
@@ -94,7 +79,9 @@ const BudgetContainer = () => {
       <div className="flex flex-col gap-5">
         <div className="px-4 flex flex-col gap-5">
           <p className="py-1 font-bold">Set budget for:</p>
-          {categoriesNoBudgetWithExpense.length > 0 && (
+          {budgetCategory.some(
+            (budget) => budget.budget === 0 && budget.expense > 0
+          ) && (
             <div className="flex gap-1 text-[.7rem] text-red-500 font-bold">
               <IconAlertCircleFilled className="w-4 h-4" />
               <div>
@@ -105,9 +92,11 @@ const BudgetContainer = () => {
           )}
         </div>
         <div className="flex flex-col">
-          {categoriesNoBudget.map((category, index) => {
-            return <BudgetCategory key={index} category={category} />;
-          })}
+          {budgetCategory
+            .filter((budget) => budget.budget === 0)
+            .map((budgetData, index) => {
+              return <BudgetCategory key={index} budgetData={budgetData} />;
+            })}
         </div>
       </div>
     </div>
