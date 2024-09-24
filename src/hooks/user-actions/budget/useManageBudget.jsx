@@ -14,6 +14,7 @@ const BudgetProvider = ({ children }) => {
     handleDateChoice,
     handleYearChoice,
   } = useDate();
+
   const { categoryChoice } = useFetchStorage();
   const {
     defaultInput,

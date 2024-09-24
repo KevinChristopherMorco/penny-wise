@@ -28,7 +28,6 @@ const useDate = () => {
     }
 
     if (id === "monthDesc") {
-      // if (month === currentMonth) return;
       if (month === 0) return;
 
       setMonth((prev) => prev - 1);

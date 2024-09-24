@@ -18,14 +18,21 @@ const BudgetContainer = () => {
   const { monthChoice, yearChoice, handleDateChoice, handleYearChoice } =
     useBudgetContext();
   const { budgetCategory } = useBudgetFilter();
-  const { monthYearChoiceFormat, currentMonthYearFormat } = useServerDate();
+  const {
+    monthsList,
+    monthYearChoiceFormat,
+    currentMonthYearFormat,
+    currentYear,
+  } = useServerDate();
 
   return (
     <div className="mb-[7rem] flex flex-col gap-10 text-[var(--text-color)] dark:text-[var(--dark-text-color)]">
       <div className="p-4 flex justify-center items-center gap-2">
         <div className="min-w-[50%] p-3 flex justify-center items-center gap-2 text-[var(--primary-color)] bg-[var(--brand-color-600)] dark:text-[var(--dark-text-color)] dark:bg-[var(--brand-color-900)]  rounded-xl">
           <IconChevronLeft
-            className="w-5 h-5 text-[var(--primary-color)] font-bold cursor-pointer"
+            className={`${
+              monthsList[0] === monthChoice ? "invisible" : ""
+            } w-5 h-5 text-[var(--primary-color)] font-bold cursor-pointer`}
             id="monthDesc"
             onClick={handleDateChoice}
           />
@@ -33,7 +40,11 @@ const BudgetContainer = () => {
             {monthChoice}
           </p>
           <IconChevronRight
-            className="w-5 h-5 text-[var(--primary-color)] font-bold cursor-pointer"
+            className={`${
+              monthsList[monthsList.length - 1] === monthChoice
+                ? "invisible"
+                : ""
+            } w-5 h-5 text-[var(--primary-color)] font-bold cursor-pointer`}
             id="monthAsc"
             onClick={handleDateChoice}
           />
@@ -43,7 +54,9 @@ const BudgetContainer = () => {
             <span>
               <IconChevronLeft
                 id="yearDesc"
-                className="w-5 h-5 text-[var(--primary-color)] font-bold cursor-pointer"
+                className={`${
+                  yearChoice === currentYear - 1 ? "invisible" : ""
+                } w-5 h-5 text-[var(--primary-color)] font-bold cursor-pointer`}
                 onClick={handleYearChoice}
               />
             </span>
@@ -53,7 +66,9 @@ const BudgetContainer = () => {
             <span>
               <IconChevronRight
                 id="yearAsc"
-                className="w-5 h-5 text-[var(--primary-color)] font-bold cursor-pointer"
+                className={`${
+                  yearChoice === currentYear ? "invisible" : ""
+                } w-5 h-5 text-[var(--primary-color)] font-bold cursor-pointer`}
                 onClick={handleYearChoice}
               />
             </span>

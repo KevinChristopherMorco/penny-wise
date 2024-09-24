@@ -1,26 +1,84 @@
 import useFetchStorage from "../useFetchStorage";
+import useCategoryFilter from "../../user-actions/analysis/useCategoryFilter";
+import { useAnalysisContext } from "../../user-actions/analysis/useManageAnalysis";
 
 const useBarFilter = (label) => {
   const { expenses, budget } = useFetchStorage();
+  const { yearChoice } = useAnalysisContext();
 
   const months = [
-    { month: "January 2024", totalExpenses: 0, totalBudget: 0, percentage: 0 },
-    { month: "February 2024", totalExpenses: 0, totalBudget: 0, percentage: 0 },
-    { month: "March 2024", totalExpenses: 0, totalBudget: 0, percentage: 0 },
-    { month: "April 2024", totalExpenses: 0, totalBudget: 0, percentage: 0 },
-    { month: "May 2024", totalExpenses: 0, totalBudget: 0, percentage: 0 },
-    { month: "June 2024", totalExpenses: 0, totalBudget: 0, percentage: 0 },
-    { month: "July 2024", totalExpenses: 0, totalBudget: 0, percentage: 0 },
-    { month: "August 2024", totalExpenses: 0, totalBudget: 0, percentage: 0 },
     {
-      month: "September 2024",
+      month: `January ${yearChoice}`,
       totalExpenses: 0,
       totalBudget: 0,
       percentage: 0,
     },
-    { month: "October 2024", totalExpenses: 0, totalBudget: 0, percentage: 0 },
-    { month: "November 2024", totalExpenses: 0, totalBudget: 0, percentage: 0 },
-    { month: "December 2024", totalExpenses: 0, totalBudget: 0, percentage: 0 },
+    {
+      month: `February ${yearChoice}`,
+      totalExpenses: 0,
+      totalBudget: 0,
+      percentage: 0,
+    },
+    {
+      month: `March ${yearChoice}`,
+      totalExpenses: 0,
+      totalBudget: 0,
+      percentage: 0,
+    },
+    {
+      month: `April ${yearChoice}`,
+      totalExpenses: 0,
+      totalBudget: 0,
+      percentage: 0,
+    },
+    {
+      month: `May ${yearChoice}`,
+      totalExpenses: 0,
+      totalBudget: 0,
+      percentage: 0,
+    },
+    {
+      month: `June ${yearChoice}`,
+      totalExpenses: 0,
+      totalBudget: 0,
+      percentage: 0,
+    },
+    {
+      month: `July ${yearChoice}`,
+      totalExpenses: 0,
+      totalBudget: 0,
+      percentage: 0,
+    },
+    {
+      month: `August ${yearChoice}`,
+      totalExpenses: 0,
+      totalBudget: 0,
+      percentage: 0,
+    },
+    {
+      month: `September ${yearChoice}`,
+      totalExpenses: 0,
+      totalBudget: 0,
+      percentage: 0,
+    },
+    {
+      month: `October ${yearChoice}`,
+      totalExpenses: 0,
+      totalBudget: 0,
+      percentage: 0,
+    },
+    {
+      month: `November ${yearChoice}`,
+      totalExpenses: 0,
+      totalBudget: 0,
+      percentage: 0,
+    },
+    {
+      month: `December ${yearChoice}`,
+      totalExpenses: 0,
+      totalBudget: 0,
+      percentage: 0,
+    },
   ];
 
   const barData = expenses

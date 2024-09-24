@@ -4,17 +4,23 @@ import {
   IconChevronRight,
   IconAlertCircleFilled,
 } from "@tabler/icons-react";
+
+import categories from "../../json/expenseCategory.json";
 import useCategoryFilter from "../../hooks/user-actions/analysis/useCategoryFilter";
-import DynamicBar from "./dynamic/DynamicBar";
 import useBarFilter from "../../hooks/fetch/analysis/useBarFilter";
+import { useAnalysisContext } from "../../hooks/user-actions/analysis/useManageAnalysis";
+
+import DynamicBar from "./dynamic/DynamicBar";
 
 const AnalysisContainer = () => {
   const {
-    category: { altText, colorCode, imagePath, label },
-    setCountCategory,
+    category: { altText, colorCode, imagePath, label: categoryChoice },
+    handleCategoryChoice,
   } = useCategoryFilter();
 
-  const { barData } = useBarFilter(label);
+  const { yearChoice, currentYear, handleYearChoice } = useAnalysisContext();
+
+  const { barData } = useBarFilter(categoryChoice);
 
   const checkExpensesWithoutBudget = barData.some(
     (data) => data.totalExpenses > 0 && data.totalBudget === 0
@@ -32,8 +38,10 @@ const AnalysisContainer = () => {
             <div>
               <span>
                 <IconChevronLeft
-                  className="w-5 h-5 text-[var(--primary-color)] font-bold"
-                  onClick={() => setCountCategory("minus")}
+                  className={`${
+                    categoryChoice === categories[0].label ? "invisible" : ""
+                  } w-5 h-5 text-[var(--primary-color)] font-bold`}
+                  onClick={() => handleCategoryChoice("minus")}
                 />
               </span>
             </div>
@@ -49,8 +57,12 @@ const AnalysisContainer = () => {
             <div>
               <span>
                 <IconChevronRight
-                  className="w-5 h-5 text-[var(--primary-color)] font-bold"
-                  onClick={() => setCountCategory("add")}
+                  className={`${
+                    categoryChoice === categories[categories.length - 1].label
+                      ? "invisible"
+                      : ""
+                  } w-5 h-5 text-[var(--primary-color)] font-bold`}
+                  onClick={() => handleCategoryChoice("add")}
                 />
               </span>
             </div>
@@ -59,17 +71,23 @@ const AnalysisContainer = () => {
             <div>
               <span>
                 <IconChevronLeft
-                  className="w-5 h-5 text-[var(--primary-color)] font-bold"
-                  onClick={() => setCountCategory("minus")}
+                  id="yearDesc"
+                  className={`${
+                    yearChoice === currentYear - 1 ? "invisible" : ""
+                  } w-5 h-5 text-[var(--primary-color)] font-bold`}
+                  onClick={handleYearChoice}
                 />
               </span>
             </div>
-            <p>2024</p>
+            <p>{yearChoice}</p>
             <div>
               <span>
                 <IconChevronRight
-                  className="w-5 h-5 text-[var(--primary-color)] font-bold"
-                  onClick={() => setCountCategory("minus")}
+                  id="yearAsc"
+                  className={`${
+                    yearChoice === currentYear ? "invisible" : ""
+                  } w-5 h-5 text-[var(--primary-color)] font-bold`}
+                  onClick={handleYearChoice}
                 />
               </span>
             </div>
@@ -108,7 +126,9 @@ const AnalysisContainer = () => {
       <div className="flex flex-col grow">
         <div className="grow overflow-x-scroll items-end grid auto-cols-[100px] grid-flow-col gap-4">
           {barData.map((data, index) => {
-            return <DynamicBar key={index} data={data} label={label} />;
+            return (
+              <DynamicBar key={index} data={data} label={categoryChoice} />
+            );
           })}
         </div>
       </div>
