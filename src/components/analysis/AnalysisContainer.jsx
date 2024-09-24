@@ -30,6 +30,10 @@ const AnalysisContainer = () => {
     (data) => data.totalExpenses > data.totalBudget && data.totalBudget !== 0
   );
 
+  const checkFirstLastCategory = (ar, count) => {
+    return ar[count].label;
+  };
+
   return (
     <div className="p-4 mb-[5rem] flex flex-col gap-6 grow">
       <div className="flex flex-col gap-6">
@@ -39,7 +43,9 @@ const AnalysisContainer = () => {
               <span>
                 <IconChevronLeft
                   className={`${
-                    categoryChoice === categories[0].label ? "invisible" : ""
+                    categoryChoice === checkFirstLastCategory(categories, 0)
+                      ? "invisible"
+                      : ""
                   } w-5 h-5 text-[var(--primary-color)] font-bold`}
                   onClick={() => handleCategoryChoice("minus")}
                 />
@@ -58,7 +64,8 @@ const AnalysisContainer = () => {
               <span>
                 <IconChevronRight
                   className={`${
-                    categoryChoice === categories[categories.length - 1].label
+                    categoryChoice ===
+                    checkFirstLastCategory(categories, categories.length - 1)
                       ? "invisible"
                       : ""
                   } w-5 h-5 text-[var(--primary-color)] font-bold`}

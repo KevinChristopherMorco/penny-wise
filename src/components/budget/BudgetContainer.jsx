@@ -25,13 +25,26 @@ const BudgetContainer = () => {
     currentYear,
   } = useServerDate();
 
+  const checkFirstLastMonth = (ar, count) => {
+    return ar[count];
+  };
+
+  const checkForMonthYear = () => {
+    return (
+      new Date(monthYearChoiceFormat).getTime() >=
+      new Date(currentMonthYearFormat).getTime()
+    );
+  };
+
   return (
     <div className="mb-[7rem] flex flex-col gap-10 text-[var(--text-color)] dark:text-[var(--dark-text-color)]">
       <div className="p-4 flex justify-center items-center gap-2">
         <div className="min-w-[50%] p-3 flex justify-center items-center gap-2 text-[var(--primary-color)] bg-[var(--brand-color-600)] dark:text-[var(--dark-text-color)] dark:bg-[var(--brand-color-900)]  rounded-xl">
           <IconChevronLeft
             className={`${
-              monthsList[0] === monthChoice ? "invisible" : ""
+              checkFirstLastMonth(monthsList, 0) === monthChoice
+                ? "invisible"
+                : ""
             } w-5 h-5 text-[var(--primary-color)] font-bold cursor-pointer`}
             id="monthDesc"
             onClick={handleDateChoice}
@@ -41,7 +54,8 @@ const BudgetContainer = () => {
           </p>
           <IconChevronRight
             className={`${
-              monthsList[monthsList.length - 1] === monthChoice
+              checkFirstLastMonth(monthsList, monthsList.length - 1) ===
+              monthChoice
                 ? "invisible"
                 : ""
             } w-5 h-5 text-[var(--primary-color)] font-bold cursor-pointer`}
@@ -77,8 +91,7 @@ const BudgetContainer = () => {
       </div>
       <div className="flex flex-col gap-5">
         <div className="px-4 flex flex-col gap-5">
-          {new Date(monthYearChoiceFormat).getTime() >=
-            new Date(currentMonthYearFormat).getTime() && (
+          {checkForMonthYear() && (
             <p className="py-1 font-bold">Budget for the month:</p>
           )}
         </div>
@@ -91,8 +104,7 @@ const BudgetContainer = () => {
                 return <BudgetCard key={index} budgetData={budgetData} />;
               })}
           </div>
-        ) : new Date(monthYearChoiceFormat).getTime() >=
-          new Date(currentMonthYearFormat).getTime() ? (
+        ) : checkForMonthYear() ? (
           <Empty
             title="No Budget Set for This Month"
             subtext="Please set a budget to better manage and track your expenses for this month."
@@ -107,8 +119,7 @@ const BudgetContainer = () => {
       <div className="flex flex-col gap-5">
         <div className="px-4 flex flex-col gap-5">
           <p className="py-1 font-bold">
-            {new Date(monthYearChoiceFormat).getTime() >=
-            new Date(currentMonthYearFormat).getTime()
+            {checkForMonthYear()
               ? "Set budget for:"
               : "Categories with No Prior Budget"}
           </p>
