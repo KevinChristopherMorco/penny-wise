@@ -1,5 +1,4 @@
 import React from "react";
-import { useNavigateContext } from "../../hooks/general/navigation/useActiveNavigation";
 import {
   IconHome,
   IconCoins,
@@ -7,13 +6,15 @@ import {
   IconAdjustmentsHorizontal,
   IconReportAnalytics,
 } from "@tabler/icons-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
+import { useNavigateContext } from "../../hooks/general/navigation/useActiveNavigation";
 import useTransactionFilter from "../../hooks/user-actions/transaction/filter/useTransactionFilter";
 
 const MobileNavigation = () => {
-  const { currentActive, setCurrentActive } = useNavigateContext();
-  const { nav } = currentActive;
+  const { pathname } = useLocation();
+
+  const { setCurrentActive } = useNavigateContext();
   const { totalUnreadTransactions } = useTransactionFilter();
 
   return (
@@ -22,11 +23,10 @@ const MobileNavigation = () => {
         <Link
           to="/"
           className={`${
-            nav === "home"
+            pathname === "/"
               ? "text-[var(--accent-color)] font-extrabold dark:text-[var(--dark-accent-color)] animate-navFadeIn"
               : "text-gray-400 font-bold"
           } flex flex-col items-center gap-2 text-sm`}
-          onClick={() => setCurrentActive("nav", "home")}
         >
           <IconHome className="w-6 h-6" />
           <p className="text-[.7rem]">Home</p>
@@ -34,11 +34,10 @@ const MobileNavigation = () => {
         <Link
           to="/manage-budget-plan"
           className={`${
-            nav === "budget"
+            pathname === "/manage-budget-plan"
               ? "text-[var(--accent-color)] font-extrabold dark:text-[var(--dark-accent-color)] animate-navFadeIn"
               : "text-gray-400 font-bold"
           } flex flex-col items-center gap-2 text-sm`}
-          onClick={() => setCurrentActive("nav", "budget")}
         >
           <IconCoins className="w-6 h-6" />
           <p className="text-[.7rem]">Budget</p>
@@ -47,11 +46,10 @@ const MobileNavigation = () => {
         <Link
           to="/analysis"
           className={`${
-            nav === "analysis"
+            pathname === "/analysis"
               ? "text-[var(--accent-color)] font-extrabold dark:text-[var(--dark-accent-color)] animate-navFadeIn"
               : "text-gray-400 font-bold"
           } flex flex-col items-center gap-2 text-sm`}
-          onClick={() => setCurrentActive("nav", "analysis")}
         >
           <IconReportAnalytics className="w-6 h-6" />
           <p className="text-[.7rem]">Analysis</p>
@@ -60,11 +58,10 @@ const MobileNavigation = () => {
         <Link
           to="/transactions"
           className={`${
-            nav === "transactions"
+            pathname === "/transactions"
               ? "text-[var(--accent-color)] font-extrabold dark:text-[var(--dark-accent-color)] animate-navFadeIn"
               : "text-gray-400 font-bold"
           }`}
-          onClick={() => setCurrentActive("nav", "transactions")}
         >
           <div className="flex flex-col items-center gap-2 text-sm">
             <div className="relative">
@@ -85,11 +82,10 @@ const MobileNavigation = () => {
         <Link
           to="/settings"
           className={`${
-            nav === "settings"
+            pathname === "/settings"
               ? "text-[var(--accent-color)] font-extrabold dark:text-[var(--dark-accent-color)] animate-navFadeIn"
               : "text-gray-400 font-bold"
           } flex flex-col items-center gap-2 text-sm`}
-          onClick={() => setCurrentActive("nav", "settings")}
         >
           <IconAdjustmentsHorizontal className="w-6 h-6" />
           <p className="text-[.7rem]">Settings</p>

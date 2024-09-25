@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { IconCircleArrowDown, IconCircleArrowUp } from "@tabler/icons-react";
+
 import useFetchStorage from "../../hooks/fetch/useFetchStorage";
+import useTransactionFilter from "../../hooks/user-actions/transaction/filter/useTransactionFilter";
+import usePaginate from "../../hooks/user-actions/transaction/paginate/usePaginate";
 
 import TransactionHeader from "../transaction/TransactionHeader";
 import TransactionFilter from "../transaction/TransactionFilter";
 import TransactionCard from "../transaction/dynamic/transactionCard";
 import Empty from "../../alerts/indicators/Empty";
-import useTransactionFilter from "../../hooks/user-actions/transaction/filter/useTransactionFilter";
-import { IconCircleArrowDown, IconCircleArrowUp } from "@tabler/icons-react";
-import usePaginate from "../../hooks/user-actions/transaction/paginate/usePaginate";
 
 const Transaction = () => {
   const { transactions } = useFetchStorage();

@@ -5,7 +5,6 @@ const NavigationContext = createContext();
 const NavigationProvider = ({ children }) => {
   const [currentActive, setActive] = useState(
     JSON.parse(localStorage.getItem("currentActive")) || {
-      nav: "overview",
       modal: { modalName: null, type: null },
     }
   );
