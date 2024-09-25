@@ -1,5 +1,5 @@
 import React from "react";
-import { IconAlertCircleFilled, IconUserFilled } from "@tabler/icons-react";
+import { IconAlertCircleFilled, IconUser } from "@tabler/icons-react";
 import useForm from "../../hooks/user-actions/settings/useForm";
 import useValidation from "../../hooks/user-actions/settings/useValidation";
 
@@ -12,10 +12,10 @@ const SettingContainer = () => {
 
   return (
     <div className="grow flex">
-      <div className="basis-[25%] shadow shadow-red-100">
-        <ul className="py-2 flex flex-col items-center font-bold">
-          <li className="flex items-center gap-2">
-            <IconUserFilled className="w-4 h-4" />
+      <div className="basis-[25%] shadow shadow-gray-400">
+        <ul className="p-2 flex flex-col items-center font-bold">
+          <li className="py-1 px-2 flex items-center gap-2 text-[var(--primary-color)] bg-[var(--accent-color)] rounded-lg dark:text-[var(--dark-primary-color)] dark:bg-[var(--dark-accent-color)]">
+            <IconUser className="w-4 h-4" />
             User
           </li>
         </ul>
@@ -36,7 +36,7 @@ const SettingContainer = () => {
               name="username"
               className={`${
                 errorUsername ? "border border-red-500" : ""
-              } py-2 px-4 text-sm rounded-lg bg-[var(--neutral-color)] dark:bg-[var(--dark-neutral-color)]`}
+              } w-full py-2 px-4 text-sm rounded-lg bg-[var(--neutral-color)] dark:bg-[var(--dark-neutral-color)]`}
               placeholder="Type your username here"
               onChange={handleInputChange}
             />

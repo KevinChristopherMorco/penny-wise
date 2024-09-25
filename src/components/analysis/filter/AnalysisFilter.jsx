@@ -17,7 +17,7 @@ const AnalysisFilter = ({ categoryFilter }) => {
 
   return (
     <div className="flex justify-around items-center gap-2">
-      <div className="w-[65%] p-2 flex justify-center items-center gap-2 text-[var(--primary-color)] font-bold bg-[var(--brand-color-500)] dark:text-[var(--dark-primary-color)] dark:bg-[var(--dark-accent-color)]  rounded-xl">
+      <div className="w-[65%] p-2 flex justify-center items-center gap-2 text-[var(--primary-color)] font-bold bg-[var(--accent-color)] dark:text-[var(--dark-primary-color)] dark:bg-[var(--dark-accent-color)]  rounded-xl">
         <div>
           <span>
             <IconChevronLeft
@@ -53,7 +53,7 @@ const AnalysisFilter = ({ categoryFilter }) => {
           </span>
         </div>
       </div>
-      <div className="p-3 flex justify-center items-center gap-2 text-[var(--primary-color)] font-bold bg-[var(--brand-color-500)] dark:text-[var(--dark-primary-color)] dark:bg-[var(--dark-accent-color)] rounded-xl">
+      <div className="p-3 flex justify-center items-center gap-2 text-[var(--primary-color)] font-bold bg-[var(--accent-color)] dark:text-[var(--dark-primary-color)] dark:bg-[var(--dark-accent-color)] rounded-xl">
         <div>
           <span>
             <IconChevronLeft

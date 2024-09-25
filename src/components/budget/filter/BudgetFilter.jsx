@@ -14,7 +14,7 @@ const BudgetFilter = () => {
 
   return (
     <div className="p-4 flex justify-center items-center gap-2">
-      <div className="min-w-[50%] p-3 flex justify-center items-center gap-2 text-[var(--primary-color)] font-bold bg-[var(--brand-color-600)] dark:text-[var(--dark-primary-color)] dark:bg-[var(--dark-accent-color)]  rounded-xl">
+      <div className="min-w-[50%] p-3 flex justify-center items-center gap-2 text-[var(--primary-color)] font-bold bg-[var(--accent-color)] dark:text-[var(--dark-primary-color)] dark:bg-[var(--dark-accent-color)]  rounded-xl">
         <IconChevronLeft
           className={`${
             checkFirstLastMonth(monthsList, 0) === monthChoice
@@ -38,7 +38,7 @@ const BudgetFilter = () => {
           onClick={handleDateChoice}
         />
       </div>
-      <div className="p-3 flex justify-center items-center gap-2 text-[var(--primary-color)] font-bold bg-[var(--brand-color-600)] dark:text-[var(--dark-primary-color)] dark:bg-[var(--dark-accent-color)]  rounded-xl">
+      <div className="p-3 flex justify-center items-center gap-2 text-[var(--primary-color)] font-bold bg-[var(--accent-color)] dark:text-[var(--dark-primary-color)] dark:bg-[var(--dark-accent-color)]  rounded-xl">
         <div>
           <span>
             <IconChevronLeft

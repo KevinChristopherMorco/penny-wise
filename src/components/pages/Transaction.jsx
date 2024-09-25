@@ -23,7 +23,7 @@ const Transaction = () => {
 
   const { readItems, readLimit, unreadItems, unreadLimit } = paginationState;
 
-  const handleUnreadFunction = () => {
+  const handlePagination = (limit, type) => {
     return unreadLimit
       ? () => handlePaginateLess("unread")
       : () => handlePaginateMore("unread");
@@ -37,30 +37,25 @@ const Transaction = () => {
         <p className="px-4 font-extrabold">Latest</p>
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-1 ">
-            {Boolean(transactions) && transactions.length > 0 ? (
+            {Boolean(transactions) &&
+              transactions.length > 0 &&
               filteredTransaction
                 .filter((transaction) => !transaction.isRead)
                 .sort(
                   (a, b) => new Date(b.dateCreated) - new Date(a.dateCreated)
                 )
                 .slice(0, unreadItems)
-                .map((transaction) => {
+                .map((transaction, index) => {
                   return (
                     !transaction.isRead && (
                       <TransactionCard
-                        key={transaction.transactionId}
+                        key={index}
                         transaction={transaction}
                         isRead={false}
                       />
                     )
                   );
-                })
-            ) : (
-              <Empty
-                title="No Transactions Yet"
-                subtext="Any transaction records will be shown here."
-              />
-            )}
+                })}
           </div>
           {totalIsUnread >= 3 && (
             <p
@@ -79,6 +74,13 @@ const Transaction = () => {
               {`${unreadLimit ? "See Less..." : "See More..."}`}{" "}
             </p>
           )}
+
+          {totalIsUnread === 0 && (
+            <Empty
+              title="No Latest Transactions"
+              subtext="Latest transactions would be viewed here! "
+            />
+          )}
         </div>
         {Boolean(transactions) &&
           transactions.length > 0 &&
@@ -92,11 +94,11 @@ const Transaction = () => {
                     (a, b) => new Date(b.dateCreated) - new Date(a.dateCreated)
                   )
                   .slice(0, readItems)
-                  .map((transaction) => {
+                  .map((transaction, index) => {
                     return (
                       transaction.isRead && (
                         <TransactionCard
-                          key={transaction.transactionId}
+                          key={index}
                           transaction={transaction}
                           isRead={true}
                         />

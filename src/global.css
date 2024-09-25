@@ -11,9 +11,9 @@
   --text-accent: #fff; */
 
   --primary-color: #fff;
-  --neutral-color: #fcf6f6;
+  --neutral-color: #f8fcf8;
   --secondary-color: #4dfe4e;
-  --accent-color: #01c802;
+  --accent-color: #01ea02;
   --text-color: #001900;
   --text-accent: #e6ffe6;
 
@@ -62,15 +62,18 @@ body {
 }
 
 /* Hide scrollbar for WebKit browsers */
-.horizontalFilter {
+.horizontalFilter,
+.planCarousel {
   scrollbar-width: none; /* For Firefox */
 }
 
-.horizontalFilter::-webkit-scrollbar {
+.horizontalFilter::-webkit-scrollbar,
+.planCarousel::-webkit-scrollbar {
   display: none; /* For Chrome, Safari, and Opera */
 }
 
 /* Hide scrollbar for Firefox */
-.horizontalFilter {
+.horizontalFilter,
+.planCarousel {
   scrollbar-width: none; /* Hide scrollbar */
 }

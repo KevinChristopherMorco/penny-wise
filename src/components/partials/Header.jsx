@@ -16,13 +16,13 @@ const Header = () => {
     <nav className="p-4 flex justify-between items-center text-[var(--primary-color)] bg-[var(--accent-color)] border-b dark:bg-[var(--dark-primary-color)] dark:border-[var(--dark-accent-color)]">
       <div>
         <p className="flex items-center gap-2 text-lg font-bold">
-          Hello {username}!
+          Hello
           {username === "stranger" && (
             <Link
               to="/settings"
-              className="text-[.6rem] text-[var(--accent-color)] cursor-pointer"
+              className="text-[.7rem] text-[var(--primary-color)] cursor-pointer dark:text-[var(--dark-accent-color)]"
             >
-              Set your username here
+              [Set your username here]
             </Link>
           )}
         </p>

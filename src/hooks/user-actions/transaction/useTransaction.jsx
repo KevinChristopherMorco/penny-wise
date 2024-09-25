@@ -49,7 +49,8 @@ const createTransaction = (type, transaction, action) => {
     return {
       transactionId,
       transactionAccountId: accountId,
-      transactionAccountName: accountName,
+      transactionDeposit: accountDeposit,
+      transactionName: accountName,
       transactionAction: action,
       transactionType: transactionType,
       transactionAmount: accountBalance,
@@ -80,8 +81,8 @@ const createTransaction = (type, transaction, action) => {
     }
     return {
       transactionId,
-      transactionExpenseId: expenseId,
-      transactionExpenseName: expenseName,
+      transactionId: expenseId,
+      transactionName: expenseName,
       transactionAction: action,
       transactionType: transactionType,
       transactionAmount: expenseAmount,

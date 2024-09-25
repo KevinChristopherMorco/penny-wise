@@ -25,17 +25,6 @@ const useForm = () => {
 
   const { error, checkErrors } = useValidation();
 
-  // const {
-  //   populateExpense: {
-  //     expenseId,
-  //     expenseName,
-  //     expenseAmount,
-  //     expenseCategory,
-  //     expenseAccount,
-  //   },
-  //   setPopulateExpense,
-  // } = usePopulate(defaultInput);
-
   const {
     populate: {
       expenseId,
