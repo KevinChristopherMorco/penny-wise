@@ -15,10 +15,7 @@ const Transaction = () => {
 
   const {
     filteredTransaction,
-    totalTransaction: {
-      true: totalReadTransactions,
-      false: totalUnreadTransactions,
-    },
+    transactionNumberData: { totalIsRead, totalIsUnread },
     chooseFilter,
   } = useTransactionFilter();
   const { paginationState, handlePaginateMore, handlePaginateLess } =
@@ -65,7 +62,7 @@ const Transaction = () => {
               />
             )}
           </div>
-          {totalUnreadTransactions >= 3 && (
+          {totalIsUnread >= 3 && (
             <p
               className="py-2 flex justify-center items-center gap-1 text-center text-sm text-[var(--accent-color)] font-bold cursor-pointer dark:text-[var(--dark-accent-color)]"
               onClick={
@@ -89,7 +86,7 @@ const Transaction = () => {
             <div className="flex flex-col gap-4">
               <p className="px-4 font-extrabold">Viewed Transactions</p>
               <div className="flex flex-col gap-1 bg-[var(--primary-color)] dark:bg-[var(--dark-primary-color)] ">
-                {transactions
+                {filteredTransaction
                   .filter((transaction) => transaction.isRead)
                   .sort(
                     (a, b) => new Date(b.dateCreated) - new Date(a.dateCreated)
@@ -109,7 +106,7 @@ const Transaction = () => {
               </div>
             </div>
           )}
-        {totalReadTransactions >= 3 && (
+        {totalIsRead >= 3 && (
           <p
             className="py-2 flex justify-center items-center gap-1 text-center text-sm text-[var(--accent-color)] font-bold cursor-pointer dark:text-[var(--dark-accent-color)]"
             onClick={

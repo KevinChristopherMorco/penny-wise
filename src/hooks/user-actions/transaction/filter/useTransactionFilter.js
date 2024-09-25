@@ -14,40 +14,24 @@ const useTransactionFilter = () => {
     setFilter(() => (filter.length > 0 ? filter : transactions));
   };
 
-  const totalUnreadTransactions = filteredTransaction
-    .filter((transaction) => !transaction.isRead)
-    .reduce((total, transaction) => {
-      const { isRead } = transaction;
-      if (isRead) return;
-      total += 1;
+  const transactionNumberData = filteredTransaction.reduce(
+    (transaction, item) => {
+      if (item.isRead) {
+        transaction.totalIsRead += 1;
+      } else {
+        transaction.totalIsUnread += 1;
+      }
 
-      return total;
-    }, 0);
+      transaction.totalTransaction += 1;
 
-  const totalReadTransactions = filteredTransaction
-    .filter((transaction) => transaction.isRead)
-    .reduce((total, transaction) => {
-      const { isRead } = transaction;
-      if (!isRead) return;
-      total += 1;
-
-      return total;
-    }, 0);
-
-  const totalTransaction = filteredTransaction.reduce((total, transaction) => {
-    const checkIsRead = transaction.isRead;
-    if (!Boolean(total[checkIsRead])) total[checkIsRead] = 0;
-
-    total[checkIsRead] += 1;
-
-    return total;
-  }, {});
+      return transaction;
+    },
+    { totalIsRead: 0, totalIsUnread: 0, totalTransaction: 0 }
+  );
 
   return {
     filteredTransaction,
-    totalUnreadTransactions,
-    totalReadTransactions,
-    totalTransaction,
+    transactionNumberData,
     chooseFilter,
   };
 };

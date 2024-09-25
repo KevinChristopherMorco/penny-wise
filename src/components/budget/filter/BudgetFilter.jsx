@@ -14,17 +14,17 @@ const BudgetFilter = () => {
 
   return (
     <div className="p-4 flex justify-center items-center gap-2">
-      <div className="min-w-[50%] p-3 flex justify-center items-center gap-2 text-[var(--primary-color)] bg-[var(--brand-color-600)] dark:text-[var(--dark-text-color)] dark:bg-[var(--brand-color-900)]  rounded-xl">
+      <div className="min-w-[50%] p-3 flex justify-center items-center gap-2 text-[var(--primary-color)] font-bold bg-[var(--brand-color-600)] dark:text-[var(--dark-primary-color)] dark:bg-[var(--dark-accent-color)]  rounded-xl">
         <IconChevronLeft
           className={`${
             checkFirstLastMonth(monthsList, 0) === monthChoice
               ? "invisible"
               : ""
-          } w-5 h-5 text-[var(--primary-color)] font-bold cursor-pointer`}
+          } w-5 h-5 cursor-pointer`}
           id="monthDesc"
           onClick={handleDateChoice}
         />
-        <p className="min-w-[60%] flex justify-center items-center font-bold">
+        <p className="min-w-[60%] flex justify-center items-center">
           {monthChoice}
         </p>
         <IconChevronRight
@@ -33,31 +33,31 @@ const BudgetFilter = () => {
             monthChoice
               ? "invisible"
               : ""
-          } w-5 h-5 text-[var(--primary-color)] font-bold cursor-pointer`}
+          } w-5 h-5 cursor-pointer`}
           id="monthAsc"
           onClick={handleDateChoice}
         />
       </div>
-      <div className="p-3 flex justify-center items-center gap-2 text-[var(--primary-color)] bg-[var(--brand-color-600)] dark:text-[var(--dark-text-color)] dark:bg-[var(--brand-color-900)]  rounded-xl">
+      <div className="p-3 flex justify-center items-center gap-2 text-[var(--primary-color)] font-bold bg-[var(--brand-color-600)] dark:text-[var(--dark-primary-color)] dark:bg-[var(--dark-accent-color)]  rounded-xl">
         <div>
           <span>
             <IconChevronLeft
               id="yearDesc"
               className={`${
                 yearChoice === currentYear - 1 ? "invisible" : ""
-              } w-5 h-5 text-[var(--primary-color)] font-bold cursor-pointer`}
+              } w-5 h-5 cursor-pointer`}
               onClick={handleYearChoice}
             />
           </span>
         </div>
-        <p className="font-bold">{yearChoice}</p>
+        <p>{yearChoice}</p>
         <div>
           <span>
             <IconChevronRight
               id="yearAsc"
               className={`${
                 yearChoice === currentYear ? "invisible" : ""
-              } w-5 h-5 text-[var(--primary-color)] font-bold cursor-pointer`}
+              } w-5 h-5 cursor-pointer`}
               onClick={handleYearChoice}
             />
           </span>

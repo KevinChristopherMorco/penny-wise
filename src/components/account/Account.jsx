@@ -21,7 +21,7 @@ const Account = () => {
       <p className="px-4 text-lg font-bold">Accounts</p>
       <div className="mb-[7rem] flex flex-col gap-4">
         {Boolean(accounts) && accounts.length > 0 ? (
-          <div className="px-4 py-2">
+          <div className="px-4 py-2 flex flex-col gap-2">
             {accounts.map((account) => (
               <AccountCard key={account.id} accountProps={account} />
             ))}

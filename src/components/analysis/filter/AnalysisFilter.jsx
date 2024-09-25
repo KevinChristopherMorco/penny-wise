@@ -17,7 +17,7 @@ const AnalysisFilter = ({ categoryFilter }) => {
 
   return (
     <div className="flex justify-around items-center gap-2">
-      <div className="w-[65%] p-2 flex justify-center items-center gap-2 text-[var(--primary-color)] bg-[var(--brand-color-500)] dark:text-[var(--dark-text-color)] dark:bg-[var(--brand-color-900)]  rounded-xl">
+      <div className="w-[65%] p-2 flex justify-center items-center gap-2 text-[var(--primary-color)] font-bold bg-[var(--brand-color-500)] dark:text-[var(--dark-primary-color)] dark:bg-[var(--dark-accent-color)]  rounded-xl">
         <div>
           <span>
             <IconChevronLeft
@@ -25,7 +25,7 @@ const AnalysisFilter = ({ categoryFilter }) => {
                 categoryChoice === checkFirstLastCategory(categories, 0)
                   ? "invisible"
                   : ""
-              } w-5 h-5 text-[var(--primary-color)] font-bold`}
+              } w-5 h-5`}
               onClick={() => handleCategoryChoice("minus")}
             />
           </span>
@@ -37,7 +37,7 @@ const AnalysisFilter = ({ categoryFilter }) => {
           >
             <img src={imagePath} alt="" className="w-5 h-5 rounded-full" />
           </div>
-          <p className="text-sm font-bold">{altText}</p>
+          <p className="text-sm">{altText}</p>
         </div>
         <div>
           <span>
@@ -47,20 +47,20 @@ const AnalysisFilter = ({ categoryFilter }) => {
                 checkFirstLastCategory(categories, categories.length - 1)
                   ? "invisible"
                   : ""
-              } w-5 h-5 text-[var(--primary-color)] font-bold`}
+              } w-5 h-5`}
               onClick={() => handleCategoryChoice("add")}
             />
           </span>
         </div>
       </div>
-      <div className="p-3 flex justify-center items-center gap-2 text-[var(--primary-color)] bg-[var(--brand-color-500)] dark:text-[var(--dark-text-color)] dark:bg-[var(--brand-color-900)]  rounded-xl">
+      <div className="p-3 flex justify-center items-center gap-2 text-[var(--primary-color)] font-bold bg-[var(--brand-color-500)] dark:text-[var(--dark-primary-color)] dark:bg-[var(--dark-accent-color)] rounded-xl">
         <div>
           <span>
             <IconChevronLeft
               id="yearDesc"
               className={`${
                 yearChoice === currentYear - 1 ? "invisible" : ""
-              } w-5 h-5 text-[var(--primary-color)] font-bold`}
+              } w-5 h-5`}
               onClick={handleYearChoice}
             />
           </span>
@@ -72,7 +72,7 @@ const AnalysisFilter = ({ categoryFilter }) => {
               id="yearAsc"
               className={`${
                 yearChoice === currentYear ? "invisible" : ""
-              } w-5 h-5 text-[var(--primary-color)] font-bold`}
+              } w-5 h-5`}
               onClick={handleYearChoice}
             />
           </span>

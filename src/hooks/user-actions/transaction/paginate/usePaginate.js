@@ -10,32 +10,29 @@ const usePaginate = () => {
   });
 
   const {
-    totalTransaction: {
-      true: totalReadTransactions,
-      false: totalUnreadTransactions,
-    },
+    transactionNumberData: { totalIsRead, totalIsUnread },
   } = useTransactionFilter();
 
   const handlePaginateMore = (type) => {
     if (type === "unread") {
       setPaginationState((prev) => {
-        if (totalUnreadTransactions >= prev.unreadItems + 3) {
+        if (totalIsUnread >= prev.unreadItems + 3) {
           return { ...prev, unreadItems: prev.unreadItems + 3 };
         }
 
         return {
           ...prev,
-          unreadItems: totalUnreadTransactions,
+          unreadItems: totalIsUnread,
           unreadLimit: true,
         };
       });
     } else {
       setPaginationState((prev) => {
-        if (totalReadTransactions >= prev.readItems + 3) {
+        if (totalIsRead >= prev.readItems + 3) {
           return { ...prev, readItems: prev.readItems + 3 };
         }
 
-        return { ...prev, readItems: totalReadTransactions, readLimit: true };
+        return { ...prev, readItems: totalIsRead, readLimit: true };
       });
     }
   };
