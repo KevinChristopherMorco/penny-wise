@@ -37,7 +37,7 @@ const AnalysisFilter = ({ categoryFilter }) => {
           >
             <img src={imagePath} alt="" className="w-5 h-5 rounded-full" />
           </div>
-          <p className="text-sm">{altText}</p>
+          <p className="text-[.95rem]">{altText}</p>
         </div>
         <div>
           <span>

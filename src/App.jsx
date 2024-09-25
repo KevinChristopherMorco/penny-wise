@@ -14,6 +14,7 @@ import TransactionCardView from "./components/transaction/TransactionCardView";
 import Budget from "./components/pages/Budget";
 import ThemeProvider from "./hooks/general/theme/useTheme";
 import Analysis from "./components/pages/Analysis";
+import Settings from "./components/pages/Settings";
 
 function App() {
   return (
@@ -33,7 +34,7 @@ function App() {
                 <Route path="/transactions" element={<Transaction />}></Route>
                 <Route path="/manage-budget-plan" element={<Budget />}></Route>
                 <Route path="/analysis" element={<Analysis />}></Route>
-
+                <Route path="/settings" element={<Settings />}></Route>
                 <Route
                   path="/transactions/:transactionId"
                   element={<TransactionCardView />}
