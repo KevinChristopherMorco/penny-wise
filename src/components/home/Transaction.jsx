@@ -2,7 +2,6 @@ import React from "react";
 import TransactionCard from "./dynamic/TransactionCard";
 import { Link } from "react-router-dom";
 import useFetchStorage from "../../hooks/fetch/useFetchStorage";
-import { IconMessageExclamation } from "@tabler/icons-react";
 import Empty from "../../alerts/indicators/Empty";
 
 const Transaction = () => {
@@ -24,13 +23,8 @@ const Transaction = () => {
           {transactions
             .sort((a, b) => new Date(b.dateCreated) - new Date(a.dateCreated))
             .slice(0, 4)
-            .map((transaction) => {
-              return (
-                <TransactionCard
-                  key={transaction.transactionId}
-                  transaction={transaction}
-                />
-              );
+            .map((transaction, index) => {
+              return <TransactionCard key={index} transaction={transaction} />;
             })}
         </div>
       ) : (

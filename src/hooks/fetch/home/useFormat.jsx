@@ -135,6 +135,7 @@ const useFormat = (transaction) => {
   };
 
   const formatName = (name) => {
+    if (!Boolean(name)) return;
     return name
       .split(" ")
       .map((name) => name.charAt(0).toUpperCase() + name.slice(1))

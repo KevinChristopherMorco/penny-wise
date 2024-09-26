@@ -1,5 +1,5 @@
 import React from "react";
-import { IconCircleX } from "@tabler/icons-react";
+import { IconAlertCircleFilled, IconCircleX } from "@tabler/icons-react";
 
 import { useNavigateContext } from "../../../hooks/general/navigation/useActiveNavigation";
 import { useExpenseContext } from "../../../hooks/user-actions/expense/useManageExpense";
@@ -13,7 +13,14 @@ const ExpenseForm = () => {
       expenseName = "",
       expenseCategory = "",
       expenseAmount = "",
-    } = {},
+    },
+
+    error: {
+      errorExpenseName,
+      errorExpenseAmount,
+      errorExpenseCategory,
+      errorIsSufficientFunds,
+    },
 
     setInput,
     setPopulateFields,
@@ -54,17 +61,34 @@ const ExpenseForm = () => {
                 id="expenseName"
                 name="expenseName"
                 data-name="expenseName"
-                className="py-2 px-4 text-sm rounded-lg bg-[var(--neutral-color)] dark:bg-[var(--dark-neutral-color)]"
+                className={`${
+                  errorExpenseName ? "border border-red-500 bg-[#F2E0E4]" : ""
+                } py-2 px-4 text-sm rounded-lg bg-[var(--neutral-color)] dark:bg-[var(--dark-neutral-color)]`}
                 placeholder="Type expense name"
                 onChange={handleInputChange}
                 value={expenseName}
               />
+
+              {errorExpenseName && (
+                <p className="flex items-center gap-1 text-[.8rem] font-bold text-red-500">
+                  <span className="w-4 h-4">
+                    <IconAlertCircleFilled className="w-4 h-4" />
+                  </span>
+                  Please include an expense name.
+                </p>
+              )}
             </div>
             <div className="flex flex-col gap-2">
               <label htmlFor="expenseCategory" className="font-bold">
                 Category
               </label>
-              <div className="horizontalFilter w-full py-2 px-4 flex gap-8 overflow-y-scroll bg-[var(--neutral-color)] dark:bg-[var(--dark-neutral-color)] rounded-xl">
+              <div
+                className={`${
+                  errorExpenseCategory
+                    ? "border border-red-500 bg-[#F2E0E4]"
+                    : ""
+                } horizontalFilter w-full py-2 px-4 flex gap-8 overflow-y-scroll bg-[var(--neutral-color)] dark:bg-[var(--dark-neutral-color)] rounded-xl`}
+              >
                 <ul className="flex gap-8">
                   {category.map((category, index) => (
                     <li
@@ -100,6 +124,14 @@ const ExpenseForm = () => {
                   ))}
                 </ul>
               </div>
+              {errorExpenseCategory && (
+                <p className="flex items-center gap-1 text-[.8rem] font-bold text-red-500">
+                  <span className="w-4 h-4">
+                    <IconAlertCircleFilled className="w-4 h-4" />
+                  </span>
+                  Please include an expense category.
+                </p>
+              )}
             </div>
 
             <div className="flex flex-col gap-2">
@@ -111,11 +143,30 @@ const ExpenseForm = () => {
                 id="expenseAmount"
                 name="expenseAmount"
                 data-name="expenseAmount"
-                className="py-2 px-4 text-sm rounded-lg bg-[var(--neutral-color)] dark:bg-[var(--dark-neutral-color)]"
+                className={`${
+                  errorExpenseAmount ? "border border-red-500 bg-[#F2E0E4]" : ""
+                } py-2 px-4 text-sm rounded-lg bg-[var(--neutral-color)] dark:bg-[var(--dark-neutral-color)]`}
                 placeholder="Type expense amount"
                 onChange={handleInputChange}
                 value={expenseAmount}
               />
+              {errorExpenseAmount && (
+                <p className="flex items-center gap-1 text-[.8rem] font-bold text-red-500">
+                  <span className="w-4 h-4">
+                    <IconAlertCircleFilled className="w-4 h-4" />
+                  </span>
+                  Please include an amount.
+                </p>
+              )}
+
+              {errorIsSufficientFunds && (
+                <p className="flex items-center gap-1 text-[.8rem] font-bold text-red-500">
+                  <span className="w-4 h-4">
+                    <IconAlertCircleFilled className="w-4 h-4" />
+                  </span>
+                  Amount exceeded balance.
+                </p>
+              )}
             </div>
 
             <input

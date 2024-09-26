@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import { useStorageContext } from "../../storage/useStorage";
@@ -19,7 +19,7 @@ const useForm = () => {
   const [isSubmit, setSubmit] = useState(false);
 
   const {
-    storage: { accounts, expenses },
+    storage: { expenses },
     setStorage,
   } = useStorageContext();
 
@@ -33,6 +33,7 @@ const useForm = () => {
       expenseCategory,
       expenseAccount,
     },
+    populate,
     setPopulateFields,
   } = usePopulate(defaultInput, "expenses");
 
@@ -41,7 +42,7 @@ const useForm = () => {
   const handleAddExpense = (event) => {
     event.preventDefault();
 
-    const hasError = checkErrors(currentInput);
+    const hasError = checkErrors(currentInput, "add");
 
     setSubmit(true);
 
@@ -96,6 +97,11 @@ const useForm = () => {
     let updatedAccount;
     let updatedExpense;
 
+    const hasError = checkErrors(currentInput, "edit", populate);
+    setSubmit(true);
+
+    if (hasError) return;
+
     setStorage((prev) => {
       const expenseAmount = expenses.find(
         (expense) => expense.expenseId === expenseId
@@ -139,6 +145,7 @@ const useForm = () => {
     };
 
     useExpenseTransaction(transaction);
+    setSubmit(false);
   };
 
   const handleInputChange = (event) => {
@@ -159,6 +166,15 @@ const useForm = () => {
           return {
             ...prev,
             [name]: account,
+          };
+        });
+        break;
+      case "expenseAmount":
+        setInput((prev) => {
+          return {
+            ...prev,
+            [name]: value,
+            expenseAccount: "",
           };
         });
         break;
@@ -199,7 +215,7 @@ const useForm = () => {
       ).expenseAmount;
 
       expense = prev.expenses.find(
-        (expense) => expense.expenseId !== expenseId
+        (expense) => expense.expenseId === expenseId
       );
 
       return {
@@ -209,7 +225,8 @@ const useForm = () => {
             updatedAccount = {
               ...account,
               accountBalance: (
-                parseFloat(account.accountBalance) + parseFloat(expenseAmount)
+                parseFloat(account.accountBalance) +
+                parseFloat(expense.expenseAmount)
               ).toString(),
             };
             return updatedAccount;

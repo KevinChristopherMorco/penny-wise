@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import useFetchStorage from "../../fetch/useFetchStorage";
 
 const usePopulate = (defaultInput, storageType) => {

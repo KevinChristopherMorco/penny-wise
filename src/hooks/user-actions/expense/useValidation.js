@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
+import useFetchStorage from "../../fetch/useFetchStorage";
 
 const useValidation = () => {
   const defaultError = {
@@ -9,8 +11,9 @@ const useValidation = () => {
   };
 
   const [error, setError] = useState(defaultError);
+  const { accounts } = useFetchStorage();
 
-  const checkErrors = (inputs) => {
+  const checkErrors = (inputs, type, populate) => {
     const { expenseName, expenseAmount, expenseCategory, expenseAccount } =
       inputs;
 
@@ -24,12 +27,34 @@ const useValidation = () => {
 
     setError(error);
 
-    return (
-      error.errorExpenseName ||
-      error.errorExpenseAmount ||
-      error.errorExpenseCategory ||
-      error.errorExpenseAccount
-    );
+    if (type === "add") {
+      return (
+        error.errorExpenseName ||
+        error.errorExpenseAmount ||
+        error.errorExpenseCategory ||
+        error.errorExpenseAccount
+      );
+    }
+
+    if (type === "edit") {
+      const account = accounts.find(
+        (account) => account.id === populate.expenseAccount
+      );
+
+      const isSufficientFunds =
+        parseFloat(account.accountBalance) -
+          (parseFloat(expenseAmount) - parseFloat(populate.expenseAmount)) >=
+        0;
+
+      error.errorIsSufficientFunds = !isSufficientFunds;
+
+      return (
+        error.errorExpenseName ||
+        error.errorExpenseAmount ||
+        error.errorExpenseCategory ||
+        error.errorIsSufficientFunds
+      );
+    }
   };
 
   return { defaultError, error, setError, checkErrors };

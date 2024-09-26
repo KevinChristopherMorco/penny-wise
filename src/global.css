@@ -63,17 +63,20 @@ body {
 
 /* Hide scrollbar for WebKit browsers */
 .horizontalFilter,
-.planCarousel {
+.planCarousel,
+.barData {
   scrollbar-width: none; /* For Firefox */
 }
 
 .horizontalFilter::-webkit-scrollbar,
-.planCarousel::-webkit-scrollbar {
+.planCarousel::-webkit-scrollbar,
+.barData::-webkit-scrollbar {
   display: none; /* For Chrome, Safari, and Opera */
 }
 
 /* Hide scrollbar for Firefox */
 .horizontalFilter,
-.planCarousel {
+.planCarousel,
+.barData {
   scrollbar-width: none; /* Hide scrollbar */
 }

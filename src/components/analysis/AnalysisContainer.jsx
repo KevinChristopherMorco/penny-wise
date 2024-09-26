@@ -57,7 +57,7 @@ const AnalysisContainer = () => {
         </div>
       </div>
       <div className="flex flex-col grow">
-        <div className="grow overflow-x-scroll items-end grid auto-cols-[100px] grid-flow-col gap-4">
+        <div className="barData grow overflow-x-scroll items-end grid auto-cols-[100px] grid-flow-col gap-4">
           {barData.map((data, index) => {
             return (
               <DynamicBar key={index} data={data} label={categoryChoice} />
