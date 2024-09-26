@@ -24,7 +24,7 @@ const AccountHeader = () => {
         </Link>
         <div className="w-full flex justify-center items-center gap-1 font-medium">
           <p className="text-sm">Total Balance:</p>
-          <p className="flex items-center justify-center text-base text-green-200 font-bold dark:text-green-400">
+          <p className="flex items-center justify-center text-base text-green-100 font-bold dark:text-green-400">
             <IconCurrencyPeso className="w-5 h-5" />
             {totalBalance.toLocaleString("en", {
               minimumFractionDigits: 2,
@@ -36,7 +36,7 @@ const AccountHeader = () => {
       <div className="flex justify-around items-center">
         <div className="flex flex-col font-medium">
           <p className="text-sm">Total Deposit</p>
-          <p className="w-full flex items-center justify-center text-base text-green-200 font-bold dark:text-green-400">
+          <p className="w-full flex items-center justify-center text-base text-green-700 font-bold dark:text-green-400">
             <IconCurrencyPeso className="w-5 h-5" />
             {totalDeposit.toLocaleString("en", {
               minimumFractionDigits: 2,

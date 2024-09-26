@@ -14,8 +14,8 @@ import useTransactionFilter from "../../hooks/user-actions/transaction/filter/us
 const MobileNavigation = () => {
   const { pathname } = useLocation();
 
-  const { setCurrentActive } = useNavigateContext();
-  const { totalUnreadTransactions } = useTransactionFilter();
+  const { transactionNumberData } = useTransactionFilter();
+  const { totalIsUnread } = transactionNumberData;
 
   return (
     <div className="w-full border-t border-gray-300 h-[3rem] px-4 py-10 fixed bottom-0 flex items-center bg-[#fff] dark:bg-[var(--dark-primary-color)] dark:border-[var(--dark-accent-color)] z-[99]">
@@ -65,10 +65,10 @@ const MobileNavigation = () => {
         >
           <div className="flex flex-col items-center gap-2 text-sm">
             <div className="relative">
-              {Boolean(totalUnreadTransactions) && (
+              {Boolean(totalIsUnread) && (
                 <span className="w-[.9rem] h-[.9rem] absolute -right-1 bg-red-500 flex justify-center items-center rounded-full">
                   <p className="z-50 text-white text-[.5rem]">
-                    {totalUnreadTransactions}
+                    {totalIsUnread}
                   </p>
                 </span>
               )}

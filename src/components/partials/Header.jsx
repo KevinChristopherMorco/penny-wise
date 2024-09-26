@@ -17,13 +17,15 @@ const Header = () => {
       <div>
         <p className="flex items-center gap-2 text-lg font-bold">
           Hello
-          {username === "stranger" && (
+          {username === "stranger" ? (
             <Link
               to="/settings"
               className="text-[.7rem] text-[var(--primary-color)] cursor-pointer dark:text-[var(--dark-accent-color)]"
             >
               [Set your username here]
             </Link>
+          ) : (
+            <span>{username}</span>
           )}
         </p>
         <p className="text-[.75rem] font-light">
