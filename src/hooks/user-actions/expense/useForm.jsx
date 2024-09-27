@@ -5,6 +5,7 @@ import { useStorageContext } from "../../storage/useStorage";
 import useValidation from "./useValidation";
 import useTransaction from "../transaction/useTransaction";
 import usePopulate from "../../fetch/form/usePopulate";
+import { useNavigateContext } from "../../general/navigation/useActiveNavigation";
 
 const useForm = () => {
   const defaultInput = {
@@ -23,7 +24,7 @@ const useForm = () => {
     setStorage,
   } = useStorageContext();
 
-  const { error, checkErrors } = useValidation();
+  const { defaultError, error, setError, checkErrors } = useValidation();
 
   const {
     populate: {
@@ -38,6 +39,7 @@ const useForm = () => {
   } = usePopulate(defaultInput, "expenses");
 
   const { useExpenseTransaction } = useTransaction();
+  const { handleCloseModal } = useNavigateContext();
 
   const handleAddExpense = (event) => {
     event.preventDefault();
@@ -144,6 +146,8 @@ const useForm = () => {
       expenseAction: "editExpense",
     };
 
+    handleCloseModal();
+    setError(defaultError);
     useExpenseTransaction(transaction);
     setSubmit(false);
   };

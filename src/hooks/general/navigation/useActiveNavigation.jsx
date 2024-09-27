@@ -17,12 +17,21 @@ const NavigationProvider = ({ children }) => {
     setActive((prev) => ({ ...prev, [type]: value }));
   };
 
+  const handleCloseModal = () => {
+    setCurrentActive("modal", {
+      modalName: null,
+      type: null,
+    });
+  };
+
   useEffect(() => {
     localStorage.setItem("currentActive", JSON.stringify(currentActive));
   }, [currentActive]);
 
   return (
-    <NavigationContext.Provider value={{ currentActive, setCurrentActive }}>
+    <NavigationContext.Provider
+      value={{ currentActive, setCurrentActive, handleCloseModal }}
+    >
       {children}
     </NavigationContext.Provider>
   );

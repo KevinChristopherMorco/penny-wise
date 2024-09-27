@@ -17,6 +17,7 @@ const Expense = () => {
   const [isAmount, setIsAmount] = useState(false);
 
   const {
+    defaultInput,
     currentInput: {
       expenseName = "",
       expenseCategory = "",
@@ -29,6 +30,7 @@ const Expense = () => {
       errorExpenseCategory,
       errorExpenseAccount,
     },
+    setInput,
     handleAddExpense,
     handleInputChange,
   } = useExpenseContext();
@@ -52,6 +54,10 @@ const Expense = () => {
       setIsAmount(false);
     }
   }, [expenseAmount]);
+
+  useEffect(() => {
+    setInput(defaultInput);
+  }, []);
 
   return (
     <div className="relative mb-[5rem] flex flex-col gap-6">

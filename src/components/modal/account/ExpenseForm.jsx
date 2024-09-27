@@ -20,6 +20,7 @@ const ExpenseForm = () => {
       errorExpenseAmount,
       errorExpenseCategory,
       errorIsSufficientFunds,
+      isValueChange,
     },
 
     setInput,
@@ -28,15 +29,12 @@ const ExpenseForm = () => {
     handleInputChange,
   } = useExpenseContext();
 
-  const { setCurrentActive } = useNavigateContext();
+  const { handleCloseModal } = useNavigateContext();
 
   const handleOnClose = () => {
     setPopulateFields(defaultInput);
     setInput(defaultInput);
-    setCurrentActive("modal", {
-      modalName: null,
-      type: null,
-    });
+    handleCloseModal();
   };
 
   return (

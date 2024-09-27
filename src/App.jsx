@@ -19,9 +19,9 @@ import Settings from "./components/pages/Settings";
 function App() {
   return (
     <ThemeProvider>
-      <StorageProvider>
-        <ExpenseProvider>
-          <NavigationProvider>
+      <NavigationProvider>
+        <StorageProvider>
+          <ExpenseProvider>
             <BrowserRouter>
               <Routes>
                 <Route path="/" element={<Home />}></Route>
@@ -43,9 +43,9 @@ function App() {
               </Routes>
               <MobileNavigation />
             </BrowserRouter>
-          </NavigationProvider>
-        </ExpenseProvider>
-      </StorageProvider>
+          </ExpenseProvider>
+        </StorageProvider>
+      </NavigationProvider>
     </ThemeProvider>
   );
 }

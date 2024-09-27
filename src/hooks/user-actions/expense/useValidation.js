@@ -46,13 +46,20 @@ const useValidation = () => {
           (parseFloat(expenseAmount) - parseFloat(populate.expenseAmount)) >=
         0;
 
+      const isValueChange =
+        expenseName !== populate.expenseName ||
+        expenseAmount !== populate.expenseAmount ||
+        expenseCategory !== populate.expenseCategory;
+
       error.errorIsSufficientFunds = !isSufficientFunds;
+      error.isValueChange = !isValueChange;
 
       return (
         error.errorExpenseName ||
         error.errorExpenseAmount ||
         error.errorExpenseCategory ||
-        error.errorIsSufficientFunds
+        error.errorIsSufficientFunds ||
+        error.isValueChange
       );
     }
   };
