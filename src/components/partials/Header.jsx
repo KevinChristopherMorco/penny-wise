@@ -34,14 +34,14 @@ const Header = () => {
       </div>
       {currentTheme === "light" ? (
         <div
-          className="animate-fadeIn dark:text-[var(--dark-accent-color)]"
+          className="animate-fadeIn dark:text-[var(--dark-accent-color)] cursor-pointer"
           onClick={() => setTheme("dark")}
         >
           <IconMoonStars />
         </div>
       ) : (
         <div
-          className="animate-fadeIn dark:text-[var(--dark-accent-color)]"
+          className="animate-fadeIn dark:text-[var(--dark-accent-color)] cursor-pointer"
           onClick={() => setTheme("light")}
         >
           <IconBrightness2 />

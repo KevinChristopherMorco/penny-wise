@@ -18,7 +18,7 @@ const MobileNavigation = () => {
   const { totalIsUnread } = transactionNumberData;
 
   return (
-    <div className="w-full border-t border-gray-300 h-[3rem] px-4 py-10 fixed bottom-0 flex items-center bg-[#fff] dark:bg-[var(--dark-primary-color)] dark:border-[var(--dark-accent-color)] z-[99]">
+    <div className="w-full border-t border-gray-300 h-[3rem] px-4 py-10 fixed bottom-0 flex items-center bg-[#fff] md:w-[70%] xl:w-[60%] 2xl:w-[40%] dark:bg-[var(--dark-primary-color)] dark:border-[var(--dark-accent-color)] z-[99]">
       <ul className="w-full flex justify-between items-center">
         <Link
           to="/"

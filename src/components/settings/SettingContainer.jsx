@@ -12,9 +12,9 @@ const SettingContainer = () => {
 
   return (
     <div className="grow flex">
-      <div className="basis-[25%] shadow shadow-gray-400">
-        <ul className="p-2 flex flex-col items-center font-bold">
-          <li className="py-1 px-2 flex items-center gap-2 text-[var(--primary-color)] bg-[var(--accent-color)] rounded-lg dark:text-[var(--dark-primary-color)] dark:bg-[var(--dark-accent-color)]">
+      <div className="basis-[25%] xl:basis-[20%]">
+        <ul className="w-full p-2 flex flex-col items-center font-bold">
+          <li className="w-full py-1 px-2 flex justify-center items-center gap-2  text-[var(--primary-color)] bg-[var(--accent-color)] rounded-lg dark:text-[var(--dark-primary-color)] dark:bg-[var(--dark-accent-color)]">
             <IconUser className="w-4 h-4" />
             User
           </li>

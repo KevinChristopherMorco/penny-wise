@@ -65,7 +65,7 @@ const Expense = () => {
         <img
           src="https://static.vecteezy.com/system/resources/previews/003/421/244/non_2x/e-wallet-technology-payment-concept-with-team-people-and-gold-free-vector.jpg"
           alt=""
-          className="rounded-lg"
+          className="xl:w-full xl:h-[20rem] rounded-lg"
         />
       </div>
       <div className="py-4 bg-[var(--primary-color)] dark:bg-[var(--dark-primary-color)]">

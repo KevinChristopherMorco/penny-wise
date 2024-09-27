@@ -3,13 +3,6 @@
 @tailwind utilities;
 
 :root {
-  /* --primary-color: #fff;
-  --secondary-color: #f0f1f3;
-  --accent-color: #3544cf;
-  --neutral-color: #f2f3f3;
-  --text-color: #000;
-  --text-accent: #fff; */
-
   --primary-color: #fff;
   --neutral-color: #f8fcf8;
   --secondary-color: #4dfe4e;
@@ -54,11 +47,11 @@ html {
   @apply h-screen;
 }
 body {
-  @apply min-h-screen;
+  @apply min-h-screen bg-[var(--primary-color)] dark:bg-[var(--dark-primary-color)];
 }
 
 #root {
-  @apply h-full min-h-screen flex flex-col text-black transition duration-100 delay-0 bg-[var(--primary-color)] dark:bg-[var(--dark-primary-color)] dark:text-white;
+  @apply h-full min-h-screen flex flex-col text-black transition duration-100 delay-0 bg-[var(--primary-color)] md:w-[70%] md:mx-auto xl:w-[60%] 2xl:w-[40%] dark:bg-[var(--dark-primary-color)] dark:text-white;
 }
 
 /* Hide scrollbar for WebKit browsers */
@@ -79,4 +72,39 @@ body {
 .planCarousel,
 .barData {
   scrollbar-width: none; /* Hide scrollbar */
+}
+
+@media (min-width: 1200px) {
+  .horizontalFilter,
+  .planCarousel,
+  .barData {
+    scrollbar-width: auto; /* For Firefox */
+  }
+
+  .horizontalFilter::-webkit-scrollbar,
+  .planCarousel::-webkit-scrollbar,
+  .barData::-webkit-scrollbar {
+    display: block; /* For Chrome, Safari, and Opera */
+  }
+
+  /* For Firefox */
+  .horizontalFilter,
+  .planCarousel,
+  .barData {
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-color) var(--brand-color-100);
+  }
+
+  /* For WebKit browsers (Chrome, Safari) */
+  .horizontalFilter::-webkit-scrollbar,
+  .planCarousel::-webkit-scrollbar,
+  .barData::-webkit-scrollbar {
+    width: 1px;
+  }
+
+  .horizontalFilter::-webkit-scrollbar-track,
+  .planCarousel::-webkit-scrollbar-track,
+  .barData::-webkit-scrollbar-track {
+    background: #f0f0f0;
+  }
 }

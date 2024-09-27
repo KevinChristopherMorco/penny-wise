@@ -21,12 +21,12 @@ const TransactionCard = ({ transaction, isRead }) => {
     >
       {!isRead ? (
         <div className="basis-[9%] flex justify-center items-center relative">
-          <IconMail className="w-full h-full text-[var(--accent-color)] dark:text-[var(--dark-accent-color)]" />
-          <span className="w-3 h-3 bg-red-500 top-0 -left-1 absolute rounded-full"></span>
+          <IconMail className="w-full xl:w-14 xl:h-14 h-full text-[var(--accent-color)] dark:text-[var(--dark-accent-color)]" />
+          <span className="w-3 h-3 bg-red-500 top-0 -left-1 xl:left-2 xl:top-1 absolute rounded-full"></span>
         </div>
       ) : (
         <div className="basis-[9%] flex justify-center items-center">
-          <IconMailOpened className="w-full h-full text-[var(--accent-color)] dark:text-[var(--dark-accent-color)]" />
+          <IconMailOpened className="w-full h-full xl:w-14 xl:h-14 text-[var(--accent-color)] dark:text-[var(--dark-accent-color)]" />
         </div>
       )}
 

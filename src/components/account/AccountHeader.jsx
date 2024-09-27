@@ -17,7 +17,7 @@ const AccountHeader = () => {
 
   const totalBalance = totalDeposit - totalExpenses;
   return (
-    <div className="p-4 flex flex-col gap-4 shadow shadow-[var(--accent-color)] bg-[var(--accent-color)] text-[var(--text-accent)] dark:bg-[var(--dark-primary-color)] dark:shadow-[var(--dark-accent-color)]">
+    <div className="p-4 flex flex-col gap-4 border-b border-[var(--accent-color)] bg-[var(--accent-color)] text-[var(--text-accent)] dark:bg-[var(--dark-primary-color)] dark:border-[var(--dark-accent-color)]">
       <div className="w-full flex items-center">
         <Link to="/" className="cursor-pointer">
           <IconChevronLeft className="w-5 h-5 self-start" />
