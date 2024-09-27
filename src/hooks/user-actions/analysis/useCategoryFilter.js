@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import categories from "../../../json/expenseCategory.json";
 import useServerDate from "../../fetch/useServerDate";
 

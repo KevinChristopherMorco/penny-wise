@@ -6,11 +6,12 @@ import useBarFilter from "../../hooks/fetch/analysis/useBarFilter";
 
 import DynamicBar from "./dynamic/DynamicBar";
 import AnalysisFilter from "./filter/AnalysisFilter";
+import { useAnalysisContext } from "../../hooks/user-actions/analysis/useManageAnalysis";
 
 const AnalysisContainer = () => {
   const {
     category: { label: categoryChoice },
-  } = useCategoryFilter();
+  } = useAnalysisContext();
 
   const { barData } = useBarFilter(categoryChoice);
 
@@ -25,7 +26,7 @@ const AnalysisContainer = () => {
   return (
     <div className="p-4 mb-[5rem] flex flex-col gap-6 grow">
       <div className="flex flex-col gap-6">
-        <AnalysisFilter categoryFilter={useCategoryFilter} />
+        <AnalysisFilter categoryFilter={useAnalysisContext} />
         <div className="flex flex-col gap-2">
           <p className="text-[var(--text-color)] font-bold dark:text-[var(--dark-text-color)]">
             Monthly Spending Overview
