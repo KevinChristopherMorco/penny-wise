@@ -37,7 +37,7 @@ const AddAccount = () => {
   console.log(error);
 
   return (
-    <div className="w-full h-full fixed flex justify-center items-center bg-[#000] bg-opacity-80 animate-fadeIn z-[999]">
+    <div className="w-full h-full fixed flex justify-center items-center bg-[#000] bg-opacity-80 animate-fadeIn z-[999] md:w-[70%] md:mx-auto xl:w-[60%] 2xl:w-[40%]">
       <div className="w-[85%] h-fit px-4 pt-2 pb-6 mb-[5rem] flex flex-col gap-8 bg-[var(--primary-color)] text-[var(--text-color)] rounded-xl dark:bg-[var(--dark-primary-color)] dark:text-[var(--dark-text-color)]">
         <div className="py-2 flex justify-between items-center font-bold border-b border-[var(--accent-color)] dark:border-[var(--dark-accent-color)]">
           <p>{type === "add" ? "Add an Account" : "Edit an Account"}</p>
