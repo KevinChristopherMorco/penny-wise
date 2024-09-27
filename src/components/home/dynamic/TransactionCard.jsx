@@ -17,16 +17,20 @@ const TransactionCard = ({ transaction }) => {
       <div className="w-full flex flex-col gap-4 justify-around">
         <div className="w-full flex justify-between items-center">
           <p>{checkTransactionIcon()}</p>
-          <div className="font-bold">{checkTransactionAmount()}</div>
+          <div className="font-bold xl:text-lg">{checkTransactionAmount()}</div>
         </div>
         <div className="w-full flex justify-between items-center">
           <div className="flex flex-col gap-2">
-            <div className="text-sm font-bold">{checkTransactionAction()}</div>
-            <div className="text-[.8rem] font-bold">
+            <div className="text-sm font-bold xl:text-base">
+              {checkTransactionAction()}
+            </div>
+            <div className="text-[.8rem] font-bold xl:text-sm">
               {formatName(transactionName)}
             </div>
           </div>
-          <p className="text-[.8rem]">{formatDate(dateCreated)}</p>
+          <p className="text-[.8rem] xl:text-[.9rem]">
+            {formatDate(dateCreated)}
+          </p>
         </div>
       </div>
     </div>

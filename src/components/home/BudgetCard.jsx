@@ -15,7 +15,7 @@ const BudgetCard = () => {
       <div className="p-4 flex flex-col gap-10 bg-[var(--accent-color)] rounded-xl dark:bg-[var(--dark-secondary-color)]">
         <div className="flex flex-col gap-4 text-white dark:text-[var(--dark-text-color)]">
           <div className="flex flex-col items-center gap-2">
-            <p className="text-sm font-light">My Budget</p>
+            <p className="text-sm font-light xl:text-base"> My Budget</p>
             <p className="flex items-center text-3xl font-extrabold">
               <span>
                 <IconCurrencyPeso className="w-8 h-8" />
@@ -25,7 +25,9 @@ const BudgetCard = () => {
                 maximumFractionDigits: 2,
               })}
             </p>
-            <p className="text-[.7rem] font-medium ">as of {currentMonth}</p>
+            <p className="text-[.7rem] font-medium xl:text-[.8rem] ">
+              as of {currentMonth}
+            </p>
           </div>
 
           <div className="flex justify-center gap-6">

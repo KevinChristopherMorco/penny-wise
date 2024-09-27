@@ -15,12 +15,12 @@ const Header = () => {
   return (
     <nav className="p-4 flex justify-between items-center text-[var(--primary-color)] bg-[var(--accent-color)] border-b dark:bg-[var(--dark-primary-color)] dark:border-[var(--dark-accent-color)]">
       <div>
-        <p className="flex items-center gap-2 text-lg font-bold">
+        <p className="flex items-center gap-2 text-lg xl:text-xl font-bold">
           Hello
           {username === "stranger" ? (
             <Link
               to="/settings"
-              className="text-[.7rem] text-[var(--primary-color)] cursor-pointer dark:text-[var(--dark-accent-color)]"
+              className="text-[.7rem] text-[var(--primary-color)] cursor-pointer  dark:text-[var(--dark-accent-color)]"
             >
               [Set your username here]
             </Link>
@@ -28,7 +28,7 @@ const Header = () => {
             <span>{username}!</span>
           )}
         </p>
-        <p className="text-[.75rem] font-light">
+        <p className="text-[.75rem] xl:text-sm font-light">
           Track your spending with penny wise!
         </p>
       </div>
