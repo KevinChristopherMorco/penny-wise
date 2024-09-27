@@ -29,20 +29,20 @@ const IncomeCard = ({
   };
 
   return (
-    <div className="h-[4.5rem] px-4 flex justify-between items-center shadow-md bg-[var(--neutral-color)] rounded-lg dark:bg-[var(--dark-neutral-color)] relative">
-      <div className="basis-[20%] w-14 h-14 p-2 flex justify-center items-center bg-[var(--accent-color)] rounded-xl dark:bg-[var(--dark-accent-color)]">
+    <div className="h-[4.5rem] px-4 flex justify-between items-center shadow-md bg-[var(--neutral-color)] rounded-lg xl:py-12 dark:bg-[var(--dark-neutral-color)] relative">
+      <div className="basis-[20%] w-14 h-14 p-2 flex justify-center items-center bg-[var(--accent-color)] rounded-xl xl:w-20 xl:h-20 dark:bg-[var(--dark-accent-color)]">
         <img
           src={`/src/assets/flaticons/${icon}.png`}
           alt=""
-          className="w-10 h-10 rounded-lg"
+          className="w-10 h-10 rounded-lg xl:w-16 xl:h-16"
         />
       </div>
       <div className="basis-[60%] flex flex-col gap-1 text-sm">
-        <p className="text-base font-bold">{accountName}</p>
-        <div className="flex items-center gap-1">
+        <p className="text-base font-bold xl:text-xl">{accountName}</p>
+        <div className="flex items-center gap-1 xl:text-lg">
           <p>Balance :</p>
           <p className="flex items-center text-green-600 font-bold dark:text-green-400">
-            <IconCurrencyPeso className="w-5 h-5" />
+            <IconCurrencyPeso className="w-5 h-5 xl:w-6 x:h-6" />
             {parseFloat(accountBalance).toLocaleString("en", {
               minimumFractionDigits: 2,
               maximumFractionDigits: 2,
