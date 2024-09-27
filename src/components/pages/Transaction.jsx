@@ -30,7 +30,7 @@ const Transaction = () => {
   };
 
   return (
-    <div className="h-full min-h-screen flex flex-col">
+    <div className="h-full min-h-screen flex flex-col animate-fadeIn">
       <TransactionHeader />
       <TransactionFilter chooseFilter={chooseFilter} />
       <div className="mb-[6rem] flex-1 flex flex-col gap-6">

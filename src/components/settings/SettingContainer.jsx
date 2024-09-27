@@ -11,7 +11,7 @@ const SettingContainer = () => {
   } = useForm();
 
   return (
-    <div className="grow flex">
+    <div className="grow flex animate-fadeIn">
       <div className="basis-[25%] xl:basis-[20%]">
         <ul className="w-full p-2 flex flex-col items-center font-bold">
           <li className="w-full py-1 px-2 flex justify-center items-center gap-2  text-[var(--primary-color)] bg-[var(--accent-color)] rounded-lg dark:text-[var(--dark-primary-color)] dark:bg-[var(--dark-accent-color)]">
