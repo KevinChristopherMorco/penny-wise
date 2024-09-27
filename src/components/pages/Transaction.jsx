@@ -7,7 +7,7 @@ import usePaginate from "../../hooks/user-actions/transaction/paginate/usePagina
 
 import TransactionHeader from "../transaction/TransactionHeader";
 import TransactionFilter from "../transaction/TransactionFilter";
-import TransactionCard from "../transaction/dynamic/transactionCard";
+import TransactionCard from "../transaction/dynamic/TransactionCard";
 import Empty from "../../alerts/indicators/Empty";
 
 const Transaction = () => {
