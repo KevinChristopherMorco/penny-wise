@@ -4,12 +4,14 @@ import { v4 as uuidv4 } from "uuid";
 import useValidation from "./useValidation";
 import useTransaction from "../transaction/useTransaction";
 import usePopulate from "../../fetch/form/usePopulate";
+import { useNavigateContext } from "../../general/navigation/useActiveNavigation";
 
 const useForm = () => {
   const defaultInput = {
     accountName: "",
     accountDeposit: "",
     icon: "savings",
+    isDepost: "",
   };
 
   const [currentInput, setInput] = useState(defaultInput);
@@ -22,12 +24,14 @@ const useForm = () => {
 
   const {
     populate: { id, accountName, accountDeposit, icon },
+    populate,
     setPopulateFields,
   } = usePopulate(defaultInput, "accounts");
 
   const { defaultError, error, setError, checkErrors } = useValidation();
 
   const { useAccountTransaction } = useTransaction();
+  const { handleCloseModal } = useNavigateContext();
 
   const handleAddAccount = (event) => {
     event.preventDefault();
@@ -78,7 +82,7 @@ const useForm = () => {
   const handleEditAccount = (event) => {
     event.preventDefault();
 
-    const hasError = checkErrors(currentInput, "edit");
+    const hasError = checkErrors(currentInput, "edit", populate);
     setSubmit(true);
 
     if (hasError) return;
@@ -122,6 +126,9 @@ const useForm = () => {
 
     useAccountTransaction(transaction);
     setSubmit(false);
+    setError(defaultError);
+
+    handleCloseModal();
   };
 
   const handleDeleteAccount = (accountId) => {
@@ -175,6 +182,7 @@ const useForm = () => {
     defaultInput,
     defaultError,
     error,
+    populate,
     setInput,
     setError,
     handleInputChange,

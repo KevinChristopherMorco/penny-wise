@@ -10,13 +10,14 @@ const AddAccount = () => {
     currentActive: {
       modal: { type },
     },
-    setCurrentActive,
+    handleCloseModal,
   } = useNavigateContext();
 
   const {
     defaultInput,
     currentInput: { accountName = "", accountDeposit = "", icon = "" } = {},
     error: { errorAccountName, errorAccountDeposit } = {},
+    error,
     defaultError,
     setInput,
     setError,
@@ -27,14 +28,13 @@ const AddAccount = () => {
   } = useAccountContext();
 
   const handleOnClose = () => {
+    handleCloseModal();
     setInput(defaultInput);
     setError(defaultError);
     setPopulateFields(defaultInput);
-    setCurrentActive("modal", {
-      modalName: null,
-      type: null,
-    });
   };
+
+  console.log(error);
 
   return (
     <div className="w-full h-full fixed flex justify-center items-center bg-[#000] bg-opacity-80 animate-fadeIn z-[999]">
@@ -90,6 +90,19 @@ const AddAccount = () => {
                   value={accountDeposit}
                 />
               </div>
+              {type === "edit" && (
+                <div className="flex gap-1 self-end">
+                  <input
+                    type="checkbox"
+                    id="isDeposit"
+                    name="isDeposit"
+                    checked
+                  />
+                  <label for="isDeposit" className="text-[.8rem]">
+                    I don't want to deposit
+                  </label>
+                </div>
+              )}
               {errorAccountDeposit && (
                 <p className="flex items-center gap-1 text-[.8rem] font-bold text-red-500">
                   <IconAlertCircleFilled className="w-4 h-4" />

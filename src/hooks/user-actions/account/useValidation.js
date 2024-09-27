@@ -4,15 +4,14 @@ const useValidation = () => {
   const defaultError = { accountName: false, accountDeposit: false };
   const [error, setError] = useState(defaultError);
 
-  const checkErrors = (inputs, action) => {
+  const checkErrors = (inputs, action, populate) => {
     const { accountName, accountDeposit } = inputs;
 
     if (action === "add") {
       const error = {
         errorAccountName: !Boolean(accountName),
         errorAccountDeposit:
-          !Boolean(parseFloat(accountDeposit)) ||
-          parseFloat(accountDeposit) < 1,
+          !Boolean(accountDeposit) || parseFloat(accountDeposit) < 1,
       };
 
       setError(error);
@@ -22,10 +21,22 @@ const useValidation = () => {
     if (action === "edit") {
       const error = {
         errorAccountName: !Boolean(accountName),
+        errorAccountDeposit:
+          !Boolean(accountDeposit) || parseFloat(accountDeposit) < 0,
       };
 
+      let isValueChange = false;
+
+      if (populate) {
+        isValueChange =
+          parseFloat(accountDeposit) === 0 &&
+          accountName === populate.accountName;
+      }
+
+      error.isValueChange = isValueChange;
       setError(error);
-      return error.errorAccountName;
+
+      return error.errorAccountName || error.isValueChange;
     }
   };
 
