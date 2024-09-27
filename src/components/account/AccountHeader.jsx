@@ -1,6 +1,6 @@
 import React from "react";
 import { IconCurrencyPeso, IconChevronLeft } from "@tabler/icons-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useStorageContext } from "../../hooks/storage/useStorage";
 
 const AccountHeader = () => {
@@ -16,12 +16,14 @@ const AccountHeader = () => {
     .reduce((total, expense) => total + expense, 0);
 
   const totalBalance = totalDeposit - totalExpenses;
+
+  const navigate = useNavigate();
   return (
     <div className="p-4 flex flex-col gap-4 border-b border-[var(--accent-color)] bg-[var(--accent-color)] text-[var(--text-accent)] dark:bg-[var(--dark-primary-color)] dark:border-[var(--dark-accent-color)]">
       <div className="w-full flex items-center">
-        <Link to="/" className="cursor-pointer">
+        <div className="cursor-pointer" onClick={() => navigate(-1)}>
           <IconChevronLeft className="w-5 h-5 self-start" />
-        </Link>
+        </div>
         <div className="w-full flex justify-center items-center gap-1 font-medium">
           <p className="text-sm">Total Balance:</p>
           <p className="flex items-center justify-center text-base text-green-100 font-bold dark:text-green-400">

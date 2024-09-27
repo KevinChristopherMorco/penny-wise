@@ -68,7 +68,6 @@ body {
 }
 
 /* Hide scrollbar for Firefox */
-.horizontalFilter,
 .planCarousel,
 .barData {
   scrollbar-width: none; /* Hide scrollbar */
@@ -81,14 +80,12 @@ body {
     scrollbar-width: auto; /* For Firefox */
   }
 
-  .horizontalFilter::-webkit-scrollbar,
   .planCarousel::-webkit-scrollbar,
   .barData::-webkit-scrollbar {
     display: block; /* For Chrome, Safari, and Opera */
   }
 
   /* For Firefox */
-  .horizontalFilter,
   .planCarousel,
   .barData {
     scrollbar-width: thin;
@@ -96,13 +93,11 @@ body {
   }
 
   /* For WebKit browsers (Chrome, Safari) */
-  .horizontalFilter::-webkit-scrollbar,
   .planCarousel::-webkit-scrollbar,
   .barData::-webkit-scrollbar {
     width: 1px;
   }
 
-  .horizontalFilter::-webkit-scrollbar-track,
   .planCarousel::-webkit-scrollbar-track,
   .barData::-webkit-scrollbar-track {
     background: #f0f0f0;

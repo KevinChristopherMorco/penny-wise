@@ -25,7 +25,7 @@ const Header = () => {
               [Set your username here]
             </Link>
           ) : (
-            <span>{username}</span>
+            <span>{username}!</span>
           )}
         </p>
         <p className="text-[.75rem] font-light">

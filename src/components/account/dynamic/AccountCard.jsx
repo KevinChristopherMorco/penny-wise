@@ -60,20 +60,20 @@ const IncomeCard = ({
         <div className="w-fit px-4 py-2 absolute right-0 -bottom-[5rem] bg-[var(--primary-color)] shadow-lg z-[99] animate-fadeIn rounded-lg dark:bg-[var(--dark-primary-color)]">
           <ul className="flex flex-col gap-2 font-medium">
             <li
-              className="flex items-center gap-1 text-orange-400 font-bold"
+              className="flex items-center gap-1 text-orange-400 font-bold cursor-pointer"
               onClick={() => handleOnClickEdit()}
             >
               <IconEdit className="w-5 h-5" />
               Edit
             </li>
             <li
-              className="flex items-center gap-1 text-red-500 font-bold"
+              className="flex items-center gap-1 text-red-500 font-bold cursor-pointer"
               onClick={() => handleDeleteAccount(id)}
             >
               <IconTrash className="w-5 h-5" />
               Delete
             </li>
-            <li className="flex gap-1 text-[var(--accent-color)] dark:text-[var(--dark-accent-color)] font-bold">
+            <li className="flex gap-1 text-[var(--accent-color)] cursor-pointer dark:text-[var(--dark-accent-color)] font-bold">
               <Link
                 className="flex items-center gap-1"
                 to={`/manage-account/${id}`}

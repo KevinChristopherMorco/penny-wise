@@ -10,9 +10,8 @@ Penny wise allows you to track your spendings, the app is designed to make budge
 ## Features
 
 - Light/dark mode toggle
-- Search by food name
-- Browse by Category
-- Detailed Recipe Information
+- Manage Expenses/Budget/Account(CRUD)
+- Track Budget and Expenses via Bar Chart
 
 ## Tech Stack
 
@@ -20,23 +19,19 @@ Penny wise allows you to track your spendings, the app is designed to make budge
 
 # Lessons Learned
 
-Throughout the development of this app, I’ve gained some valuable insights into managing states (useState and useEffect) and using LocalStorage to enhance user experience.
+Throughout the development of this app, I’ve gained some valuable insights into managing states (useState and useEffect) and using LocalStorage to enhance user experience also I've finally understand the use of context API that let's me avoid prop drilling when the state becomes 3 or more levels deep.
 
 # The Challenges
 
-One of the key challenges I encountered was organizing and managing the **file hierarchy and structure** in my project. As the project grew, keeping track of files and ensuring a logical structure became increasingly complex. It was sometimes tricky to determine the best way to organize components, utilities, and assets to maintain clarity and avoid confusion.
+One of the key challenges I encountered while implementing the Context API was organizing and managing the context hierarchy and structure within my project. As the application grew, maintaining a clear and logical structure for my contexts became increasingly complex. It was sometimes tricky to determine the best way to structure providers and consumers to ensure that data flowed seamlessly without causing confusion.
 
-**Error handling** presented another significant challenge. Implementing error handling was crucial for ensuring that the app could handle a smooth experience even when errors where thrown without breaking the app. I faced difficulties in anticipating and catching various types of errors, especially on api responses.
+**Form Validation** this is one of the most difficult task that I've encountered and I look forward in improving as I make more JS projects using different forms
 
 # Keys for Improvement
 
-For the file structure and hierarchy:
+For the Form validation:
 
-**Adopt a Consistent Structure**: Establish a clear and consistent file structure from the beginning. Anticipating early on what functions are necessary and assets are organized by feature or functionality. This makes it easier to navigate and maintain the project as it grows.
-
-For the file error handling:
-
-Using **try-catch blocks**, error handling mechanisms to catch and manage errors effectively also by returning a fallback like for example an array function would be used in the viewing of certain items, it's best to put a fallback if an api returns falsy values so that it would prevent breaking the app.
+**Making it More Clear and Planning Ahead** For me the reason on why i struggle on this part because I''ve never planned the data structure for the app and also I didn't created pseudocodes which was my crucial mistake since as I think of a feature it became difficult for me to manage. So next time I create another app, I will plan ahead this time.
 
 ## Acknowledgements
 

@@ -47,13 +47,11 @@ const SettingContainer = () => {
               </p>
             )}
           </div>
-          <div>
-            <input
-              type="submit"
-              value="Save"
-              className="w-full p-2 text-base text-[var(--text-accent)] font-bold rounded-xl bg-[var(--accent-color)] cursor-pointer dark:bg-[var(--dark-accent-color)] dark:text-[var(--dark-primary-color)]"
-            />
-          </div>
+          <input
+            type="submit"
+            value="Save"
+            className="p-2 text-base text-[var(--text-accent)] font-bold rounded-xl bg-[var(--accent-color)] cursor-pointer xl:w-[30%] xl:self-end dark:bg-[var(--dark-accent-color)] dark:text-[var(--dark-primary-color)]"
+          />
         </form>
       </div>
     </div>

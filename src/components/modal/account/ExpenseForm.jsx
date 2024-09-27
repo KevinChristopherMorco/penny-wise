@@ -42,7 +42,10 @@ const ExpenseForm = () => {
       <div className="w-[85%] h-fit px-4 pt-2 pb-6 mb-[5rem] flex flex-col gap-8 bg-[var(--primary-color)] text-[var(--text-color)] rounded-xl dark:bg-[var(--dark-primary-color)] dark:text-[var(--dark-text-color)]">
         <div className="py-2 flex justify-between items-center font-bold border-b border-[var(--accent-color)] dark:border-[var(--dark-accent-color)]">
           <p>Edit Expense</p>
-          <IconCircleX className="w-6 h-6" onClick={() => handleOnClose()} />
+          <IconCircleX
+            className="w-6 h-6 cursor-pointer"
+            onClick={() => handleOnClose()}
+          />
         </div>
         <div>
           <form
@@ -170,7 +173,7 @@ const ExpenseForm = () => {
             <input
               type="submit"
               value="Save"
-              className="w-full p-3 text-base text-white font-bold rounded-xl bg-[var(--accent-color)] cursor-pointer dark:bg-[var(--dark-accent-color)] dark:text-[var(--dark-primary-color)]"
+              className="w-full p-3 text-base text-white font-bold rounded-xl bg-[var(--accent-color)] cursor-pointer xl:w-[30%] xl:self-end dark:bg-[var(--dark-accent-color)] dark:text-[var(--dark-primary-color)]"
             />
           </form>
         </div>

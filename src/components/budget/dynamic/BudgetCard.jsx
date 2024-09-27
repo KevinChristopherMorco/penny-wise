@@ -138,14 +138,14 @@ const BudgetCard = ({
             new Date(currentMonthYearFormat).getTime() && (
             <div className="flex gap-2 text-gray-400 self-end animate-fadeIn">
               <div
-                className="flex items-center gap-1 text-orange-500 font-bold"
+                className="flex items-center gap-1 text-orange-500 font-bold cursor-pointer"
                 onClick={() => handleEditOnClick()}
               >
                 <IconPencilMinus className="w-4 h-4" />
                 <p className="text-sm">Edit</p>
               </div>
               <div
-                className="flex items-center gap-1 text-red-500 font-bold"
+                className="flex items-center gap-1 text-red-500 font-bold cursor-pointer"
                 onClick={() => handleDeleteBudget(budgetId)}
               >
                 <IconTrash className="w-4 h-4" />

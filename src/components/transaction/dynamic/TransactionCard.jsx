@@ -17,7 +17,7 @@ const TransactionCard = ({ transaction, isRead }) => {
         !isRead
           ? "bg-[var(--neutral-color)] dark:bg-[var(--dark-neutral-color)]"
           : "bg-[var(--primary-color)] dark:bg-[var(--dark-primary-color)]"
-      } w-full p-4 flex justify-between items-center shadow  cursor-pointer `}
+      } w-full p-4 flex justify-between items-center shadow rounded-xl cursor-pointer `}
     >
       {!isRead ? (
         <div className="basis-[9%] flex justify-center items-center relative">

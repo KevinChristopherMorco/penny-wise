@@ -25,7 +25,7 @@ const AnalysisFilter = ({ categoryFilter }) => {
                 categoryChoice === checkFirstLastCategory(categories, 0)
                   ? "invisible"
                   : ""
-              } w-5 h-5`}
+              } w-5 h-5 cursor-pointer`}
               onClick={() => handleCategoryChoice("minus")}
             />
           </span>
@@ -47,7 +47,7 @@ const AnalysisFilter = ({ categoryFilter }) => {
                 checkFirstLastCategory(categories, categories.length - 1)
                   ? "invisible"
                   : ""
-              } w-5 h-5`}
+              } w-5 h-5 cursor-pointer`}
               onClick={() => handleCategoryChoice("add")}
             />
           </span>
@@ -60,7 +60,7 @@ const AnalysisFilter = ({ categoryFilter }) => {
               id="yearDesc"
               className={`${
                 yearChoice === currentYear - 1 ? "invisible" : ""
-              } w-5 h-5`}
+              } w-5 h-5 cursor-pointer`}
               onClick={handleYearChoice}
             />
           </span>
@@ -72,7 +72,7 @@ const AnalysisFilter = ({ categoryFilter }) => {
               id="yearAsc"
               className={`${
                 yearChoice === currentYear ? "invisible" : ""
-              } w-5 h-5`}
+              } w-5 h-5 cursor-pointer`}
               onClick={handleYearChoice}
             />
           </span>

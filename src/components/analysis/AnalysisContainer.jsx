@@ -28,7 +28,7 @@ const AnalysisContainer = () => {
         <AnalysisFilter categoryFilter={useCategoryFilter} />
         <div className="flex flex-col gap-2">
           <p className="text-[var(--text-color)] font-bold dark:text-[var(--dark-text-color)]">
-            Monthly Food Spending Overview
+            Monthly Spending Overview
           </p>
           {(checkExpensesWithoutBudget || checkExpensesExceededBudget) && (
             <div className="py-4 px-2 flex flex-col gap-1 bg-red-50 rounded-xl dark:bg-[var(--dark-neutral-color)]">

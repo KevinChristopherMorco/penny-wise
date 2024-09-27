@@ -66,7 +66,7 @@ const ExpenseCard = ({ expense }) => {
         <div className="w-fit px-4 py-2 absolute right-0 -bottom-8 bg-[var(--primary-color)] shadow-lg z-[99] animate-fadeIn rounded-lg dark:bg-[var(--dark-primary-color)]">
           <ul className="flex flex-col gap-2 font-medium">
             <li
-              className="flex gap-1 text-orange-400 font-bold"
+              className="flex gap-1 text-orange-400 font-bold cursor-pointer"
               onClick={() => {
                 setToggle(false);
                 setPopulateFields(expense.expenseId);
@@ -80,7 +80,7 @@ const ExpenseCard = ({ expense }) => {
               Edit
             </li>
             <li
-              className="flex gap-1 text-red-500 font-bold"
+              className="flex gap-1 text-red-500 font-bold cursor-pointer"
               onClick={() => {
                 setToggle(false);
                 handleDeleteExpense(accountId, expense.expenseId);

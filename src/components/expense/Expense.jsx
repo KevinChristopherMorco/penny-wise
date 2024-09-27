@@ -226,7 +226,7 @@ const Expense = () => {
           <input
             type="submit"
             value="Save"
-            className="w-full p-3 text-base text-[var(--text-accent)] font-bold rounded-xl bg-[var(--accent-color)] cursor-pointer dark:bg-[var(--dark-accent-color)] dark:text-[var(--dark-primary-color)]"
+            className="w-full p-3 text-base text-[var(--text-accent)] font-bold rounded-xl bg-[var(--accent-color)] cursor-pointer xl:w-[30%] xl:self-end dark:bg-[var(--dark-accent-color)] dark:text-[var(--dark-primary-color)]"
           />
         </form>
       </div>
@@ -236,10 +236,13 @@ const Expense = () => {
             <div className="flex justify-between items-center">
               <p className="font-bold">Choose an account</p>
               <span className="w-6 h-6">
-                <IconX onClick={() => setViewAccount(false)} />
+                <IconX
+                  onClick={() => setViewAccount(false)}
+                  className="cursor-pointer"
+                />
               </span>
             </div>
-            <div className="flex flex-col gap-4 overflow-y-scroll">
+            <div className="flex flex-col gap-4 overflow-y-auto">
               {Boolean(accounts) && accounts.length > 0 ? (
                 accounts.map((account, index) => (
                   <div key={index} className="flex flex-col gap-2">

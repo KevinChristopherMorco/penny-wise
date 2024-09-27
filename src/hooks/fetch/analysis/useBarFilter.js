@@ -1,5 +1,4 @@
 import useFetchStorage from "../useFetchStorage";
-import useCategoryFilter from "../../user-actions/analysis/useCategoryFilter";
 import { useAnalysisContext } from "../../user-actions/analysis/useManageAnalysis";
 
 const useBarFilter = (label) => {

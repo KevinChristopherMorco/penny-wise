@@ -41,7 +41,10 @@ const AddAccount = () => {
       <div className="w-[85%] h-fit px-4 pt-2 pb-6 mb-[5rem] flex flex-col gap-8 bg-[var(--primary-color)] text-[var(--text-color)] rounded-xl dark:bg-[var(--dark-primary-color)] dark:text-[var(--dark-text-color)]">
         <div className="py-2 flex justify-between items-center font-bold border-b border-[var(--accent-color)] dark:border-[var(--dark-accent-color)]">
           <p>{type === "add" ? "Add an Account" : "Edit an Account"}</p>
-          <IconCircleX className="w-6 h-6" onClick={() => handleOnClose()} />
+          <IconCircleX
+            className="w-6 h-6 cursor-pointer"
+            onClick={() => handleOnClose()}
+          />
         </div>
         <div>
           <form
@@ -148,7 +151,7 @@ const AddAccount = () => {
             </div>
             <input
               type="submit"
-              className="w-full p-2 text-base text-[var(--text-accent)] font-bold rounded-xl bg-[var(--accent-color)] cursor-pointer dark:bg-[var(--dark-accent-color)] dark:text-[var(--dark-primary-color)]"
+              className="w-full p-2 text-base text-[var(--text-accent)] font-bold rounded-xl bg-[var(--accent-color)] cursor-pointer xl:w-[30%] xl:self-end dark:bg-[var(--dark-accent-color)] dark:text-[var(--dark-primary-color)]"
               value={type === "add" ? "Add" : "Save"}
             />
           </form>
